@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{20F14977-18F8-4E6C-AE5A-8F4134951036}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BattleShip.GameEngine</RootNamespace>
+    <AssemblyName>BattleShip.GameEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Field\Cell\CellOfField.cs" />
+    <Compile Include="Field\Cell\StatusCell\AroundShip.cs" />
+    <Compile Include="Field\Cell\StatusCell\EmptyCell.cs" />
+    <Compile Include="Field\Cell\StatusCell\StatusCell.cs" />
+    <Compile Include="Arsenal\Flot\FourStoreyShip.cs" />
+    <Compile Include="Arsenal\Flot\OneStoreyShip.cs" />
+    <Compile Include="Arsenal\Flot\ShipRectangleBase.cs" />
+    <Compile Include="Arsenal\Flot\ThreeStoreyShip.cs" />
+    <Compile Include="Arsenal\Flot\TwoStoreyShip.cs" />
+    <Compile Include="Arsenal\Gun\Destroyable\DoubleDestroy.cs" />
+    <Compile Include="Arsenal\Gun\Destroyable\GunBase.cs" />
+    <Compile Include="Arsenal\Gun\Destroyable\GunDestroy.cs" />
+    <Compile Include="Arsenal\Gun\Destroyable\IDestroyable.cs" />
+    <Compile Include="Arsenal\Gun\Destroyable\PlaneDestroy.cs" />
+    <Compile Include="Arsenal\Gun\Gun.cs" />
+    <Compile Include="Arsenal\Protection\ProtectedBase.cs" />
+    <Compile Include="Arsenal\Protection\PVOProtected.cs" />
+    <Compile Include="Field\Field.cs" />
+    <Compile Include="GameObject\GameObject.cs" />
+    <Compile Include="GameObject\ObjectLocation.cs" />
+    <Compile Include="GameObject\PositionAndStatus.cs" />
+    <Compile Include="Location\Location.cs" />
+    <Compile Include="Location\RulesOfSetPositions\BaseRule.cs" />
+    <Compile Include="Location\RulesOfSetPositions\RightDiagonalRule.cs" />
+    <Compile Include="Location\RulesOfSetPositions\IRuleSetPosition.cs" />
+    <Compile Include="Location\RulesOfSetPositions\RectangleRule.cs" />
+    <Compile Include="Location\RulesOfSetPositions\PointRule.cs" />
+    <Compile Include="Location\RulesOfSetPositions\LeftDiagonalRule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

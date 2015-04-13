@@ -1,0 +1,8 @@
+E:\BattleShip\BattleShip.DesktopUI\bin\Debug\BattleShip.DesktopUI.exe.config
+E:\BattleShip\BattleShip.DesktopUI\bin\Debug\BattleShip.DesktopUI.exe
+E:\BattleShip\BattleShip.DesktopUI\bin\Debug\BattleShip.DesktopUI.pdb
+E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.csprojResolveAssemblyReference.cache
+E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.Properties.Resources.resources
+E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.csproj.GenerateResource.Cache
+E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.exe
+E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.pdb
