@@ -6,3 +6,11 @@ E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.Properties.Res
 E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.csproj.GenerateResource.Cache
 E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.exe
 E:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.pdb
+D:\BattleShip\BattleShip.DesktopUI\bin\Debug\BattleShip.DesktopUI.exe.config
+D:\BattleShip\BattleShip.DesktopUI\bin\Debug\BattleShip.DesktopUI.exe
+D:\BattleShip\BattleShip.DesktopUI\bin\Debug\BattleShip.DesktopUI.pdb
+D:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.csprojResolveAssemblyReference.cache
+D:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.Properties.Resources.resources
+D:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.csproj.GenerateResource.Cache
+D:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.exe
+D:\BattleShip\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.pdb

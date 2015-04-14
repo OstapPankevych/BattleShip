@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.GameObject;
@@ -8,7 +8,7 @@ using BattleShip.GameEngine.Location.RulesOfSetPositions;
 
 namespace BattleShip.GameEngine.Arsenal.Flot
 {
-    abstract class ShipRectangleBase : GameObject.GameObject
+    abstract class ShipRectangleBase : GameObject.GameObject, IEnumerable<Position>
     {
         protected byte _storeyCount;
         public byte StoreyCount
@@ -64,6 +64,17 @@ namespace BattleShip.GameEngine.Arsenal.Flot
         public override void OnDeadHandler()
         {
             _wasDead = true;
+        }
+    
+        // повертає позиції кораблика
+        public IEnumerator<Position> GetEnumerator()
+        {
+            return _positions.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator<Position>)GetEnumerator();
         }
     }
 

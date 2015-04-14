@@ -8,7 +8,7 @@ using BattleShip.GameEngine.Field.Cell.StatusCell;
 
 namespace BattleShip.GameEngine.Field.Cell
 {
-    sealed class CellOfField
+    sealed class CellOfField : IEnumerable<Type>
     {
         Position _position;
 
@@ -31,7 +31,7 @@ namespace BattleShip.GameEngine.Field.Cell
         private GameObject.GameObject _gameObject;
 
         // клітинка поля може бути захищена декількома захистами(записуються їхні імена)
-        List<Type> _protectionNameList = new List<Type>();
+        List<Type> _protectionTypeList = new List<Type>();
 
         public CellOfField(Position position)
         {
@@ -39,23 +39,36 @@ namespace BattleShip.GameEngine.Field.Cell
             _gameObject = new EmptyCell(position);
         }
 
+        public void AddProtected(Type typeProtected)
+        {
+            _protectionTypeList.Add(typeProtected);
+        }
+
+        public bool RemoveProtection(Type typeProtected)
+        {
+            return _protectionTypeList.Remove(typeProtected);
+        }
+
+        // отримати список захистів, які є на клітинці
+        public IEnumerator<Type> GetEnumerator()
+        {
+            return _protectionTypeList.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator<Type>)GetEnumerator();
+        }
+
+
+        public void AddObject(GameObject.GameObject gameObject)
+        {
+            _gameObject = gameObject;
+            ShotHandler += gameObject.OnHitMeHandler;
+        }
+
         // івент влучання в клітинку
         public event Action<Position> ShotHandler;
-
-        public bool AddObject(GameObject.GameObject gameObject)
-        {
-            if ((_gameObject is AroundShip || _gameObject is EmptyCell) & gameObject is ProtectedBase)
-            {
-                _gameObject = gameObject;
-
-                // підписати вхідний обєкт на івент влучання
-                ShotHandler = _gameObject.OnHitMeHandler;
-
-                return true;
-            }
-
-            return false;
-        }
 
         // пальнути в цю клітинку
         public Type Shot()
@@ -82,5 +95,7 @@ namespace BattleShip.GameEngine.Field.Cell
 
             return _gameObject.GetType();
         }
+
+       
     }
 }

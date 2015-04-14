@@ -1,11 +1,11 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameObject
 {
-    struct ObjectLocation
+    struct ObjectLocation : IEnumerable<Position>
     {
         PositionAndStatus[] _positionAndStatus;
 
@@ -86,6 +86,17 @@ namespace BattleShip.GameEngine.GameObject
                         return true;
                 return false;
             }
+        }
+
+        public IEnumerator<Position> GetEnumerator()
+        {
+            foreach (var x in _positionAndStatus)
+                yield return x.Location;
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator<Position>)GetEnumerator();
         }
     }
 }
