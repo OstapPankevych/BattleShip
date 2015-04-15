@@ -58,6 +58,8 @@
     <Compile Include="Arsenal\Protection\ProtectedBase.cs" />
     <Compile Include="Arsenal\Protection\PVOProtected.cs" />
     <Compile Include="Field\Field.cs" />
+    <Compile Include="GameEventArgs\GameEventArgs.cs" />
+    <Compile Include="GameEventArgs\ProtectEventArgs.cs" />
     <Compile Include="GameObject\GameObject.cs" />
     <Compile Include="GameObject\ObjectLocation.cs" />
     <Compile Include="GameObject\PositionAndStatus.cs" />

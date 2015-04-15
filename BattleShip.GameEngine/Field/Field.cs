@@ -6,6 +6,8 @@ using BattleShip.GameEngine.Field.Cell.StatusCell;
 using BattleShip.GameEngine.Arsenal.Flot;
 using BattleShip.GameEngine.Location.RulesOfSetPositions;
 using BattleShip.GameEngine.Exceptions;
+using BattleShip.GameEngine.Arsenal.Protection;
+
 
 namespace BattleShip.GameEngine.Field
 {
@@ -63,30 +65,85 @@ namespace BattleShip.GameEngine.Field
 
         private CellOfField[] _cells;
 
+        public bool IsFielRegion(int Line, int Column)
+        {
+            if ((Line <= _size & Line >= 0) & (Column <= _size & Column >= 0))
+                return true;
+            return false;
+        }
 
+        public bool IsCellEmpty(Position position)
+        {
+            CellOfField cell = _cells[GetNumberCell(position)];
+            // Поставити тільки в тому випадку, якщо клітинка є пуста
+            if (cell.GetStatusCell() != typeof(EmptyCell))
+                return false;    
+            return true;
+        }
 
         public bool AddRectangleShip(ShipRectangleBase ship)
         {
             foreach (Position x in ship)
-            {
-                if (_cells[GetNumberCell(x)] is EmptyCell)
-                {
-                    _cells[GetNumberCell(x)].AddObject(ship);
-                }
-                else
-                {
+                if (!IsCellEmpty(x))
                     return false;
+
+            // поставити кораблик і підписатись на дії з клітинкою
+            foreach (Position x in ship)
+            {
+                CellOfField cell = _cells[GetNumberCell(x)];
+                cell.AddObject(ship);
+                // Підписати
+                cell.DeadHandler += ship.OnHitMeHandler;
+            }
+
+            // Зробити поля кругом кораблика і підписати їх знищення на знищення кораблика
+            foreach (Position x in ship)
+            {
+                CellOfField cell;
+                for (int i = -1; i < 2; i++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
+                        Position pos = new Position((byte)(x.Line + i), (byte)(x.Column + j));
+                        if (IsFielRegion(pos.Line, pos.Column))
+                        {
+                            cell = _cells[GetNumberCell(pos)];
+                            if (cell.GetStatusCell() != typeof(EmptyCell))
+                            cell.AddObject(new AroundShip(pos));
+                            // Підписати знищення кілтинки при знищенні кораблика
+                            ship.DeadHandler += cell.OnHitMeHandler;
+                        }
+                    }
                 }
             }
+
             return true;
         }
 
-        private void SetAroundShipCell(ShipRectangleBase ship)
+        public bool AddProtected(ProtectedBase protect)
         {
-            IRuleSetPosition rule;
+            foreach (Position x in protect)
+                if (!IsCellEmpty(x))
+                    return false;
 
+            // поставити захист
+            foreach (Position x in protect)
+            {
+                CellOfField cell = _cells[GetNumberCell(x)];
+                cell.AddObject(protect);
+                // Підписати
+                cell.DeadHandler += protect.OnHitMeHandler;
+            }
 
-
+            Position[] pos = protect.GetProtectedPositions();
+            // підписати решту клітинок на захист
+            for (int i = 0; i < pos.Length; i++ )
+            {
+                CellOfField cell = _cells[GetNumberCell(pos[i])];
+                cell.AddProtected(protect.GetType());
+                protect.RemoveProtectHandler += cell.
+            }
+            return true;
         }
     }
 }

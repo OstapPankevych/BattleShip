@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.GameObject;
 using BattleShip.GameEngine.Location.RulesOfSetPositions;
+using BattleShip.GameEngine.GameEventArgs;
+
 
 
 namespace BattleShip.GameEngine.Arsenal.Flot
@@ -37,31 +39,29 @@ namespace BattleShip.GameEngine.Arsenal.Flot
         }
 
         // івент влучання в об'єкт
-        public event Action<Position, byte> HitMeHandler;
+        public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler = delegate { };
 
         // івент вмирання об'єкта
-        public event Action<byte> DeadHandler;
+        public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler = delegate { };
 
-        public override void OnHitMeHandler(Position position)
+        public override void OnHitMeHandler(GameObject.GameObject sender, GameEvenArgs e)
         {
             // вбити клітинку, в яку потрапили
-            _positions.ChangeLifeToDead(position);
+            _positions.ChangeLifeToDead(e.Location);
 
             // сказати тому, хто підписаний на цей корабель, що в нього попали
-            if (HitMeHandler != null)
-                HitMeHandler(position, ID);
+            HitMeHandler(this, e);
 
             // якщо його вбили цілком - сказати підписникам, що він вбитий
             if (!_wasDead)
                 if (!IsLife)
                 {
                     OnDeadHandler();
-                    if (DeadHandler != null)
-                        DeadHandler(ID);
+                    DeadHandler(this, e);
                 }
         }
 
-        public override void OnDeadHandler()
+        void OnDeadHandler()
         {
             _wasDead = true;
         }

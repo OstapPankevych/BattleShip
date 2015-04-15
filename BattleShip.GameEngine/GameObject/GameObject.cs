@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 
 using BattleShip.GameEngine.Location;
-
+using BattleShip.GameEngine.GameEventArgs;
 
 
 namespace BattleShip.GameEngine.GameObject
 {
-    abstract class GameObject
+    abstract class GameObject 
     {
         // чи живий
         public abstract bool IsLife { get; }
@@ -27,10 +27,13 @@ namespace BattleShip.GameEngine.GameObject
             this._id = id;
         }
 
-        // метод опрацювання влучання 
-        public abstract void OnHitMeHandler(Position position);
+        // івент вмирання об'єкта
+        public abstract event Action<GameObject, GameEvenArgs> DeadHandler;
+        // івент влучання в об'єкт
+        public abstract event Action<GameObject, GameEvenArgs> HitMeHandler;
 
-        // метод опрацювання знищення об'єкта
-        public abstract void OnDeadHandler();
+        public virtual void OnHitMeHandler(GameObject g, GameEvenArgs e) { }
+
+        void OnDeadHandler() { }
     }
 }

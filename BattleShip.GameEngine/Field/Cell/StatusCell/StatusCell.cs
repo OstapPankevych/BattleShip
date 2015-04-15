@@ -2,7 +2,7 @@
 
 
 using BattleShip.GameEngine.Location;
-
+using BattleShip.GameEngine.GameEventArgs;
 
 
 namespace BattleShip.GameEngine.Field.Cell.StatusCell
@@ -27,26 +27,28 @@ namespace BattleShip.GameEngine.Field.Cell.StatusCell
             }
         }
 
-        public event Action<Position> DeadHandler;
+        public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler;
+        public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler;
 
-        public override void OnHitMeHandler(Location.Position position)
+        void OnDeadHandler()
         {
-            if (position == _position)
+            _isLife = false;
+        }
+        public override void OnHitMeHandler(GameObject.GameObject gameObject, GameEventArgs.GameEvenArgs e)
+        {
+            if (e.Location == _position)
             {
                 if (_isLife)
                 {
                     OnDeadHandler();
                     if (DeadHandler != null)
-                        DeadHandler(position);
+                        DeadHandler(this, new GameEvenArgs(e.Location));
                 }
                 return;
             }
             return;
         }
 
-        public override void OnDeadHandler()
-        {
-            _isLife = false;
-        }
+        
     }
 }

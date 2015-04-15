@@ -9,3 +9,4 @@ D:\BattleShip\BattleShip\bin\Debug\BattleShip.exe
 D:\BattleShip\BattleShip\bin\Debug\BattleShip.pdb
 D:\BattleShip\BattleShip\obj\Debug\BattleShip.exe
 D:\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
+D:\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.csprojResolveAssemblyReference.cache
