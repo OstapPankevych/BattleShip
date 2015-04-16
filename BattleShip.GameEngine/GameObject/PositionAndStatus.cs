@@ -7,7 +7,7 @@ using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameObject
 {
-    struct PositionAndStatus
+    public struct PositionAndStatus
     {
         Position _position;
         bool _life;
@@ -30,8 +30,8 @@ namespace BattleShip.GameEngine.GameObject
 
         public PositionAndStatus(Position position)
         {
-            this._position = position;
             _life = true;
+            this._position = position;
         }
 
         public void ChangeLifeToDead()

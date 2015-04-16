@@ -8,7 +8,7 @@ using BattleShip.GameEngine.GameEventArgs;
 
 namespace BattleShip.GameEngine.Arsenal.Protection
 {
-    abstract class ProtectedBase : GameObject.GameObject , IEnumerable<Position>
+    public abstract class ProtectedBase : GameObject.GameObject, IEnumerable<Position>
     {
         // розташування самого обєкта
         protected ObjectLocation _positions;
@@ -61,10 +61,6 @@ namespace BattleShip.GameEngine.Arsenal.Protection
         public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler = delegate { };
 
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler = delegate { };
-
-        public abstract event Action<GameObject.GameObject, GameEvenArgs> RemoveProtectHandler;
-
-        public abstract void OnRemoveProtect(GameObject.GameObject g, ProtectEventArgs e);
 
         // повертає позиції захисту
         public IEnumerator<Position> GetEnumerator()

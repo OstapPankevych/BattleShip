@@ -10,7 +10,7 @@ using BattleShip.GameEngine.GameEventArgs;
 
 namespace BattleShip.GameEngine.Field.Cell
 {
-    sealed class CellOfField : IEnumerable<Type>
+    public sealed class CellOfField : IEnumerable<Type>
     {
         Position _position;
 
@@ -91,9 +91,6 @@ namespace BattleShip.GameEngine.Field.Cell
         {
             // сказати всім, хто на неї підписаний, що її зачепили
             DeadHandler(_gameObject, new GameEventArgs.GameEvenArgs(this._position));
-
-            if (_gameObject is ProtectedBase)
-                ((ProtectedBase)_gameObject).OnRemoveProtect(_gameObject, new ProtectEventArgs(_gameObject.GetType()));
         }
 
         public void OnHitMeHandler(GameObject.GameObject sender, GameEvenArgs e)

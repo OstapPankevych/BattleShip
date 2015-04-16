@@ -3,7 +3,7 @@
 
 namespace BattleShip.GameEngine.Exceptions
 {
-    class OutOfFielRegionException : ApplicationException
+    public class OutOfFielRegionException : ApplicationException
     {
         string _msg = "out of field region";
         public override string Message

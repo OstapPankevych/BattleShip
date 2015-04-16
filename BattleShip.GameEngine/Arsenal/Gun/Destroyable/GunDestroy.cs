@@ -5,7 +5,7 @@ using BattleShip.GameEngine.Location;
 namespace BattleShip.GameEngine.Arsenal.Gun.Destroyable
 {
 
-    class GunDestroy : IDestroyable
+    public class GunDestroy : IDestroyable
     {
         public Position[] Destroy(Position point, byte size)
         {

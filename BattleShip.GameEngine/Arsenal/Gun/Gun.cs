@@ -7,7 +7,7 @@ using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.Arsenal.Gun
 {
-    class Gun
+    public class Gun
     {
         protected IDestroyable destroyable;
 

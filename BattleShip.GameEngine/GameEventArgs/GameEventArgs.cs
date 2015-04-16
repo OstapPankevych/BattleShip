@@ -5,7 +5,7 @@ using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameEventArgs
 {
-    class GameEvenArgs : EventArgs
+    public class GameEvenArgs : EventArgs
     {
         private Position _position;
 

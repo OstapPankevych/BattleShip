@@ -6,7 +6,7 @@ using BattleShip.GameEngine.Location;
 namespace BattleShip.GameEngine.Field.Cell.StatusCell
 {
     // клас пустої клітинки
-    class EmptyCell : StatusCell
+    public class EmptyCell : StatusCell
     {
         public EmptyCell(Position position)
             : base(position)

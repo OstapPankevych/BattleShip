@@ -8,3 +8,8 @@ D:\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.dll
 D:\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.pdb
 D:\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.dll
 D:\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.pdb
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.csprojResolveAssemblyReference.cache
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.dll
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.pdb
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.dll
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.pdb

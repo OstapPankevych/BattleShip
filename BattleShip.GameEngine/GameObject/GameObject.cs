@@ -8,7 +8,7 @@ using BattleShip.GameEngine.GameEventArgs;
 
 namespace BattleShip.GameEngine.GameObject
 {
-    abstract class GameObject 
+    public abstract class GameObject
     {
         // чи живий
         public abstract bool IsLife { get; }

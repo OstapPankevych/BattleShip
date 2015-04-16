@@ -7,7 +7,7 @@ using BattleShip.GameEngine.GameEventArgs;
 
 namespace BattleShip.GameEngine.Field.Cell.StatusCell
 {
-    class StatusCell : GameObject.GameObject
+    public class StatusCell : GameObject.GameObject
     {
         bool _isLife = true;
 

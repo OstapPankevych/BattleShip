@@ -10,7 +10,7 @@ using BattleShip.GameEngine.GameEventArgs;
 
 namespace BattleShip.GameEngine.Arsenal.Flot
 {
-    abstract class ShipRectangleBase : GameObject.GameObject, IEnumerable<Position>
+    public abstract class ShipRectangleBase : GameObject.GameObject, IEnumerable<Position>
     {
         protected byte _storeyCount;
         public byte StoreyCount

@@ -7,8 +7,8 @@
     <ProjectGuid>{3FA4BCFC-9E81-4152-AE2B-CE4D4CE1D428}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BattleShip</RootNamespace>
-    <AssemblyName>BattleShip</AssemblyName>
+    <RootNamespace>BattleShip.ConsoleUI</RootNamespace>
+    <AssemblyName>BattleShip.ConsoleUI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BattleShip.GameEngine\BattleShip.GameEngine.csproj">
+      <Project>{20f14977-18f8-4e6c-ae5a-8f4134951036}</Project>
+      <Name>BattleShip.GameEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,3 +8,10 @@ D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.Test.pd
 D:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.csprojResolveAssemblyReference.cache
 D:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.dll
 D:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.pdb
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.csprojResolveAssemblyReference.cache
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.dll
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.Test.dll
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.Test.pdb
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.dll
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.pdb
+C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.pdb

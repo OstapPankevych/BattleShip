@@ -1,56 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+using BattleShip.GameEngine.Field;
 
+using BattleShip.GameEngine.Arsenal.Flot;
 
-namespace BattleShip
+using BattleShip.GameEngine.Location;
+
+namespace BattleShip.ConsoleUI
 {
     class Program
     {
 
-        struct A
+        public static void Hit(GameEngine.GameObject.GameObject o, GameEngine.GameEventArgs.GameEvenArgs e) 
         {
-            public byte a;
+            Console.WriteLine("popali");
         }
 
-
-        class B
-        {
-            A[] a;
-
-            public B(byte size)
-            {
-                a = new A[size];
-
-                for (byte i = 0; i < a.Length; i++)
-                    a[i].a = i;
-            }
-
-            public A[] Get()
-            {
-                return a;
-            }
-
-            public void Show(byte i)
-            {
-                Console.WriteLine(a[i].a);
-            }
-        }
 
         static void Main(string[] args)
         {
 
-            B b = new B(5);
+            Position p1 = new Position(0, 0);
+            Position p2 = new Position(0, 1);
+            Position p3 = new Position(0, 2);
 
-            A[] a = b.Get();
+            ThreeStoreyShip ship = new ThreeStoreyShip(0, p1, p2, p3);
 
-            a[3] = new A() {a = 8};
+            Field field = new Field(10);
 
-            b.Show(3);
-         
+            //Console.WriteLine("Line = {0}, Column = {1}", field.GetPosition(10).Line, field.GetPosition(10).Column);
+            //Console.WriteLine(field.Size);
+            Console.WriteLine(field.AddRectangleShip(ship));
+
+            ship.HitMeHandler += Hit;
+
+            //field.
+
+            //Console.WriteLine(p1==p2);
 
             Console.ReadLine();
         }

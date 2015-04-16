@@ -8,7 +8,7 @@ using BattleShip.GameEngine.Arsenal.Protection;
 namespace BattleShip.GameEngine.Arsenal.Gun.Destroyable
 {
 
-    class PlaneDestroy : GunBase, IDestroyable
+    public class PlaneDestroy : GunBase, IDestroyable
     {
         public Position[] Destroy(Position point, byte size)
         {

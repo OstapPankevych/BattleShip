@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShip.GameEngine.GameEventArgs
 {
-    class ProtectEventArgs : EventArgs
+    public class ProtectEventArgs : EventArgs
     {
         public Type Type;
         public ProtectEventArgs(Type type)

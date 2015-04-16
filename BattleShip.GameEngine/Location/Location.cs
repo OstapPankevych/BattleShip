@@ -4,7 +4,7 @@
 
 namespace BattleShip.GameEngine.Location
 {
-    struct Position
+    public struct Position
     {
         byte _line;
 

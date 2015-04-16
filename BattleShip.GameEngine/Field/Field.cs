@@ -11,11 +11,11 @@ using BattleShip.GameEngine.Arsenal.Protection;
 
 namespace BattleShip.GameEngine.Field
 {
-    class Field
+    public class Field
     {
         byte _size;
 
-        public int Size
+        public byte Size
         {
             get
             {
@@ -27,6 +27,10 @@ namespace BattleShip.GameEngine.Field
                 if (value < 10)
                 {
                     _size = 10;
+                }
+                else
+                {
+                    _size = value;
                 }
             }
         }
@@ -45,7 +49,7 @@ namespace BattleShip.GameEngine.Field
         }
 
         // отримати номер клітинки з _cells за Position
-        private int GetNumberCell(Position position)
+        int GetNumberCell(Position position)
         {
             for (int i = 0; i < _cells.Length; i++)
                 if (_cells[i].GetMyLocation() == position)
@@ -55,7 +59,7 @@ namespace BattleShip.GameEngine.Field
         }
 
         // отримати Position з _cells за порядковим номером
-        private Position GetPosition(int number)
+        public Position GetPosition(int number)
         {
             if (number > Size * Size)
                 throw new ArgumentOutOfRangeException(this.ToString());
@@ -126,22 +130,13 @@ namespace BattleShip.GameEngine.Field
                 if (!IsCellEmpty(x))
                     return false;
 
-            // поставити захист
+            // поставити обєкт захисту
             foreach (Position x in protect)
             {
                 CellOfField cell = _cells[GetNumberCell(x)];
                 cell.AddObject(protect);
                 // Підписати
                 cell.DeadHandler += protect.OnHitMeHandler;
-            }
-
-            Position[] pos = protect.GetProtectedPositions();
-            // підписати решту клітинок на захист
-            for (int i = 0; i < pos.Length; i++ )
-            {
-                CellOfField cell = _cells[GetNumberCell(pos[i])];
-                cell.AddProtected(protect.GetType());
-                protect.RemoveProtectHandler += cell.
             }
             return true;
         }

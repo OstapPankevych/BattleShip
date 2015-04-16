@@ -5,7 +5,7 @@ using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameObject
 {
-    struct ObjectLocation : IEnumerable<Position>
+    public struct ObjectLocation : IEnumerable<Position>
     {
         PositionAndStatus[] _positionAndStatus;
 
@@ -31,8 +31,8 @@ namespace BattleShip.GameEngine.GameObject
         public byte GetCountLifeParts()
         {
             byte count = 0;
-            foreach (var x in _positionAndStatus)
-                if (x.IsLife)
+            for (int i = 0; i < _positionAndStatus.Length; i++)
+                if (_positionAndStatus[i].IsLife)
                     count++;
             return count;
         }
@@ -64,17 +64,17 @@ namespace BattleShip.GameEngine.GameObject
             return arrLife;
         }
 
-        public void ChangeLifeToDead(Position position)
+        public bool ChangeLifeToDead(Position position)
         {
-            foreach (var x in _positionAndStatus)
+            for (int i = 0; i < _positionAndStatus.Length; i++)
             {
-                if (x.Location == position)
+                if ((_positionAndStatus[i]).Location == position)
                 {
-                    x.ChangeLifeToDead();
-                    return;
+                    _positionAndStatus[i].ChangeLifeToDead();
+                    return true;
                 }
             }
-            throw new ArgumentOutOfRangeException();
+            return true;
         }
 
         public bool IsLife

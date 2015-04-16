@@ -50,8 +50,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="GameObject\GameObjectTest.cs" />
+    <Compile Include="GameObject\PositionAndStatusTest.cs" />
+    <Compile Include="GameObject\ObjectLocationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BattleShip.GameEngine\BattleShip.GameEngine.csproj">
+      <Project>{20f14977-18f8-4e6c-ae5a-8f4134951036}</Project>
+      <Name>BattleShip.GameEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
