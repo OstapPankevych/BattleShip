@@ -15,3 +15,5 @@ C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShi
 C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.dll
 C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.pdb
 C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.pdb
+D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.dll
+D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.pdb

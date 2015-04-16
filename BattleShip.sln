@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShip.ConsoleUI", "BattleShip\BattleShip.ConsoleUI.csproj", "{3FA4BCFC-9E81-4152-AE2B-CE4D4CE1D428}"
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShip.GameEngine", "Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShip.DesktopUI", "BattleShip.DesktopUI\BattleShip.DesktopUI.csproj", "{1C95163F-D227-4EC0-8B01-25146F066199}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShip.GameEngine.Test", "BattleShip.GameEngine.Test\BattleShip.GameEngine.Test.csproj", "{D4EF68A4-77E8-41FD-8C93-51BA29BDF617}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShip.GameEngineTest", "BattleShip.GameEngine.Test\BattleShip.GameEngineTest.csproj", "{D4EF68A4-77E8-41FD-8C93-51BA29BDF617}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

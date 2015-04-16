@@ -4,11 +4,6 @@ E:\BattleShip\BattleShip\bin\Debug\BattleShip.pdb
 E:\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.csprojResolveAssemblyReference.cache
 E:\BattleShip\BattleShip\obj\Debug\BattleShip.exe
 E:\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
-D:\BattleShip\BattleShip\bin\Debug\BattleShip.exe.config
-D:\BattleShip\BattleShip\bin\Debug\BattleShip.exe
-D:\BattleShip\BattleShip\bin\Debug\BattleShip.pdb
-D:\BattleShip\BattleShip\obj\Debug\BattleShip.exe
-D:\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
 D:\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.csprojResolveAssemblyReference.cache
 C:\Users\Ostap\Desktop\BattleShip\BattleShip\bin\Debug\BattleShip.ConsoleUI.exe.config
 C:\Users\Ostap\Desktop\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.csprojResolveAssemblyReference.cache
@@ -18,3 +13,10 @@ C:\Users\Ostap\Desktop\BattleShip\BattleShip\bin\Debug\BattleShip.GameEngine.dll
 C:\Users\Ostap\Desktop\BattleShip\BattleShip\bin\Debug\BattleShip.GameEngine.pdb
 C:\Users\Ostap\Desktop\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.exe
 C:\Users\Ostap\Desktop\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.pdb
+D:\BattleShip\BattleShip\bin\Debug\BattleShip.ConsoleUI.exe.config
+D:\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.exe
+D:\BattleShip\BattleShip\obj\Debug\BattleShip.ConsoleUI.pdb
+D:\BattleShip\BattleShip\bin\Debug\BattleShip.ConsoleUI.exe
+D:\BattleShip\BattleShip\bin\Debug\BattleShip.ConsoleUI.pdb
+D:\BattleShip\BattleShip\bin\Debug\BattleShip.GameEngine.dll
+D:\BattleShip\BattleShip\bin\Debug\BattleShip.GameEngine.pdb

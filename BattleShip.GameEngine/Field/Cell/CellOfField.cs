@@ -6,6 +6,9 @@ using BattleShip.GameEngine.GameObject;
 using BattleShip.GameEngine.Arsenal.Protection;
 using BattleShip.GameEngine.Field.Cell.StatusCell;
 using BattleShip.GameEngine.GameEventArgs;
+using BattleShip.GameEngine.Arsenal.Gun;
+using BattleShip.GameEngine.Arsenal.Flot;
+using BattleShip.GameEngine.Field.Cell.StatusCell;
 
 
 namespace BattleShip.GameEngine.Field.Cell
@@ -16,9 +19,12 @@ namespace BattleShip.GameEngine.Field.Cell
 
         bool _wasAttacked = false;
 
-        public Position GetMyLocation()
+        public Position Location
         {
-            return this._position;
+            get
+            {
+                return _position;
+            }
         }
 
         public bool WasAttacked
@@ -41,18 +47,32 @@ namespace BattleShip.GameEngine.Field.Cell
             _gameObject = new EmptyCell(position);
         }
 
-        public void AddProtected(Type typeProtected)
+        public void AddProtect(ProtectedBase protect)
         {
-            _protectionTypeList.Add(typeProtected);
+            _gameObject = protect;
+
+            SetProtect(protect);
+
+            // підписати захист на руйнацію під час руйнації клітинки
+            DeadHandler += protect.OnHitMeHandler;
         }
 
-        public bool OnRemoveProtection(GameObject.GameObject sender, ProtectEventArgs e)
+        public void AddStatus(StatusCell.StatusCell status)
         {
-            return _protectionTypeList.Remove(e.Type);
+            _gameObject = status;
+            DeadHandler += status.OnHitMeHandler;
         }
 
-        // івент зняття захисту, для всіх клітинок, які покриваються цією клітинкою
-        public event Action<GameObject.GameObject, ProtectEventArgs> RemoveProtectHandler = delegate { };
+        // встановити захист
+        public void SetProtect(ProtectedBase protect)
+        {
+            _protectionTypeList.Add(protect.GetType());
+        }
+
+        public void OnRemoveProtection(GameObject.GameObject sender, ProtectEventArgs e)
+        {
+            _protectionTypeList.Remove(e.Type);
+        }
 
         // отримати список захистів, які є на клітинці
         public IEnumerator<Type> GetEnumerator()
@@ -66,20 +86,38 @@ namespace BattleShip.GameEngine.Field.Cell
         }
 
 
-        public void AddObject(GameObject.GameObject gameObject)
+        public void AddShip(ShipRectangleBase ship)
         {
-            _gameObject = gameObject;
+            _gameObject = ship;
+
+            // підписати об'єкт на руйнацію під час руйнації клітинки
+            DeadHandler += ship.OnHitMeHandler;
         }
 
         // івент знищення клітинки
         public event Action<GameObject.GameObject, GameEvenArgs> DeadHandler = delegate { };
 
         // пальнути в цю клітинку
-        public Type Shot()
+        public Type Shot(Gun gun)
         {
-            // якщо ще не була атаковано - то показати як пусту(невідому)
-            if (!_wasAttacked)
-                return typeof(EmptyCell);
+            _wasAttacked = true;
+
+            // якщо клітинка захищена, тоді повернути результат атаки - як захищену клітинку
+
+            foreach (Type t in _protectionTypeList)
+            {
+                Type baseProtected = t;
+                while (baseProtected != typeof())
+                {
+                    Type test = baseProtected;
+                    if (test.BaseType == null)
+                        break;
+                    baseProtected = baseProtected.BaseType;
+                }
+            }
+
+            if (_protectionTypeList.Contains(gun.GetCurrentCun()))
+                return typeof(AttackResult.ProtectedCell);
 
             OnHitMeHandler(_gameObject, new GameEvenArgs(this._position));
 

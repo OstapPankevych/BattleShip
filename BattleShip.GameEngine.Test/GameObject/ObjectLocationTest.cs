@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.GameObject;
 
-namespace BattleShip.GameEngine.Test.GameObject
+namespace BattleShip.GameEngineTest.GameObject
 {
     [TestClass]
     public class ObjectLocationTest
@@ -29,7 +29,7 @@ namespace BattleShip.GameEngine.Test.GameObject
 
             ob.ChangeLifeToDead(point2);
 
-            Assert.IsTrue(ob.ChangeLifeToDead(point2) & ob.GetPositionDeadParts()[0] == point2);
+            Assert.IsTrue(ob.ChangeLifeToDead(point2) & ob.GetPositionDeadParts()[0] == point2 & ob.GetCountLifeParts() == 2);
         }
 
         [TestMethod]
@@ -76,10 +76,12 @@ namespace BattleShip.GameEngine.Test.GameObject
             Position point = new Position(4, 6);
             Position point2 = new Position(5, 8);
             ObjectLocation ob = new ObjectLocation(point, point2);
+
             ob.ChangeLifeToDead(point2);
 
             Assert.IsTrue(ob.GetPositionsLifeParts()[0] == point);
         }
+
 
     }
 }

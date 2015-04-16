@@ -1,0 +1,7 @@
+D:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngineTest.csprojResolveAssemblyReference.cache
+D:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.dll
+D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.Test.dll
+D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.Test.pdb
+D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.dll
+D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.pdb
+D:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.pdb

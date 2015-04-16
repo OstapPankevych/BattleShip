@@ -50,6 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Field\Cell\CellOfFieldTest.cs" />
+    <Compile Include="Field\FieldTest.cs" />
     <Compile Include="GameObject\GameObjectTest.cs" />
     <Compile Include="GameObject\PositionAndStatusTest.cs" />
     <Compile Include="GameObject\ObjectLocationTest.cs" />

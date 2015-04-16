@@ -11,6 +11,12 @@ namespace BattleShip.GameEngine.Arsenal.Gun
     {
         protected IDestroyable destroyable;
 
+        // повернути Type встановленої зброї
+        public Type GetCurrentCun()
+        {
+            return destroyable.GetType();
+        }
+
         public Position[] Shot(Position point, byte size)
         {
             return destroyable.Destroy(point, size);

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 
 using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.Field.Cell;
@@ -7,11 +9,11 @@ using BattleShip.GameEngine.Arsenal.Flot;
 using BattleShip.GameEngine.Location.RulesOfSetPositions;
 using BattleShip.GameEngine.Exceptions;
 using BattleShip.GameEngine.Arsenal.Protection;
-
+using BattleShip.GameEngine.Arsenal.Gun;
 
 namespace BattleShip.GameEngine.Field
 {
-    public class Field
+    public class Field : IEnumerable<CellOfField>
     {
         byte _size;
 
@@ -52,17 +54,17 @@ namespace BattleShip.GameEngine.Field
         int GetNumberCell(Position position)
         {
             for (int i = 0; i < _cells.Length; i++)
-                if (_cells[i].GetMyLocation() == position)
+                if (_cells[i].Location == position)
                     return i;
 
             throw new OutOfFielRegionException(this.ToString());
         }
 
         // отримати Position з _cells за порядковим номером
-        public Position GetPosition(int number)
+        Position GetPosition(int number)
         {
             if (number > Size * Size)
-                throw new ArgumentOutOfRangeException(this.ToString());
+                throw new ArgumentOutOfRangeException("Field.GetPosition()");
 
             return new Position((byte)(number/Size), (byte)(number % Size));
         }
@@ -71,7 +73,7 @@ namespace BattleShip.GameEngine.Field
 
         public bool IsFielRegion(int Line, int Column)
         {
-            if ((Line <= _size & Line >= 0) & (Column <= _size & Column >= 0))
+            if ((Line < _size & Line >= 0) & (Column < _size & Column >= 0))
                 return true;
             return false;
         }
@@ -80,7 +82,7 @@ namespace BattleShip.GameEngine.Field
         {
             CellOfField cell = _cells[GetNumberCell(position)];
             // Поставити тільки в тому випадку, якщо клітинка є пуста
-            if (cell.GetStatusCell() != typeof(EmptyCell))
+            if (cell.Show() != typeof(EmptyCell))
                 return false;    
             return true;
         }
@@ -95,7 +97,7 @@ namespace BattleShip.GameEngine.Field
             foreach (Position x in ship)
             {
                 CellOfField cell = _cells[GetNumberCell(x)];
-                cell.AddObject(ship);
+                cell.AddShip(ship);
                 // Підписати
                 cell.DeadHandler += ship.OnHitMeHandler;
             }
@@ -113,7 +115,7 @@ namespace BattleShip.GameEngine.Field
                         {
                             cell = _cells[GetNumberCell(pos)];
                             if (cell.GetStatusCell() != typeof(EmptyCell))
-                            cell.AddObject(new AroundShip(pos));
+                            cell.AddStatus(new AroundShip(pos));
                             // Підписати знищення кілтинки при знищенні кораблика
                             ship.DeadHandler += cell.OnHitMeHandler;
                         }
@@ -134,11 +136,52 @@ namespace BattleShip.GameEngine.Field
             foreach (Position x in protect)
             {
                 CellOfField cell = _cells[GetNumberCell(x)];
-                cell.AddObject(protect);
-                // Підписати
-                cell.DeadHandler += protect.OnHitMeHandler;
+
+                // додати об'єкт захисту на клітинки
+                cell.AddProtect(protect);
             }
+
+            // поставити захисти на всі клітинки, які захищає цей об'єкт
+            foreach (Position x in protect.GetProtectedPositions())
+            {
+                CellOfField cell = _cells[GetNumberCell(x)];
+
+                // встановити захист на клітинку
+                cell.SetProtect(protect);
+
+                // підписати protect на видалення захисту для кожної клітинки, при його знищенні
+                protect.ProtectedHandler += cell.OnRemoveProtection;
+            }
+            
             return true;
+        }
+
+        public IEnumerator<CellOfField> GetEnumerator()
+        {
+            foreach (var x in _cells)
+                yield return x;
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator<CellOfField>)GetEnumerator();
+        }
+
+        public List<Type> Shot(Gun gun, params Position[] positions)
+        {
+            List<Type> attackResults = new List<Type>();
+
+            foreach (Position x in positions)
+            {
+                Type result = _cells[GetNumberCell(x)].Shot(gun);
+
+                if (result == typeof(Cell.AttackResult.ProtectedCell))
+                    return attackResults;
+
+                attackResults.Add(result);
+            }
+
+            return attackResults;
         }
     }
 }

@@ -62,6 +62,11 @@ namespace BattleShip.GameEngine.Arsenal.Protection
 
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler = delegate { };
 
+        // івент зняття захисту
+        public abstract event Action<GameObject.GameObject, GameEventArgs.ProtectEventArgs> ProtectedHandler;
+
+        public abstract void OnProtectedHandler(GameObject.GameObject g, GameEventArgs.ProtectEventArgs e);
+
         // повертає позиції захисту
         public IEnumerator<Position> GetEnumerator()
         {

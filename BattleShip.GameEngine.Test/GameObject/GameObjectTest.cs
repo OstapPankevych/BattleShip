@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BattleShip.GameEngine.GameObject;
 using BattleShip.GameEngine.Location;
 
-namespace BattleShip.GameEngine.Test.GameObject
+namespace BattleShip.GameEngineTest.GameObject
 {
     [TestClass]
     public class GameObjectTest

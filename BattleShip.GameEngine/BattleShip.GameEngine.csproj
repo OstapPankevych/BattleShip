@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\OutOfFielRegionException.cs" />
+    <Compile Include="Field\Cell\AttackResult\ProtectedCell.cs" />
     <Compile Include="Field\Cell\CellOfField.cs" />
     <Compile Include="Field\Cell\StatusCell\AroundShip.cs" />
     <Compile Include="Field\Cell\StatusCell\EmptyCell.cs" />
