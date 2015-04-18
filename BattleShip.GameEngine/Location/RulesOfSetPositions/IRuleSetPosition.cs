@@ -1,12 +1,7 @@
-﻿using System;
-
-
-
-namespace BattleShip.GameEngine.Location.RulesOfSetPositions
+﻿namespace BattleShip.GameEngine.Location.RulesOfSetPositions
 {
-    interface IRuleSetPosition
+    internal interface IRuleSetPosition
     {
         Position[] GetRegionForCurrentRule();
     }
 }
-

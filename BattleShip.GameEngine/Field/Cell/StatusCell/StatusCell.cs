@@ -1,17 +1,13 @@
 ﻿using System;
-
-
-using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.GameEventArgs;
-
+using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.Field.Cell.StatusCell
 {
-    public class StatusCell : GameObject.GameObject
+    public abstract class StatusCell : GameObject.GameObject
     {
-        bool _isLife = true;
-
-        Position _position;
+        private readonly Position _position;
+        private bool _isLife = true;
 
         public StatusCell(Position position)
             : base(0)
@@ -21,20 +17,18 @@ namespace BattleShip.GameEngine.Field.Cell.StatusCell
 
         public override bool IsLife
         {
-            get
-            {
-                return _isLife;
-            }
+            get { return _isLife; }
         }
 
         public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler;
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler;
 
-        void OnDeadHandler()
+        private void OnDeadHandler()
         {
             _isLife = false;
         }
-        public override void OnHitMeHandler(GameObject.GameObject gameObject, GameEventArgs.GameEvenArgs e)
+
+        public override void OnHitMeHandler(GameObject.GameObject gameObject, GameEvenArgs e)
         {
             if (e.Location == _position)
             {
@@ -46,9 +40,6 @@ namespace BattleShip.GameEngine.Field.Cell.StatusCell
                 }
                 return;
             }
-            return;
         }
-
-        
     }
 }

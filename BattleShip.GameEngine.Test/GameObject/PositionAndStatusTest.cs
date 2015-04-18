@@ -1,11 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-
-using BattleShip.GameEngine.GameObject;
+﻿using BattleShip.GameEngine.GameObject;
 using BattleShip.GameEngine.Location;
-
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BattleShip.GameEngineTest.GameObject
 {
@@ -15,8 +10,8 @@ namespace BattleShip.GameEngineTest.GameObject
         [TestMethod]
         public void ChackLocation()
         {
-            Position point = new Position(5, 7);
-            PositionAndStatus positionAndStatus = new PositionAndStatus(point);
+            var point = new Position(5, 7);
+            var positionAndStatus = new PositionAndStatus(point);
 
             Assert.IsTrue(positionAndStatus.Location == point);
         }
@@ -24,17 +19,17 @@ namespace BattleShip.GameEngineTest.GameObject
         [TestMethod]
         public void InitLifeStatus()
         {
-            Position point = new Position(5, 7);
-            PositionAndStatus positionAndStatus = new PositionAndStatus(point);
+            var point = new Position(5, 7);
+            var positionAndStatus = new PositionAndStatus(point);
 
-            Assert.IsTrue(positionAndStatus.IsLife == true);
+            Assert.IsTrue(positionAndStatus.IsLife);
         }
 
         [TestMethod]
         public void ChangeLifeToDead()
         {
-            Position point = new Position(5, 7);
-            PositionAndStatus positionAndStatus = new PositionAndStatus(point);
+            var point = new Position(5, 7);
+            var positionAndStatus = new PositionAndStatus(point);
             positionAndStatus.ChangeLifeToDead();
             Assert.IsTrue(positionAndStatus.IsLife == false);
         }

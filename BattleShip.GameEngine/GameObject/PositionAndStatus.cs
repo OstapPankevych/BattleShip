@@ -1,37 +1,26 @@
-﻿using System;
-
-
-using BattleShip.GameEngine.Location;
-
-
+﻿using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameObject
 {
     public struct PositionAndStatus
     {
-        Position _position;
-        bool _life;
-
-        public bool IsLife
-        {
-            get
-            {
-                return _life;
-            }
-        }
-
-        public Position Location
-        {
-            get
-            {
-                return _position;
-            }
-        }
+        private readonly Position _position;
+        private bool _life;
 
         public PositionAndStatus(Position position)
         {
             _life = true;
-            this._position = position;
+            _position = position;
+        }
+
+        public bool IsLife
+        {
+            get { return _life; }
+        }
+
+        public Position Location
+        {
+            get { return _position; }
         }
 
         public void ChangeLifeToDead()

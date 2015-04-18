@@ -1,36 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-
-using BattleShip.GameEngine.Location;
-using BattleShip.GameEngine.GameObject;
-using BattleShip.GameEngine.Location.RulesOfSetPositions;
 using BattleShip.GameEngine.GameEventArgs;
-
-
+using BattleShip.GameEngine.GameObject;
+using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.Arsenal.Flot
 {
     public abstract class ShipRectangleBase : GameObject.GameObject, IEnumerable<Position>
     {
-        protected byte _storeyCount;
-        public byte StoreyCount
-        {
-            get
-            {
-                return _storeyCount;
-            }
-        }
-
-        protected bool _wasDead = false;
-        public override bool IsLife
-        {
-            get
-            {
-                return _positions.IsLife;
-            }
-        }
-
         protected ObjectLocation _positions;
+        protected byte _storeyCount;
+        protected bool _wasDead;
 
         public ShipRectangleBase(byte id, params Position[] positions)
             : base(id)
@@ -38,9 +19,29 @@ namespace BattleShip.GameEngine.Arsenal.Flot
             _positions = new ObjectLocation(positions);
         }
 
+        public byte StoreyCount
+        {
+            get { return _storeyCount; }
+        }
+
+        public override bool IsLife
+        {
+            get { return _positions.IsLife; }
+        }
+
+        // повертає позиції кораблика
+        public IEnumerator<Position> GetEnumerator()
+        {
+            return _positions.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         // івент влучання в об'єкт
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler = delegate { };
-
         // івент вмирання об'єкта
         public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler = delegate { };
 
@@ -61,21 +62,9 @@ namespace BattleShip.GameEngine.Arsenal.Flot
                 }
         }
 
-        void OnDeadHandler()
+        private void OnDeadHandler()
         {
             _wasDead = true;
         }
-    
-        // повертає позиції кораблика
-        public IEnumerator<Position> GetEnumerator()
-        {
-            return _positions.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator<Position>)GetEnumerator();
-        }
     }
-
 }

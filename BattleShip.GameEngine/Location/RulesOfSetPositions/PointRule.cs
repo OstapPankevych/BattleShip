@@ -1,9 +1,6 @@
-﻿using System;
-
-
-namespace BattleShip.GameEngine.Location.RulesOfSetPositions
+﻿namespace BattleShip.GameEngine.Location.RulesOfSetPositions
 {
-    class PointRule : BaseRule<Position>
+    internal class PointRule : BaseRule<Position>
     {
         public PointRule(Position point)
         {

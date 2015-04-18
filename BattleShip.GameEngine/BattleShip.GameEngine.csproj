@@ -51,7 +51,7 @@
     <Compile Include="Arsenal\Flot\ThreeStoreyShip.cs" />
     <Compile Include="Arsenal\Flot\TwoStoreyShip.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\DoubleDestroy.cs" />
-    <Compile Include="Arsenal\Gun\Destroyable\GunBase.cs" />
+    <Compile Include="Arsenal\Gun\Destroyable\NotSimleGun.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\GunDestroy.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\IDestroyable.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\PlaneDestroy.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="GameObject\GameObject.cs" />
     <Compile Include="GameObject\ObjectLocation.cs" />
     <Compile Include="GameObject\PositionAndStatus.cs" />
-    <Compile Include="Location\Location.cs" />
+    <Compile Include="Location\Position.cs" />
     <Compile Include="Location\RulesOfSetPositions\BaseRule.cs" />
     <Compile Include="Location\RulesOfSetPositions\RightDiagonalRule.cs" />
     <Compile Include="Location\RulesOfSetPositions\IRuleSetPosition.cs" />

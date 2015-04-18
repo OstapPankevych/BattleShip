@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-
-using BattleShip.GameEngine.Location;
-using BattleShip.GameEngine.GameObject;
 using BattleShip.GameEngine.GameEventArgs;
-
+using BattleShip.GameEngine.GameObject;
+using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.Arsenal.Protection
 {
@@ -12,25 +11,10 @@ namespace BattleShip.GameEngine.Arsenal.Protection
     {
         // розташування самого обєкта
         protected ObjectLocation _positions;
-
-        public Position[] Positions
-        {
-            get
-            {
-                return _positions.GetPositionsLifeParts();
-            }
-        }
-
         // позиції, які захищає
-        protected Position[] currentProtectedPositions;
-
-        public override bool IsLife
-        {
-            get
-            {
-                return _positions.IsLife;
-            }
-        }
+        protected Position[] CurrentProtectedPositions;
+        // ліст типів, від яких захищає
+        protected List<Type> protectionList = new List<Type>();
 
         public ProtectedBase(byte id, Position position)
             : base(id)
@@ -38,18 +22,35 @@ namespace BattleShip.GameEngine.Arsenal.Protection
             _positions = new ObjectLocation(position);
         }
 
+        public Position[] Positions
+        {
+            get { return _positions.GetPositionsLifeParts(); }
+        }
+
+        public override bool IsLife
+        {
+            get { return _positions.IsLife; }
+        }
+
+        public IEnumerator<Position> GetEnumerator()
+        {
+            return _positions.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         // позиції, які покриває даний захист
         public abstract Position[] GetProtectedPositions();
-
-        // ліст типів, від яких захищає
-        protected List<Type> protectionList = new List<Type>();
 
         public override void OnHitMeHandler(GameObject.GameObject gameObject, GameEvenArgs e)
         {
             if (_positions.IsLife)
             {
                 // вбити цілком захист
-                Position[] positions = _positions.GetPositionsLifeParts();
+                var positions = _positions.GetPositionsLifeParts();
                 foreach (var x in positions)
                     _positions.ChangeLifeToDead(x);
 
@@ -59,23 +60,19 @@ namespace BattleShip.GameEngine.Arsenal.Protection
         }
 
         public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler = delegate { };
-
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler = delegate { };
-
         // івент зняття захисту
-        public abstract event Action<GameObject.GameObject, GameEventArgs.ProtectEventArgs> ProtectedHandler;
+        public abstract event Action<GameObject.GameObject, ProtectEventArgs> ProtectedHandler;
+        public abstract void OnProtectedHandler(GameObject.GameObject g, ProtectEventArgs e);
 
-        public abstract void OnProtectedHandler(GameObject.GameObject g, GameEventArgs.ProtectEventArgs e);
-
-        // повертає позиції захисту
-        public IEnumerator<Position> GetEnumerator()
+        public virtual Type[] GetProtectedType()
         {
-            return _positions.GetEnumerator();
-        }
+            var types = new Type[protectionList.Count];
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator<Position>)GetEnumerator();
+            for (var i = 0; i < types.Length; i++)
+                types[i] = protectionList[i];
+
+            return types;
         }
     }
 }

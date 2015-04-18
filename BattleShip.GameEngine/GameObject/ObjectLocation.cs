@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-
 using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameObject
 {
     public struct ObjectLocation : IEnumerable<Position>
     {
-        PositionAndStatus[] _positionAndStatus;
+        private readonly PositionAndStatus[] _positionAndStatus;
 
         public ObjectLocation(params Position[] positions)
         {
@@ -16,65 +16,8 @@ namespace BattleShip.GameEngine.GameObject
 
             _positionAndStatus = new PositionAndStatus[positions.Length];
 
-            for (int i = 0; i < _positionAndStatus.Length; i++)
+            for (var i = 0; i < _positionAndStatus.Length; i++)
                 _positionAndStatus[i] = new PositionAndStatus(positions[i]);
-        }
-
-        public bool GetLifeStatus(Position position)
-        {
-            foreach (var x in _positionAndStatus)
-                if (x.Location == position)
-                    return x.IsLife;
-            throw new ArgumentOutOfRangeException();
-        }
-
-        public byte GetCountLifeParts()
-        {
-            byte count = 0;
-            for (int i = 0; i < _positionAndStatus.Length; i++)
-                if (_positionAndStatus[i].IsLife)
-                    count++;
-            return count;
-        }
-
-        public int GetCountParts()
-        {
-            return _positionAndStatus.Length;
-        }
-
-        public Position[] GetPositionsLifeParts()
-        {
-            Position[] arrLife = new Position[GetCountLifeParts()];
-            int pos = 0;
-            for (int i = 0; i < _positionAndStatus.Length; i++)
-                if (_positionAndStatus[i].IsLife)
-                    arrLife[pos++] = _positionAndStatus[i].Location;
-
-            return arrLife;
-        }
-
-        public Position[] GetPositionDeadParts()
-        {
-            Position[] arrLife = new Position[_positionAndStatus.Length - GetCountLifeParts()];
-            int pos = 0;
-            for (int i = 0; i < _positionAndStatus.Length; i++)
-                if (!_positionAndStatus[i].IsLife)
-                    arrLife[pos++] = _positionAndStatus[i].Location;
-
-            return arrLife;
-        }
-
-        public bool ChangeLifeToDead(Position position)
-        {
-            for (int i = 0; i < _positionAndStatus.Length; i++)
-            {
-                if ((_positionAndStatus[i]).Location == position)
-                {
-                    _positionAndStatus[i].ChangeLifeToDead();
-                    return true;
-                }
-            }
-            return true;
         }
 
         public bool IsLife
@@ -94,9 +37,66 @@ namespace BattleShip.GameEngine.GameObject
                 yield return x.Location;
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator<Position>)GetEnumerator();
+            return GetEnumerator();
+        }
+
+        public bool GetLifeStatus(Position position)
+        {
+            foreach (var x in _positionAndStatus)
+                if (x.Location == position)
+                    return x.IsLife;
+            throw new ArgumentOutOfRangeException();
+        }
+
+        public byte GetCountLifeParts()
+        {
+            byte count = 0;
+            for (var i = 0; i < _positionAndStatus.Length; i++)
+                if (_positionAndStatus[i].IsLife)
+                    count++;
+            return count;
+        }
+
+        public int GetCountParts()
+        {
+            return _positionAndStatus.Length;
+        }
+
+        public Position[] GetPositionsLifeParts()
+        {
+            var arrLife = new Position[GetCountLifeParts()];
+            var pos = 0;
+            for (var i = 0; i < _positionAndStatus.Length; i++)
+                if (_positionAndStatus[i].IsLife)
+                    arrLife[pos++] = _positionAndStatus[i].Location;
+
+            return arrLife;
+        }
+
+        public Position[] GetPositionDeadParts()
+        {
+            var arrLife = new Position[_positionAndStatus.Length - GetCountLifeParts()];
+            var pos = 0;
+            for (var i = 0; i < _positionAndStatus.Length; i++)
+                if (!_positionAndStatus[i].IsLife)
+                    arrLife[pos++] = _positionAndStatus[i].Location;
+
+            return arrLife;
+        }
+
+        public bool ChangeLifeToDead(Position position)
+        {
+            for (var i = 0; i < _positionAndStatus.Length; i++)
+            {
+                if ((_positionAndStatus[i]).Location == position)
+                {
+                    _positionAndStatus[i].ChangeLifeToDead();
+                    return true;
+                }
+            }
+            return true;
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-
-using BattleShip.GameEngine.GameObject;
-using BattleShip.GameEngine.Location;
-
+﻿using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.Field.Cell.StatusCell
 {
@@ -11,6 +7,7 @@ namespace BattleShip.GameEngine.Field.Cell.StatusCell
     {
         public AroundShip(Position position)
             : base(position)
-        { }
+        {
+        }
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-
-
-
-namespace BattleShip.GameEngine.Location.RulesOfSetPositions
+﻿namespace BattleShip.GameEngine.Location.RulesOfSetPositions
 {
-    abstract class BaseRule<T> : IRuleSetPosition where T : struct
+    internal abstract class BaseRule<T> : IRuleSetPosition where T : struct
     {
         protected Position[] _positions;
 
@@ -16,4 +12,3 @@ namespace BattleShip.GameEngine.Location.RulesOfSetPositions
         protected abstract void InitPositions(params T[] inputData);
     }
 }
-

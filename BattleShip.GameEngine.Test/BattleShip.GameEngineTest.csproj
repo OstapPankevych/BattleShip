@@ -55,6 +55,7 @@
     <Compile Include="GameObject\GameObjectTest.cs" />
     <Compile Include="GameObject\PositionAndStatusTest.cs" />
     <Compile Include="GameObject\ObjectLocationTest.cs" />
+    <Compile Include="Location\PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

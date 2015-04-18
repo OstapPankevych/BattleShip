@@ -5,3 +5,5 @@ D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.Test.pd
 D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.dll
 D:\BattleShip\BattleShip.GameEngine.Test\bin\Debug\BattleShip.GameEngine.pdb
 D:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.pdb
+G:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngineTest.csprojResolveAssemblyReference.cache
+G:\BattleShip\BattleShip.GameEngine.Test\obj\Debug\BattleShip.GameEngine.Test.dll

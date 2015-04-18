@@ -13,3 +13,8 @@ C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.Gam
 C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.pdb
 C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.dll
 C:\Users\Ostap\Desktop\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.pdb
+G:\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.dll
+G:\BattleShip\BattleShip.GameEngine\bin\Debug\BattleShip.GameEngine.pdb
+G:\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.csprojResolveAssemblyReference.cache
+G:\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.dll
+G:\BattleShip\BattleShip.GameEngine\obj\Debug\BattleShip.GameEngine.pdb
