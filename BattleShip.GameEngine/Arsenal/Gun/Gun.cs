@@ -1,6 +1,6 @@
-﻿using System;
-using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+﻿using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 using BattleShip.GameEngine.Location;
+using System;
 
 namespace BattleShip.GameEngine.Arsenal.Gun
 {

@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using BattleShip.GameEngine.GameEventArgs;
+﻿using BattleShip.GameEngine.GameEventArgs;
 using BattleShip.GameEngine.GameObject;
 using BattleShip.GameEngine.Location;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BattleShip.GameEngine.Arsenal.Protection
 {
-    public abstract class ProtectedBase : GameObject.GameObject, IEnumerable<Position>
+    public abstract class ProtectBase : GameObject.GameObject, IEnumerable<Position>
     {
         // розташування самого обєкта
         protected ObjectLocation _positions;
+
         // позиції, які захищає
         protected Position[] CurrentProtectedPositions;
+
         // ліст типів, від яких захищає
         protected List<Type> protectionList = new List<Type>();
 
-        public ProtectedBase(byte id, Position position)
+        public ProtectBase(byte id, Position position)
             : base(id)
         {
             _positions = new ObjectLocation(position);
@@ -60,9 +62,12 @@ namespace BattleShip.GameEngine.Arsenal.Protection
         }
 
         public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler = delegate { };
+
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler = delegate { };
+
         // івент зняття захисту
         public abstract event Action<GameObject.GameObject, ProtectEventArgs> ProtectedHandler;
+
         public abstract void OnProtectedHandler(GameObject.GameObject g, ProtectEventArgs e);
 
         public virtual Type[] GetProtectedType()

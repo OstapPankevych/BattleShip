@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattleShip.GameEngine.Exceptions
+namespace BattleShip.GameEngine.Field.Exceptions
 {
     public class OutOfFielRegionException : ApplicationException
     {

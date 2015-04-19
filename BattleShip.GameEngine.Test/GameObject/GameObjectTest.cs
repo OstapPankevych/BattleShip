@@ -17,7 +17,6 @@ namespace BattleShip.GameEngineTest.GameObject
             arr[0] = p;
             arr[1] = p1;
 
-
             var ob = new ObjectLocation(arr);
             Assert.IsTrue(ob.IsLife);
         }
@@ -28,7 +27,6 @@ namespace BattleShip.GameEngineTest.GameObject
             var p = new Position(0, 1);
             var p1 = new Position(1, 3);
 
-
             var ob = new ObjectLocation(p, p1);
             Assert.IsTrue(ob.GetCountParts() == 2);
         }
@@ -38,7 +36,6 @@ namespace BattleShip.GameEngineTest.GameObject
         {
             var p = new Position(0, 1);
             var p1 = new Position(1, 3);
-
 
             var ob = new ObjectLocation(p, p1);
 

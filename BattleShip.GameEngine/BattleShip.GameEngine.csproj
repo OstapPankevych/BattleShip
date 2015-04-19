@@ -39,31 +39,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\OutOfFielRegionException.cs" />
+    <Compile Include="Arsenal\Flot\Corectible\ICorrectible.cs" />
+    <Compile Include="Arsenal\Flot\Corectible\Ractangle.cs" />
+    <Compile Include="Arsenal\Flot\Exceptions\ShipExceptions.cs" />
+    <Compile Include="Field\Exceptions\OutOfFielRegionException.cs" />
+    <Compile Include="Field\BaseField.cs" />
     <Compile Include="Field\Cell\AttackResult\ProtectedCell.cs" />
     <Compile Include="Field\Cell\CellOfField.cs" />
     <Compile Include="Field\Cell\StatusCell\AroundShip.cs" />
     <Compile Include="Field\Cell\StatusCell\EmptyCell.cs" />
     <Compile Include="Field\Cell\StatusCell\StatusCell.cs" />
-    <Compile Include="Arsenal\Flot\FourStoreyShip.cs" />
-    <Compile Include="Arsenal\Flot\OneStoreyShip.cs" />
-    <Compile Include="Arsenal\Flot\ShipRectangleBase.cs" />
-    <Compile Include="Arsenal\Flot\ThreeStoreyShip.cs" />
-    <Compile Include="Arsenal\Flot\TwoStoreyShip.cs" />
+    <Compile Include="Arsenal\Flot\RectangleShips\FourStoreyRectangleShip.cs" />
+    <Compile Include="Arsenal\Flot\RectangleShips\OneStoreyRectangleShip.cs" />
+    <Compile Include="Arsenal\Flot\ShipBase.cs" />
+    <Compile Include="Arsenal\Flot\RectangleShips\ThreeStoreyRectangleShip.cs" />
+    <Compile Include="Arsenal\Flot\RectangleShips\TwoStoreyRectangleShip.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\DoubleDestroy.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\NotSimleGun.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\GunDestroy.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\IDestroyable.cs" />
     <Compile Include="Arsenal\Gun\Destroyable\PlaneDestroy.cs" />
     <Compile Include="Arsenal\Gun\Gun.cs" />
-    <Compile Include="Arsenal\Protection\ProtectedBase.cs" />
-    <Compile Include="Arsenal\Protection\PVOProtected.cs" />
+    <Compile Include="Arsenal\Protection\ProtectBase.cs" />
+    <Compile Include="Arsenal\Protection\PVOProtect.cs" />
+    <Compile Include="Field\FakeField.cs" />
     <Compile Include="Field\Field.cs" />
     <Compile Include="GameEventArgs\GameEventArgs.cs" />
     <Compile Include="GameEventArgs\ProtectEventArgs.cs" />
     <Compile Include="GameObject\GameObject.cs" />
     <Compile Include="GameObject\ObjectLocation.cs" />
     <Compile Include="GameObject\PositionAndStatus.cs" />
+    <Compile Include="Game\GameProcces\Referee\BaseReferre.cs" />
+    <Compile Include="Game\GameProcces\Referee\IReferee.cs" />
+    <Compile Include="Game\GameProcces\Referee\ClassicGameReferee\ClassicReferee.cs" />
+    <Compile Include="Game\Players\BasePlayer.cs" />
+    <Compile Include="Game\Players\Computer\Brain\Brain.cs" />
+    <Compile Include="Game\Players\Computer\Brain\Play\IPlayable.cs" />
+    <Compile Include="Game\Players\Computer\Brain\Play\PlayNotMind.cs" />
+    <Compile Include="Game\Players\Computer\Brain\SetObjects\SetProtect\ISetibleProtect.cs" />
+    <Compile Include="Game\Players\Computer\Brain\SetObjects\SetProtect\SetProtect.cs" />
+    <Compile Include="Game\Players\Computer\Brain\SetObjects\SetRectangleShip\ISetibleShip.cs" />
+    <Compile Include="Game\Players\Computer\Brain\SetObjects\SetRectangleShip\SetShips.cs" />
+    <Compile Include="Game\GameMode\ClassicGameMode.cs" />
+    <Compile Include="Game\GameMode\GameMode.cs" />
+    <Compile Include="Game\Players\IPlayer.cs" />
+    <Compile Include="Game\Players\Man\Man.cs" />
     <Compile Include="Location\Position.cs" />
     <Compile Include="Location\RulesOfSetPositions\BaseRule.cs" />
     <Compile Include="Location\RulesOfSetPositions\RightDiagonalRule.cs" />
@@ -71,6 +91,7 @@
     <Compile Include="Location\RulesOfSetPositions\RectangleRule.cs" />
     <Compile Include="Location\RulesOfSetPositions\PointRule.cs" />
     <Compile Include="Location\RulesOfSetPositions\LeftDiagonalRule.cs" />
+    <Compile Include="Game\Players\Computer\Computer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

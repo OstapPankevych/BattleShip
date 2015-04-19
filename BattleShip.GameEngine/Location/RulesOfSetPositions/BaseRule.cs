@@ -1,6 +1,6 @@
 ﻿namespace BattleShip.GameEngine.Location.RulesOfSetPositions
 {
-    internal abstract class BaseRule<T> : IRuleSetPosition where T : struct
+    public abstract class BaseRule<T> : IRuleSetPosition where T : struct
     {
         protected Position[] _positions;
 

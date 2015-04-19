@@ -1,7 +1,7 @@
-﻿using System;
+﻿using BattleShip.GameEngine.Location;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameObject
 {

@@ -7,7 +7,7 @@ namespace BattleShip.GameEngine.Arsenal.Gun.Destroyable
     {
         public PlaneDestroy()
         {
-            FearList.Add(typeof (PVOProtected));
+            FearList.Add(typeof(PVOProtect));
         }
 
         public override Position[] Destroy(Position point, byte size)

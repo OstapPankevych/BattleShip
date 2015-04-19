@@ -1,16 +1,16 @@
-﻿using System;
-using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+﻿using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 using BattleShip.GameEngine.GameEventArgs;
 using BattleShip.GameEngine.Location;
+using System;
 
 namespace BattleShip.GameEngine.Arsenal.Protection
 {
-    public class PVOProtected : ProtectedBase
+    public class PVOProtect : ProtectBase
     {
-        public PVOProtected(byte id, Position position, byte size)
+        public PVOProtect(byte id, Position position, byte size)
             : base(id, position)
         {
-            protectionList.Add(typeof (PlaneDestroy));
+            protectionList.Add(typeof(PlaneDestroy));
 
             // встановлення координат позицій, які будуть захищені
             CurrentProtectedPositions = new Position[size];

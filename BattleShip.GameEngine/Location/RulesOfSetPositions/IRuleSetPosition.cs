@@ -1,6 +1,6 @@
 ﻿namespace BattleShip.GameEngine.Location.RulesOfSetPositions
 {
-    internal interface IRuleSetPosition
+    public interface IRuleSetPosition
     {
         Position[] GetRegionForCurrentRule();
     }

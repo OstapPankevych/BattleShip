@@ -1,13 +1,13 @@
 ﻿namespace BattleShip.GameEngine.Location.RulesOfSetPositions
 {
-    internal class RectangleRule : BaseRule<Position>
+    public class RectangleRule : BaseRule<Position>
     {
         public RectangleRule(Position beginPosition, Position endPosition)
         {
             InitPositions(beginPosition, endPosition);
         }
 
-        protected override void InitPositions(Position[] positions)
+        protected override void InitPositions(params Position[] positions)
         {
             var beginPosition = positions[0];
             var endPosition = positions[1];
@@ -20,12 +20,12 @@
             beginPosition = new Position(minLine, minColumn);
             endPosition = new Position(maxLine, maxColumn);
 
-            _positions = new Position[(maxLine - minLine + 1)*(maxColumn - minColumn + 1)];
+            _positions = new Position[(maxLine - minLine + 1) * (maxColumn - minColumn + 1)];
 
             for (var i = 0; i < (maxLine - minLine + 1); i++)
                 for (var j = 0; j < (maxColumn - minColumn + 1); j++)
-                    _positions[i*(maxColumn - minColumn + 1) + j] = new Position((byte) (minLine + i),
-                        (byte) (minColumn + j));
+                    _positions[i * (maxColumn - minColumn + 1) + j] = new Position((byte)(minLine + i),
+                        (byte)(minColumn + j));
         }
     }
 }

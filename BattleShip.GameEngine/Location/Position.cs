@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BattleShip.GameEngine.Location
+﻿namespace BattleShip.GameEngine.Location
 {
     public struct Position
     {

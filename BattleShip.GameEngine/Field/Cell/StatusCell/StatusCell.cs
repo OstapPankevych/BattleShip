@@ -1,6 +1,6 @@
-﻿using System;
-using BattleShip.GameEngine.GameEventArgs;
+﻿using BattleShip.GameEngine.GameEventArgs;
 using BattleShip.GameEngine.Location;
+using System;
 
 namespace BattleShip.GameEngine.Field.Cell.StatusCell
 {
@@ -21,6 +21,7 @@ namespace BattleShip.GameEngine.Field.Cell.StatusCell
         }
 
         public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler;
+
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler;
 
         private void OnDeadHandler()

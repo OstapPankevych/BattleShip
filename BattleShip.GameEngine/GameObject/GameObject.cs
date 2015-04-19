@@ -1,5 +1,5 @@
-﻿using System;
-using BattleShip.GameEngine.GameEventArgs;
+﻿using BattleShip.GameEngine.GameEventArgs;
+using System;
 
 namespace BattleShip.GameEngine.GameObject
 {
@@ -12,9 +12,12 @@ namespace BattleShip.GameEngine.GameObject
 
         // чи живий
         public abstract bool IsLife { get; }
+
         public byte ID { get; private set; }
+
         // івент вмирання об'єкта
         public abstract event Action<GameObject, GameEvenArgs> DeadHandler;
+
         // івент влучання в об'єкт
         public abstract event Action<GameObject, GameEvenArgs> HitMeHandler;
 

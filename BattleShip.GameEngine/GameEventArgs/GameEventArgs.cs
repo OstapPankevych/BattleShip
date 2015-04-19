@@ -1,5 +1,5 @@
-﻿using System;
-using BattleShip.GameEngine.Location;
+﻿using BattleShip.GameEngine.Location;
+using System;
 
 namespace BattleShip.GameEngine.GameEventArgs
 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using BattleShip.GameEngine.Arsenal.Flot;
+﻿using BattleShip.GameEngine.Arsenal.Flot;
 using BattleShip.GameEngine.Arsenal.Gun;
 using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 using BattleShip.GameEngine.Arsenal.Protection;
@@ -24,9 +22,9 @@ namespace BattleShip.GameEngineTest.Field.Cell
 
             Assert.IsTrue(cell.Location == pos);
 
-            Assert.IsTrue(cell.Show() == typeof (EmptyCell));
+            Assert.IsTrue(cell.Show() == typeof(EmptyCell));
 
-            Assert.IsTrue(cell.GetStatusCell() == typeof (EmptyCell));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(EmptyCell));
         }
 
         [TestMethod]
@@ -50,21 +48,21 @@ namespace BattleShip.GameEngineTest.Field.Cell
             var pos = new Position(3, 5);
             var cell = new CellOfField(pos);
 
-            var ship = new OneStoreyShip(0, pos);
+            var ship = new OneStoreyRectangleShip(0, pos);
 
             cell.AddGameObject(ship, true);
 
-            Assert.IsTrue(cell.Show() == typeof (EmptyCell));
+            Assert.IsTrue(cell.Show() == typeof(EmptyCell));
 
-            Assert.IsTrue(cell.GetStatusCell() == typeof (OneStoreyShip));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(OneStoreyRectangleShip));
 
             var gun = new Gun();
 
             cell.Shot(gun);
 
-            Assert.IsTrue(cell.Show() == typeof (OneStoreyShip));
+            Assert.IsTrue(cell.Show() == typeof(OneStoreyRectangleShip));
 
-            Assert.IsTrue(cell.GetStatusCell() == typeof (OneStoreyShip));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(OneStoreyRectangleShip));
         }
 
         [TestMethod]
@@ -73,7 +71,7 @@ namespace BattleShip.GameEngineTest.Field.Cell
             var pos = new Position(3, 5);
             var cell = new CellOfField(pos);
 
-            ShipRectangleBase ship = new OneStoreyShip(0, pos);
+            ShipBase ship = new OneStoreyRectangleShip(0, pos);
 
             cell.AddGameObject(ship, true);
 
@@ -81,10 +79,10 @@ namespace BattleShip.GameEngineTest.Field.Cell
 
             var result = cell.Shot(gun);
 
-            Assert.IsTrue(result == typeof (OneStoreyShip));
+            Assert.IsTrue(result == typeof(OneStoreyRectangleShip));
 
-            Assert.IsTrue(cell.Show() == typeof (OneStoreyShip));
-            Assert.IsTrue(cell.GetStatusCell() == typeof (OneStoreyShip));
+            Assert.IsTrue(cell.Show() == typeof(OneStoreyRectangleShip));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(OneStoreyRectangleShip));
         }
 
         [TestMethod]
@@ -93,24 +91,24 @@ namespace BattleShip.GameEngineTest.Field.Cell
             var pos = new Position(3, 5);
             var cell = new CellOfField(pos);
 
-            var ship = new OneStoreyShip(0, pos);
+            var ship = new OneStoreyRectangleShip(0, pos);
 
-            var pvo = new PVOProtected(0, pos, 10);
+            var pvo = new PVOProtect(0, pos, 10);
 
             cell.AddGameObject(pvo, true);
 
             var gun = new Gun();
 
-            Assert.IsTrue(cell.Show() == typeof (EmptyCell));
+            Assert.IsTrue(cell.Show() == typeof(EmptyCell));
 
-            Assert.IsTrue(cell.GetStatusCell() == typeof (PVOProtected));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(PVOProtect));
 
             var result = cell.Shot(gun);
 
-            Assert.IsTrue(result == typeof (PVOProtected));
+            Assert.IsTrue(result == typeof(PVOProtect));
 
-            Assert.IsTrue(cell.Show() == typeof (PVOProtected));
-            Assert.IsTrue(cell.GetStatusCell() == typeof (PVOProtected));
+            Assert.IsTrue(cell.Show() == typeof(PVOProtect));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(PVOProtect));
         }
 
         [TestMethod]
@@ -121,15 +119,15 @@ namespace BattleShip.GameEngineTest.Field.Cell
 
             cell.AddStatus(new AroundShip(pos));
 
-            Assert.IsTrue(cell.Show() == typeof (EmptyCell));
-            Assert.IsTrue(cell.GetStatusCell() == typeof (AroundShip));
+            Assert.IsTrue(cell.Show() == typeof(EmptyCell));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(AroundShip));
 
             var gun = new Gun();
             var t = cell.Shot(gun);
 
-            Assert.IsTrue(t == typeof (AroundShip));
+            Assert.IsTrue(t == typeof(AroundShip));
 
-            Assert.IsTrue(cell.GetStatusCell() == typeof (AroundShip));
+            Assert.IsTrue(cell.GetStatusCell() == typeof(AroundShip));
         }
 
         [TestMethod]
@@ -138,14 +136,11 @@ namespace BattleShip.GameEngineTest.Field.Cell
             var pos = new Position(3, 5);
             var cell = new CellOfField(pos);
 
-            var pvo = new PVOProtected(0, pos, 10);
-
+            var pvo = new PVOProtect(0, pos, 10);
 
             cell.SetProtect(pvo);
 
-
             var gun = new Gun();
-
 
             gun.ChangeCurrentGun(new PlaneDestroy());
 
@@ -153,7 +148,7 @@ namespace BattleShip.GameEngineTest.Field.Cell
 
             Assert.IsTrue(cell.WasAttacked == false);
 
-            Assert.IsTrue(result == typeof (ProtectedCell));
+            Assert.IsTrue(result == typeof(ProtectedCell));
         }
 
         [TestMethod]
@@ -162,11 +157,9 @@ namespace BattleShip.GameEngineTest.Field.Cell
             var pos = new Position(3, 5);
             var cell = new CellOfField(pos);
 
-            var pvo = new PVOProtected(0, pos, 10);
-
+            var pvo = new PVOProtect(0, pos, 10);
 
             cell.AddGameObject(pvo, false);
-
 
             var gun = new Gun();
 
@@ -176,7 +169,7 @@ namespace BattleShip.GameEngineTest.Field.Cell
 
             Assert.IsTrue(cell.WasAttacked == true);
 
-            Assert.IsTrue(result == typeof(PVOProtected));
+            Assert.IsTrue(result == typeof(PVOProtect));
         }
     }
 }

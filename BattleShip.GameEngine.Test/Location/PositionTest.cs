@@ -32,7 +32,6 @@ namespace BattleShip.GameEngine.Test.Location
             var pos2 = new Position(pos1);
 
             Assert.AreNotSame(pos1, pos2);
-
         }
 
         [TestMethod]

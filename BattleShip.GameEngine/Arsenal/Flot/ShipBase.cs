@@ -1,22 +1,40 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using BattleShip.GameEngine.Arsenal.Flot.Corectible;
+using BattleShip.GameEngine.Arsenal.Flot.Exceptions;
 using BattleShip.GameEngine.GameEventArgs;
 using BattleShip.GameEngine.GameObject;
 using BattleShip.GameEngine.Location;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BattleShip.GameEngine.Arsenal.Flot
 {
-    public abstract class ShipRectangleBase : GameObject.GameObject, IEnumerable<Position>
+    public abstract class ShipBase : GameObject.GameObject, IEnumerable<Position>
     {
         protected ObjectLocation _positions;
         protected byte _storeyCount;
         protected bool _wasDead;
 
-        public ShipRectangleBase(byte id, params Position[] positions)
+        protected ICorrectible Correctible = null;
+
+        public ShipBase(ICorrectible correctible, byte id, params Position[] positions)
             : base(id)
         {
-            _positions = new ObjectLocation(positions);
+            if (correctible == null)
+                throw new ShipExceptions("the rule for ship type can't be NULL");
+
+            Correctible = correctible;
+
+            _storeyCount = (byte)positions.Length;
+
+            if (Correctible.IsTrueShipRegion(StoreyCount, positions))
+            {
+                _positions = new ObjectLocation(positions);
+            }
+            else
+            {
+                throw new ShipExceptions("Incorrect region for current type of ship");
+            }
         }
 
         public byte StoreyCount
@@ -42,6 +60,7 @@ namespace BattleShip.GameEngine.Arsenal.Flot
 
         // івент влучання в об'єкт
         public override event Action<GameObject.GameObject, GameEvenArgs> HitMeHandler = delegate { };
+
         // івент вмирання об'єкта
         public override event Action<GameObject.GameObject, GameEvenArgs> DeadHandler = delegate { };
 
