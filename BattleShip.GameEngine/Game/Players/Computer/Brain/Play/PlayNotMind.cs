@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BattleShip.GameEngine.Game.Players.Computer.Brain.Play
 {
-    internal class PlayNotMind : IPlayable
+    public class PlayNotMind : IPlayable
     {
         public Location.Position GetPositionForAttackAndSetGun(GameMode.GameMode myMode, Field.FakeField fakeManField)
         {

@@ -5,10 +5,12 @@ using BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectangleB
 using BattleShip.GameEngine.Location;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using BattleShip.GameEngine.Game.GameMode.ClassicGameMode;
 
 namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectangleShip
 {
-    internal class SetShip : ISetibleShip
+    public class SetShip : ISetibleShip
     {
         public void SetShips(GameMode.GameMode myMode)
         {
@@ -36,7 +38,7 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectan
                 }
 
                 // OneStoreyShip
-                for (byte i = 0; i < 1; i++)
+                for (byte i = 0; i < 4; i++)
                 {
                     if (!SetRectangleShip(1, i, myMode))
                         i--;
@@ -54,14 +56,18 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectan
 
             do
             {
-                byte Line = (byte)rnd.Next(myMode.CurrentField.Size);
-                byte Column = (byte)rnd.Next(myMode.CurrentField.Size);
+                begin = myMode.CurrentField[(byte)rnd.Next(myMode.CurrentField.Size * myMode.CurrentField.Size)].Location;
 
-                begin = new Position(Line, Column);
+                List<Position> positionsList = GetArountPositions(begin, countStoreyShip, myMode.CurrentField.Size);
 
                 // взяти всі можливі точки кругом для цього виду кораблика
-                foreach (Position x in GetArountPositions(begin, countStoreyShip, myMode.CurrentField.Size))
+                while (positionsList.Count != 0)
                 {
+                    int index = rnd.Next(positionsList.Count);
+
+                    Position x = positionsList[index];
+                    positionsList.RemoveAt(index);
+
                     #region chack ship region and try set ship : when setted - exit from while(true)
 
                     if (Ractangle.ChackShipRegion(countStoreyShip, begin, x))
@@ -105,11 +111,11 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectan
                                     }
                                     else if (Ractangle.IsCorrectLine(begin, x))
                                     {
-                                        if (begin.Column < x.Line)
+                                        if (begin.Column < x.Column)
                                         {
                                             midlePosition = new Position(begin.Line, (byte)(begin.Column + 1));
                                         }
-                                        else if (x.Column < begin.Line)
+                                        else if (x.Column < begin.Column)
                                         {
                                             midlePosition = new Position(begin.Line, (byte)(x.Column + 1));
                                         }
@@ -134,6 +140,7 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectan
                                     // ініціалізація неможливим значенням, щоб коли наступний пошук буде неправильним - вилетів ShipException()
                                     Position midlePosition1 = new Position((byte)(begin.Line + 1), (byte)(begin.Column + 1));
                                     Position midlePosition2 = new Position((byte)(begin.Line + 2), (byte)(begin.Column + 2));
+                                    
 
                                     if (Ractangle.IsCorrectColumn(begin, x))
                                     {
@@ -145,17 +152,17 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectan
                                         else if (x.Line < begin.Line)
                                         {
                                             midlePosition1 = new Position((byte)(x.Line + 1), begin.Column);
-                                            midlePosition2 = new Position((byte)(x.Line + 1), begin.Column);
+                                            midlePosition2 = new Position((byte)(x.Line + 2), begin.Column);
                                         }
                                     }
                                     else if (Ractangle.IsCorrectLine(begin, x))
                                     {
-                                        if (begin.Column < x.Line)
+                                        if (begin.Column < x.Column)
                                         {
                                             midlePosition1 = new Position(begin.Line, (byte)(begin.Column + 1));
                                             midlePosition2 = new Position(begin.Line, (byte)(begin.Column + 2));
                                         }
-                                        else if (x.Column < begin.Line)
+                                        else if (x.Column < begin.Column)
                                         {
                                             midlePosition1 = new Position(begin.Line, (byte)(x.Column + 1));
                                             midlePosition2 = new Position(begin.Line, (byte)(x.Column + 2));

@@ -15,16 +15,16 @@ namespace BattleShip.GameEngine.Arsenal.Flot.Corectible
                 return true;
 
             // для решти робити перевірки коректності
-            if (IsCorrectLine(begin, end) ^ IsCorrectLine(begin, end))
+            if (IsCorrectLine(begin, end) ^ IsCorrectColumn(begin, end))
             {
                 if (IsCorrectLine(begin, end))
                 {
-                    if (IsCorrectCountStorey(begin.Line, end.Line, countStorey))
+                    if (IsCorrectCountStorey(begin.Column, end.Column, countStorey))
                         return true;
                 }
                 else if (IsCorrectColumn(begin, end))
                 {
-                    if (IsCorrectCountStorey(begin.Column, end.Line, countStorey))
+                    if (IsCorrectCountStorey(begin.Line, end.Line, countStorey))
                         return true;
                 }
             }

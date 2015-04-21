@@ -69,6 +69,7 @@
     <Compile Include="GameObject\GameObject.cs" />
     <Compile Include="GameObject\ObjectLocation.cs" />
     <Compile Include="GameObject\PositionAndStatus.cs" />
+    <Compile Include="Game\GameMode\ClassicGameMode\AddShips\AddableShip.cs" />
     <Compile Include="Game\GameProcces\Referee\BaseReferre.cs" />
     <Compile Include="Game\GameProcces\Referee\IReferee.cs" />
     <Compile Include="Game\GameProcces\Referee\ClassicGameReferee\ClassicReferee.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Game\Players\Computer\Brain\SetObjects\SetProtect\SetProtect.cs" />
     <Compile Include="Game\Players\Computer\Brain\SetObjects\SetRectangleShip\ISetibleShip.cs" />
     <Compile Include="Game\Players\Computer\Brain\SetObjects\SetRectangleShip\SetShips.cs" />
-    <Compile Include="Game\GameMode\ClassicGameMode.cs" />
+    <Compile Include="Game\GameMode\ClassicGameMode\ClassicGameMode.cs" />
     <Compile Include="Game\GameMode\GameMode.cs" />
     <Compile Include="Game\Players\IPlayer.cs" />
     <Compile Include="Game\Players\Man\Man.cs" />

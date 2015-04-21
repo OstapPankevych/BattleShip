@@ -24,15 +24,5 @@ namespace BattleShip.GameEngine.Game.Players.Man
         public Man(String name, GameMode.GameMode gameMode)
             : base(name, gameMode)
         { }
-
-        public override void SetProtects()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void SetRectangleShips()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

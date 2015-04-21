@@ -1,6 +1,7 @@
 ﻿using BattleShip.GameEngine.Arsenal.Gun;
 using System;
 using System.Collections.Generic;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 
 namespace BattleShip.GameEngine.Game.Players
 {
@@ -47,6 +48,11 @@ namespace BattleShip.GameEngine.Game.Players
             }
         }
 
+        public List<IDestroyable> GunTypeList
+        {
+            get { return gameMode.GunTypesList; }
+        }
+
         public Gun CurrentGun
         {
             get { return this.gameMode.CurrentGun; }
@@ -58,13 +64,5 @@ namespace BattleShip.GameEngine.Game.Players
         }
 
         #endregion IPlayer realization
-
-        #region Abstract Methods
-
-        public abstract void SetProtects();
-
-        public abstract void SetRectangleShips();
-
-        #endregion Abstract Methods
     }
 }

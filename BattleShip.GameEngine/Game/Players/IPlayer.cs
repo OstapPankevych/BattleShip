@@ -24,10 +24,6 @@ namespace BattleShip.GameEngine.Game.Players
 
         List<Type> AttackMe(Gun gun, Position position);
 
-        void SetProtects();
-
-        void SetRectangleShips();
-
         #endregion Methods
     }
 }

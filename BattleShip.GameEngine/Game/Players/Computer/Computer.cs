@@ -18,16 +18,6 @@ namespace BattleShip.GameEngine.Game.Players.Computer
             return _brain.GetPositionForAttackAndSetGun(this.gameMode, manFakeField);
         }
 
-        public override void SetProtects()
-        {
-            this._brain.SetProtects(this.gameMode);
-        }
-
-        public override void SetRectangleShips()
-        {
-            this._brain.SetShips(this.gameMode);
-        }
-
         #endregion BasePlayer realization
 
         #region Constructors
@@ -36,6 +26,9 @@ namespace BattleShip.GameEngine.Game.Players.Computer
             : base("Computer", gameMode)
         {
             _brain = brain;
+
+            this._brain.SetShips(this.gameMode);
+            this._brain.SetProtects(this.gameMode);
         }
 
         #endregion Constructors
