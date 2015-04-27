@@ -1,10 +1,10 @@
 ﻿using BattleShip.GameEngine.Arsenal.Flot;
+using BattleShip.GameEngine.Arsenal.Flot.RectangleShips;
 using BattleShip.GameEngine.Arsenal.Gun;
 using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 using BattleShip.GameEngine.Arsenal.Protection;
-using BattleShip.GameEngine.Field.Cell;
-using BattleShip.GameEngine.Field.Cell.AttackResult;
-using BattleShip.GameEngine.Field.Cell.StatusCell;
+using BattleShip.GameEngine.Field.Cells.AttackResult;
+using BattleShip.GameEngine.Fields.Cells.StatusOfCells;
 using BattleShip.GameEngine.Location;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;

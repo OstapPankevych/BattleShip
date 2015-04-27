@@ -50,11 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Field\Cell\CellOfFieldTest.cs" />
-    <Compile Include="Field\FieldTest.cs" />
+    <Compile Include="Arsenal\Flot\Corectible\RactangleTest.cs" />
+    <Compile Include="Fields\Cells\Cell.cs" />
+    <Compile Include="Fields\Cells\StatusOfCells\StatusCellTest.cs" />
+    <Compile Include="Fields\Exceptions\OutOfFielRegionExceptionTest.cs" />
     <Compile Include="GameObject\GameObjectTest.cs" />
     <Compile Include="GameObject\PositionAndStatusTest.cs" />
     <Compile Include="GameObject\ObjectLocationTest.cs" />
+    <Compile Include="Game\Players\Computer\Brain\SetObject\SetRactangleShip\SetShipTest.cs" />
     <Compile Include="Location\PositionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +66,9 @@
       <Project>{20f14977-18f8-4e6c-ae5a-8f4134951036}</Project>
       <Name>BattleShip.GameEngine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Arsenal\Gun\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

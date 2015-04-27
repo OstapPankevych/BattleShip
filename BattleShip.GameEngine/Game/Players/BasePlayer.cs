@@ -1,68 +1,42 @@
-﻿using BattleShip.GameEngine.Arsenal.Gun;
+﻿using BattleShip.GameEngine.Arsenal.Flot;
+using BattleShip.GameEngine.Arsenal.Gun;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+using BattleShip.GameEngine.Arsenal.Protection;
+using BattleShip.GameEngine.Location;
 using System;
 using System.Collections.Generic;
-using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 
 namespace BattleShip.GameEngine.Game.Players
 {
     public abstract class BasePlayer : IPlayer
     {
-        #region Members
-
         private string _name;
+
+        protected readonly Func<ShipBase, bool> SetShipsFunc;
+        protected readonly Func<ProtectBase, bool> SetProtectFunc;
+        protected readonly byte fieldSize;
+
+        public BasePlayer(string name, Func<ShipBase, bool> SetShipsFunc,
+            Func<ProtectBase, bool> SetProtectFunc,
+            byte fieldSize)
+        {
+            this.SetShipsFunc = SetShipsFunc;
+            this.SetProtectFunc = SetProtectFunc;
+
+            this.fieldSize = fieldSize;
+
+            this._name = name;
+        }
 
         public string Name
         {
-            get { return _name; }
+            get { return this._name; }
         }
 
-        protected GameMode.GameMode gameMode;
+        public abstract void BeginSetShips();
 
-        #endregion Members
+        public abstract void BeginSetProtect();
 
-        #region Constructor
-
-        public BasePlayer(string name, GameMode.GameMode gameMode)
-        {
-            _name = name;
-            this.gameMode = gameMode;
-        }
-
-        #endregion Constructor
-
-        #region IPlayer realization
-
-        public Field.FakeField CurrentFakeField
-        {
-            get
-            {
-                return gameMode.CurrentFakeField;
-            }
-        }
-
-        public Field.Field CurreField
-        {
-            get
-            {
-                return gameMode.CurrentField;
-            }
-        }
-
-        public List<IDestroyable> GunTypeList
-        {
-            get { return gameMode.GunTypesList; }
-        }
-
-        public Gun CurrentGun
-        {
-            get { return this.gameMode.CurrentGun; }
-        }
-
-        public List<Type> AttackMe(Arsenal.Gun.Gun gun, Location.Position position)
-        {
-            return this.gameMode.CurrentField.Shot(gun, position);
-        }
-
-        #endregion IPlayer realization
+        public abstract Position GetPositionForAttack(Gun gun, IList<IDestroyable> gunList);
     }
 }

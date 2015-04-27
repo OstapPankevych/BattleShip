@@ -1,4 +1,6 @@
-﻿using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+﻿using BattleShip.GameEngine.Arsenal.Gun;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+using BattleShip.GameEngine.Fields;
 using BattleShip.GameEngine.Location;
 using System;
 using System.Collections.Generic;
@@ -7,21 +9,29 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.Play
 {
     public class PlayNotMind : IPlayable
     {
-        public Location.Position GetPositionForAttackAndSetGun(GameMode.GameMode myMode, Field.FakeField fakeManField)
+        public Location.Position GetPositionForAttackAndSetGun(FakeField myFakeField, Gun gun, IList<IDestroyable> gunList)
         {
-            myMode.SetCurrentGun(GunChoise(myMode.GunTypesList));
-            return AnnalizeField(fakeManField);
+            gun.ChangeCurrentGun(GunChoise(gunList));
+            return AnnalizeFakeField(myFakeField);
         }
 
         // вибрати зброю
-        private IDestroyable GunChoise(List<IDestroyable> gunList)
+        private IDestroyable GunChoise(IList<IDestroyable> gunList)
         {
-            Random rnd = new Random();
-            return gunList[rnd.Next(gunList.Count)];
+            if (gunList.Count == 0)
+            {
+                return new GunDestroy();
+            }
+            else
+            {
+                Random rnd = new Random();
+
+                return gunList[rnd.Next(gunList.Count)];
+            }
         }
 
         // проаналізувати фейкове поле player's і вибрати точку куди стріляти
-        private Position AnnalizeField(Field.FakeField manFakeField)
+        private Position AnnalizeFakeField(FakeField myFakeField)
         {
             Random rnd = new Random();
 
@@ -29,11 +39,11 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.Play
             int cellNumber = 0;
             do
             {
-                cellNumber = rnd.Next(manFakeField.Size * manFakeField.Size);
-            } while (manFakeField[cellNumber].WasAttacked == true);
+                cellNumber = rnd.Next(myFakeField.Size * myFakeField.Size);
+            } while (myFakeField[cellNumber].WasAttacked == true);
 
             // повернути її позицію
-            return manFakeField[cellNumber].Location;
+            return myFakeField[cellNumber].Location;
         }
     }
 }

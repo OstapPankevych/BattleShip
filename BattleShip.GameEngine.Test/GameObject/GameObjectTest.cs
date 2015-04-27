@@ -1,5 +1,5 @@
-﻿using BattleShip.GameEngine.GameObject;
-using BattleShip.GameEngine.Location;
+﻿using BattleShip.GameEngine.Location;
+using BattleShip.GameEngine.ObjectOfGame;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BattleShip.GameEngineTest.GameObject

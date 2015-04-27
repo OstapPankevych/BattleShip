@@ -6,28 +6,32 @@ namespace BattleShip.GameEngine.Arsenal.Gun
 {
     public class Gun
     {
-        protected IDestroyable destroyable;
+        private IDestroyable _destroyable;
 
         public Gun()
         {
-            destroyable = new GunDestroy();
+            this._destroyable = new GunDestroy();
         }
+
+        #region Public
 
         // повернути Type встановленої зброї
         public Type GetTypeOfCurrentCun()
         {
             // повернути тип, на який зараз!!!! вказує інтерфейс
-            return destroyable.GetType();
+            return this._destroyable.GetType();
         }
 
         public Position[] Shot(Position point, byte size)
         {
-            return destroyable.Destroy(point, size);
+            return this._destroyable.Destroy(point, size);
         }
 
         public void ChangeCurrentGun(IDestroyable gun)
         {
-            destroyable = gun;
+            this._destroyable = gun;
         }
+
+        #endregion Public
     }
 }

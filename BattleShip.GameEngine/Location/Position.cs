@@ -12,10 +12,8 @@
         }
 
         public Position(Position position)
-        {
-            _line = position.Line;
-            _column = position.Column;
-        }
+            : this(position.Line, position.Column)
+        { }
 
         public byte Line
         {

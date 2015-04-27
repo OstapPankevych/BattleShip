@@ -1,7 +1,14 @@
-﻿using BattleShip.GameEngine.Game.Players.Computer.Brain.Play;
+﻿using BattleShip.GameEngine.Arsenal.Flot;
+using BattleShip.GameEngine.Arsenal.Gun;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+using BattleShip.GameEngine.Arsenal.Protection;
+using BattleShip.GameEngine.Fields;
+using BattleShip.GameEngine.Game.Players.Computer.Brain.Play;
 using BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetProtect;
 using BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectangleBase;
 using BattleShip.GameEngine.Location;
+using System;
+using System.Collections.Generic;
 
 namespace BattleShip.GameEngine.Game.Players.Computer.Brain
 {
@@ -18,19 +25,34 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain
             _setShip = setShip;
         }
 
-        public Position GetPositionForAttackAndSetGun(GameMode.GameMode myMode, Field.FakeField fakeManField)
+        public void SetIPlayable(IPlayable play)
         {
-            return _play.GetPositionForAttackAndSetGun(myMode, fakeManField);
+            _play = play;
         }
 
-        public void SetShips(GameMode.GameMode mode)
+        public void SetISetibleProtect(ISetibleProtect setProtect)
         {
-            _setShip.SetShips(mode);
+            _setProject = setProtect;
         }
 
-        public void SetProtects(GameMode.GameMode mode)
+        public void SetISetibleShip(ISetibleShip setShip)
         {
-            _setProject.SetProtects(mode);
+            _setShip = setShip;
+        }
+
+        public Position GetPositionForAttackAndSetGun(FakeField myFakeField, Gun gun, IList<IDestroyable> gunList)
+        {
+            return _play.GetPositionForAttackAndSetGun(myFakeField, gun, gunList);
+        }
+
+        public void SetRectangleShips(Func<ShipBase, bool> SetShipsFunc, byte fieldSize)
+        {
+            _setShip.SetShips(SetShipsFunc, fieldSize);
+        }
+
+        public void SetPVOProtect(Func<ProtectBase, bool> SetPtotectFunc, byte fieldSize)
+        {
+            _setProject.SetProtects(SetPtotectFunc, fieldSize);
         }
     }
 }

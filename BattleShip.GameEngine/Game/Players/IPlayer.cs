@@ -1,29 +1,18 @@
 ﻿using BattleShip.GameEngine.Arsenal.Gun;
-using BattleShip.GameEngine.Field;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 using BattleShip.GameEngine.Location;
-using System;
 using System.Collections.Generic;
 
 namespace BattleShip.GameEngine.Game.Players
 {
     public interface IPlayer
     {
-        #region Properties
-
         string Name { get; }
 
-        FakeField CurrentFakeField { get; }
+        void BeginSetShips();
 
-        Field.Field CurreField { get; }
+        void BeginSetProtect();
 
-        Gun CurrentGun { get; }
-
-        #endregion Properties
-
-        #region Methods
-
-        List<Type> AttackMe(Gun gun, Position position);
-
-        #endregion Methods
+        Position GetPositionForAttack(Gun gun, IList<IDestroyable> gunList);
     }
 }

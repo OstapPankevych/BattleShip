@@ -7,7 +7,6 @@ namespace BattleShip.GameEngine.Arsenal.Flot.RectangleShips
     {
         public TwoStoreyRectangleShip(byte id, Position begin, Position end)
             : base(new Ractangle(), id, begin, end)
-        {
-        }
+        { }
     }
 }

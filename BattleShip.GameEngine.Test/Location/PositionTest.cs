@@ -21,7 +21,7 @@ namespace BattleShip.GameEngine.Test.Location
 
             var pos2 = new Position(pos1);
 
-            Assert.IsTrue(pos1.Line == pos2.Line & pos1.Column == pos2.Column);
+            Assert.IsTrue(pos2.Line == pos1.Line & pos2.Column == pos1.Column);
         }
 
         [TestMethod]
@@ -57,5 +57,6 @@ namespace BattleShip.GameEngine.Test.Location
             Assert.IsTrue(pos1.Equals(pos2));
             Assert.AreEqual(pos1, pos2);
         }
+
     }
 }

@@ -1,28 +1,42 @@
-﻿using BattleShip.GameEngine.Location;
+﻿using BattleShip.GameEngine.Arsenal.Gun;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+using BattleShip.GameEngine.Game.Players;
+using BattleShip.GameEngine.Location;
 using System;
+using System.Collections.Generic;
 
-namespace BattleShip.GameEngine.Game.Players.Man
+public class Man : BasePlayer
 {
-    public class Man : BasePlayer
+    public Man(string name,
+        byte fieldSize,
+        Action<Man> StartSetShipsFromReferriOnHandler,
+        Action<Man> StartSetProtectsFromReferriOnHandler,
+        Func<Gun, IList<IDestroyable>, Position> GetPositionForAttackFromReferriOnHandler)
+        : base(name, null, null, fieldSize)
     {
-        private Position _currentPositionForAttack;
+        this.StartSetProtectsFromReferriHandler += StartSetProtectsFromReferriOnHandler;
+        this.StartSetShipsFromReferriHandler += StartSetShipsFromReferriOnHandler;
+        this.GetPositionForAttackFromReferriHandler += GetPositionForAttackFromReferriOnHandler;
+    }
 
-        public Position CurrentPositionForAttack
-        {
-            get
-            {
-                return _currentPositionForAttack;
-            }
+    public event Action<Man> StartSetShipsFromReferriHandler;
 
-            set
-            {
-                if (Field.Field.IsFielRegion(value.Line, value.Column, gameMode.CurrentField.Size))
-                    _currentPositionForAttack = value;
-            }
-        }
+    public event Action<Man> StartSetProtectsFromReferriHandler;
 
-        public Man(String name, GameMode.GameMode gameMode)
-            : base(name, gameMode)
-        { }
+    public event Func<Gun, IList<IDestroyable>, Position> GetPositionForAttackFromReferriHandler;
+
+    public override void BeginSetShips()
+    {
+        StartSetShipsFromReferriHandler(this);
+    }
+
+    public override void BeginSetProtect()
+    {
+        StartSetProtectsFromReferriHandler(this);
+    }
+
+    public override Position GetPositionForAttack(Gun gun, IList<IDestroyable> gunList)
+    {
+        return GetPositionForAttackFromReferriHandler(gun, gunList);
     }
 }

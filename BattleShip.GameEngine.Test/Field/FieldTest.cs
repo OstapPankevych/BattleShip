@@ -2,7 +2,6 @@
 using BattleShip.GameEngine.Arsenal.Gun;
 using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
 using BattleShip.GameEngine.Arsenal.Protection;
-using BattleShip.GameEngine.Field.Cell.StatusCell;
 using BattleShip.GameEngine.Location;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
