@@ -1,0 +1,8 @@
+F:\BattleShip-master\BattleShip\bin\Debug\BattleShip.ConsoleUI.exe.config
+F:\BattleShip-master\BattleShip\bin\Debug\BattleShip.ConsoleUI.exe
+F:\BattleShip-master\BattleShip\bin\Debug\BattleShip.ConsoleUI.pdb
+F:\BattleShip-master\BattleShip\bin\Debug\BattleShip.GameEngine.dll
+F:\BattleShip-master\BattleShip\bin\Debug\BattleShip.GameEngine.pdb
+F:\BattleShip-master\BattleShip\obj\Debug\BattleShip.ConsoleUI.csprojResolveAssemblyReference.cache
+F:\BattleShip-master\BattleShip\obj\Debug\BattleShip.ConsoleUI.exe
+F:\BattleShip-master\BattleShip\obj\Debug\BattleShip.ConsoleUI.pdb
