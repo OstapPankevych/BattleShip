@@ -1,5 +1,9 @@
 ﻿using BattleShip.GameEngine.Arsenal.Flot;
+<<<<<<< HEAD
+using BattleShip.GameEngine.Arsenal.Flot.Correctible;
+=======
 using BattleShip.GameEngine.Arsenal.Flot.Corectible;
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
 using BattleShip.GameEngine.Arsenal.Flot.RectangleShips;
 using BattleShip.GameEngine.Arsenal.Gun;
 using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
@@ -179,6 +183,10 @@ namespace BattleShip.GameEngine.Game.Referee
         public event Func<IDestroyable> IsChoisingGunTypeFunc;
 
         // івент про те, що відбувся постріл
+<<<<<<< HEAD
+        //подія ні разу не викликається
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         public event Action WasShotActionInfo;
 
         // івент отримання запиту чи розставляти кораблики і захисти для користувача рендомом
@@ -248,11 +256,19 @@ namespace BattleShip.GameEngine.Game.Referee
             };
 
             // запустити івент про те, що зараз буде йти процес встановлення корабликів на поле.
+<<<<<<< HEAD
+            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             WillPuttingShipsInfo();
 
             while (playerAndGameMode.GameMode.CurrentCountShipsOnField <
                    playerAndGameMode.GameMode.CountMaxShipsOnField)
             {
+<<<<<<< HEAD
+                //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 Position[] positions =
                     IsSettingShipsNowPlayerFunc(playerAndGameMode.GameMode.CurrentField, playerAndGameMode.Player.Name);
 
@@ -278,28 +294,48 @@ namespace BattleShip.GameEngine.Game.Referee
                     continue;
                 }
 
+<<<<<<< HEAD
+                if (Ractangle.CheckShipRegion(countStorey, begin, end))
+=======
                 if (Ractangle.ChackShipRegion(countStorey, begin, end))
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 {
                     if (playerAndGameMode.GameMode.AddShip(GetShip(countStorey, begin, end)))
                     {
                         // запустити івент про успішне додавання кораблика на поле
+<<<<<<< HEAD
+                        //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                         SettedSomeShipSuccesfulyInfo();
                     }
                 }
             }
 
             // Запустити івент про завершення додавань всіх корабликів на поле
+<<<<<<< HEAD
+            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             SettedAllShipsSuccesfulyInfo();
         }
 
         private void PuttingProtectsProcess(PlayerAndGameMode playerAndGameMode)
         {
             // запустити івент про те, що зараз буде процес встановлення захистів на поле.
+<<<<<<< HEAD
+            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             WillPuttingProtectsInfo();
 
             while (playerAndGameMode.GameMode.CurrentCountProtectsOnField <
                    playerAndGameMode.GameMode.CountMaxProtectsOnField)
             {
+<<<<<<< HEAD
+                //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 Position position =
                     IsSettingProtectsNowPlayerFunc(playerAndGameMode.GameMode.CurrentField, playerAndGameMode.Player.Name);
 
@@ -308,11 +344,19 @@ namespace BattleShip.GameEngine.Game.Referee
                             position, playerAndGameMode.GameMode.CurrentField.Size)))
                 {
                     // запустити івент про успішне додавання захисту на поле
+<<<<<<< HEAD
+                    //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                     SettedSomeProtectSuccesfulyInfo();
                 }
             }
 
             // Запустити івент про завершення додавань всіх захистів
+<<<<<<< HEAD
+            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             SettedAllProtectsSuccesfulyInfo();
         }
 
@@ -323,6 +367,10 @@ namespace BattleShip.GameEngine.Game.Referee
         private void InitGameObjectsPlayer1()
         {
             // Дати запит про розставляння корабликів і захистів рендомом
+<<<<<<< HEAD
+            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             if (SetRandomAllGameObjectsOnField(_playerAndGameMode1.Player.Name))
             {
                 // створити Computer, який розставить всі об'єкти
@@ -353,6 +401,10 @@ namespace BattleShip.GameEngine.Game.Referee
             if (_playerAndGameMode2.Player is Man)
             {
                 // Дати запит про розставляння корабликів і захистів рендомом
+<<<<<<< HEAD
+                //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 if (SetRandomAllGameObjectsOnField(_playerAndGameMode2.Player.Name))
                 {
                     // створити Computer, який розставить всі об'єкти
@@ -400,6 +452,10 @@ namespace BattleShip.GameEngine.Game.Referee
             List<Type> resultShotList = new List<Type>();
 
             // повідомити зовнішній світ про початок гри
+<<<<<<< HEAD
+            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             GameWasStartedInfo();
 
             while (_playerAndGameMode1.IsLife & _playerAndGameMode2.IsLife)
@@ -432,6 +488,10 @@ namespace BattleShip.GameEngine.Game.Referee
                         // коли не класична гра - взяти тип озброєння
                         if (!(_playerAndGameMode1.GameMode is ClassicGameMode))
                         {
+<<<<<<< HEAD
+                            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                             gun.ChangeCurrentGun(IsChoisingGunTypeFunc());
                         }
                     }
@@ -443,18 +503,32 @@ namespace BattleShip.GameEngine.Game.Referee
                     _playerAndGameMode2.GameMode.RemoveGunFromList(gun);
                 }
                 // повідомити про здійснений постріл
+<<<<<<< HEAD
+                //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 MakeShotInfo();
 
                 // опрацювання рузультату пострілу
                 Machining(resultShotList);
             }
+<<<<<<< HEAD
+            //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             GameWasEndedIndo();
         }
 
         private Position GetPositionAttackForMan(Gun gun, IList<IDestroyable> gunList)
         {
+<<<<<<< HEAD
+            //потрбна перевірка на null
+            gun.ChangeCurrentGun(IsChoisingGunTypeFunc());
+            //потрбна перевірка на null
+=======
             gun.ChangeCurrentGun(IsChoisingGunTypeFunc());
 
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             return GetPositionFunc(_playerAndGameMode1.GameMode.CurrentField.Size);
         }
 

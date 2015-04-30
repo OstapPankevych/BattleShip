@@ -2,6 +2,10 @@
 {
     public struct Position
     {
+<<<<<<< HEAD
+        //можна використовувати int замість byte (на x64 машинах), (див. клас Rectangle) 
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         private readonly byte _column;
         private readonly byte _line;
 

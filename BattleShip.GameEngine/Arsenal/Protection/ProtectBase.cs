@@ -100,6 +100,10 @@ namespace BattleShip.GameEngine.Arsenal.Protection
                 }
 
                 // запустити івент
+<<<<<<< HEAD
+                //if (DeadHandler != null) DeadHandler(this, e);
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 DeadHandler(this, e);
             }
         }

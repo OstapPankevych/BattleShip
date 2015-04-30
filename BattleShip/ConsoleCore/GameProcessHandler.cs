@@ -138,7 +138,11 @@ namespace BattleShip.ConsoleUI.ConsoleCore
             {
                 Console.Write("Please enter your gun to Shot\n");
                 Console.Write('\n');
+<<<<<<< HEAD
+                //змінну можна перенести в поле своєї видимості
+=======
 
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 int choice;
                 if (_referee.CurrentPlayerGunList().Count == 0)
                 {

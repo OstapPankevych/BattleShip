@@ -7,6 +7,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+<<<<<<< HEAD
+//класи, які наслідуються від ShipBase можна було о'бєднати в один *.cs файл
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
 namespace BattleShip.GameEngine.Arsenal.Flot
 {
     public abstract class ShipBase : GameObject, IEnumerable<Position>
@@ -99,6 +103,10 @@ namespace BattleShip.GameEngine.Arsenal.Flot
             this._positions.ChangeLifeToDead(e.Location);
 
             // сказати тому, хто підписаний на цей корабель, що в нього попали
+<<<<<<< HEAD
+            //було б непогано добавити перевірку на null if (HitMeHandler != null) HitMeHandler(this, e);
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             HitMeHandler(this, e);
 
             // якщо його вбили цілком - сказати підписникам, що він вбитий
@@ -107,6 +115,10 @@ namespace BattleShip.GameEngine.Arsenal.Flot
                 if (!IsLife)
                 {
                     OnDeadHandler();
+<<<<<<< HEAD
+                    //було б непогано добавити перевірку на null if (DeadHandler != null) DeadHandler(this, e);
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                     DeadHandler(this, e);
                 }
             }

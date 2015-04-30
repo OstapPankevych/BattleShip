@@ -1,10 +1,19 @@
+<<<<<<< HEAD
+﻿//не використовується
+using System;
+=======
 ﻿using System;
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
 using BattleShip.GameEngine.Arsenal.Flot.Corectible;
 using BattleShip.GameEngine.Location;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BattleShip.GameEngine.Test.Arsenal.Flot.Corectible
 {
+<<<<<<< HEAD
+    //всі змінні типу byte можна визначити як константи
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
     [TestClass]
     public class RactangleTest
     {
@@ -63,7 +72,11 @@ namespace BattleShip.GameEngine.Test.Arsenal.Flot.Corectible
         {
             byte count = 1;
             Position[] pos = new[] {new Position(1, 1), new Position(1, 1)};
+<<<<<<< HEAD
+            Assert.IsTrue(Ractangle.CheckShipRegion(count, pos));
+=======
             Assert.IsTrue(Ractangle.ChackShipRegion(count, pos));
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         }
 
         [TestMethod]
@@ -71,7 +84,11 @@ namespace BattleShip.GameEngine.Test.Arsenal.Flot.Corectible
         {
             byte count = 1;
             Position[] pos = new[] { new Position(1, 2), new Position(1, 1) };
+<<<<<<< HEAD
+            Assert.IsFalse(Ractangle.CheckShipRegion(count, pos));
+=======
             Assert.IsFalse(Ractangle.ChackShipRegion(count, pos));
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         }
 
         [TestMethod]
@@ -79,7 +96,11 @@ namespace BattleShip.GameEngine.Test.Arsenal.Flot.Corectible
         {
             byte count = 3;
             Position[] pos = new[] { new Position(1, 2), new Position(1, 3), new Position(1, 4),  };
+<<<<<<< HEAD
+            Assert.IsTrue(Ractangle.CheckShipRegion(count, pos));
+=======
             Assert.IsTrue(Ractangle.ChackShipRegion(count, pos));
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         }
 
         [TestMethod]
@@ -87,7 +108,11 @@ namespace BattleShip.GameEngine.Test.Arsenal.Flot.Corectible
         {
             byte count = 6;
             Position[] pos = new[] { new Position(1, 4), new Position(2, 4), new Position(3, 4), };
+<<<<<<< HEAD
+            Assert.IsFalse(Ractangle.CheckShipRegion(count, pos));
+=======
             Assert.IsFalse(Ractangle.ChackShipRegion(count, pos));
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         }
 
         [TestMethod]
@@ -95,7 +120,11 @@ namespace BattleShip.GameEngine.Test.Arsenal.Flot.Corectible
         {
             byte count = 6;
             Position[] pos = new[] { new Position(1, 2), new Position(1, 3), new Position(1, 4), };
+<<<<<<< HEAD
+            Assert.IsFalse(Ractangle.CheckShipRegion(count, pos));
+=======
             Assert.IsFalse(Ractangle.ChackShipRegion(count, pos));
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         }
 
         [TestMethod]

@@ -15,7 +15,11 @@ namespace BattleShip.GameEngine.ObjectOfGame
             {
                 throw new NullReferenceException();
             }
+<<<<<<< HEAD
+            //помилка при дебагу юніт тестів
+=======
 
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             _positionAndStatus = new PositionAndStatus[positions.Length];
 
             for (var i = 0; i < _positionAndStatus.Length; i++)
