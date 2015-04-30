@@ -45,7 +45,10 @@ namespace BattleShip.GameEngine.Fields
                     for (var j = -1; j < 2; j++)
                     {
                         var pos = new Position((byte)(x.Line + i), (byte)(x.Column + j));
+<<<<<<< HEAD
                         //замість вкладеного if можна використати continue;
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                         if (IsFielRegion(pos.Line, pos.Column, Size))
                         {
                             if (this[pos].GetStatusCell() == typeof(EmptyCell))

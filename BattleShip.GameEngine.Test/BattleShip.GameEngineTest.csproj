@@ -53,7 +53,11 @@
     <Compile Include="Arsenal\Flot\Corectible\RactangleTest.cs" />
     <Compile Include="Fields\Cells\Cell.cs" />
     <Compile Include="Fields\Cells\StatusOfCells\StatusCellTest.cs" />
+<<<<<<< HEAD
     <Compile Include="Fields\Exceptions\OutOfFieldRegionExceptionTest.cs" />
+=======
+    <Compile Include="Fields\Exceptions\OutOfFielRegionExceptionTest.cs" />
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
     <Compile Include="GameObject\GameObjectTest.cs" />
     <Compile Include="GameObject\PositionAndStatusTest.cs" />
     <Compile Include="GameObject\ObjectLocationTest.cs" />

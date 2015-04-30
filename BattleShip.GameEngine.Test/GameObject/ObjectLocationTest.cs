@@ -1,5 +1,8 @@
 ﻿using System;
+<<<<<<< HEAD
 //не використовуються
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
 using System.Collections;
 using System.Diagnostics;
 using BattleShip.GameEngine.Location;

@@ -27,19 +27,28 @@ public class Man : BasePlayer
 
     public override void BeginSetShips()
     {
+<<<<<<< HEAD
         //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         StartSetShipsFromReferriHandler(this);
     }
 
     public override void BeginSetProtect()
     {
+<<<<<<< HEAD
         //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         StartSetProtectsFromReferriHandler(this);
     }
 
     public override Position GetPositionForAttack(Gun gun, IList<IDestroyable> gunList)
     {
+<<<<<<< HEAD
         //потрбна перевірка на null
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         return GetPositionForAttackFromReferriHandler(gun, gunList);
     }
 }

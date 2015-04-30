@@ -5,7 +5,10 @@ namespace BattleShip.GameEngine.Fields
 {
     public class FakeField : BaseField
     {
+<<<<<<< HEAD
         //Fields не обов'язково писати, ми вже в цьому namespace
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         public FakeField(Fields.Field field)
             : base(field.Size)
         {

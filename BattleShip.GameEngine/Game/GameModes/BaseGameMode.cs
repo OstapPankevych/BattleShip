@@ -70,7 +70,10 @@ namespace BattleShip.GameEngine.Game.GameModes
         {
             get
             {
+<<<<<<< HEAD
                 //можна використати тернарний оператор
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 if ((CurrentCountProtectsOnField == CountMaxProtectsOnField)
                     & (CurrentCountShipsOnField == CountMaxShipsOnField))
                 {
@@ -81,13 +84,20 @@ namespace BattleShip.GameEngine.Game.GameModes
             }
         }
 
+<<<<<<< HEAD
         //може бути використана auto-property
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         public new virtual byte CurrentCountShipsOnField
         {
             get { return _currentCountShipsOnField; }
             protected set { _currentCountShipsOnField = value; }
         }
+<<<<<<< HEAD
         //може бути використана auto-property
+=======
+
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         public new virtual byte CurrentCountProtectsOnField
         {
             get { return _currentCountProtectsOnField; }

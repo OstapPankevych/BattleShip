@@ -15,7 +15,10 @@ namespace BattleShip.GameEngine.Game.GameModes.ClassicGameModes
             : base(field)
         { }
 
+<<<<<<< HEAD
         //питання: як тестив приватні методи? чи можна їх зробити публічними?
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         private bool AddShip<T>(List<T> shipList, T ship) where T : ShipBase
         {
             if (shipList.Count < shipList.Capacity)
@@ -109,8 +112,11 @@ namespace BattleShip.GameEngine.Game.GameModes.ClassicGameModes
         {
             get
             {
+<<<<<<< HEAD
                 //return LifeStatusForShip(oneStoreyShipList) || LifeStatusForShip(twoStoreyShipList) ||
                 //          LifeStatusForShip(threeStoreyShipList) || LifeStatusForShip(fourStoreyShipList);
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 if (LifeStatusForShip(oneStoreyShipList) || LifeStatusForShip(twoStoreyShipList) ||
                     LifeStatusForShip(threeStoreyShipList) || LifeStatusForShip(fourStoreyShipList))
                 {

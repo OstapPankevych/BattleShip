@@ -38,7 +38,11 @@ namespace BattleShip.GameEngine.Fields
             {
                 if ((pos < 0) || (pos > Size * Size))
                 {
+<<<<<<< HEAD
                     throw new OutOfFieldRegionException("Get : BaseField.this[Position]");
+=======
+                    throw new OutOfFielRegionException("Get : BaseField.this[Position]");
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 }
 
                 return this[new Position((byte)(pos / Size), (byte)(pos % Size))];
@@ -48,7 +52,11 @@ namespace BattleShip.GameEngine.Fields
             {
                 if ((pos < 0) || (pos > Size * Size))
                 {
+<<<<<<< HEAD
                     throw new OutOfFieldRegionException("Set : BaseField.this[Position]");
+=======
+                    throw new OutOfFielRegionException("Set : BaseField.this[Position]");
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 }
 
                 this._cells[pos] = value;
@@ -67,7 +75,11 @@ namespace BattleShip.GameEngine.Fields
                     }
                 }
 
+<<<<<<< HEAD
                 throw new OutOfFieldRegionException("BaseField.this[byte]");
+=======
+                throw new OutOfFielRegionException("BaseField.this[byte]");
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             }
         }
 
@@ -99,7 +111,10 @@ namespace BattleShip.GameEngine.Fields
 
             private set
             {
+<<<<<<< HEAD
                 //можливе використання тернарного оператора
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
                 if (value < 10)
                 {
                     this._size = 10;

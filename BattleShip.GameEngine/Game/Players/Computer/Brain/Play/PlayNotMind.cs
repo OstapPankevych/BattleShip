@@ -9,7 +9,10 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.Play
 {
     public class PlayNotMind : IPlayable
     {
+<<<<<<< HEAD
         //Location вже вказано в using BattleShip.GameEngine.Location;
+=======
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
         public Location.Position GetPositionForAttackAndSetGun(FakeField myFakeField, Gun gun, IList<IDestroyable> gunList)
         {
             gun.ChangeCurrentGun(GunChoise(gunList));

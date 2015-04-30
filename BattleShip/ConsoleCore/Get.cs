@@ -13,7 +13,11 @@ namespace BattleShip.ConsoleUI.ConsoleCore
         {
             int Line = 0;
             int Column = 0;
+<<<<<<< HEAD
             //можна оголосити і ініціалізувати одразу
+=======
+
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             string variable;
 
             int x = 0;
@@ -64,9 +68,14 @@ namespace BattleShip.ConsoleUI.ConsoleCore
         public static bool QuertyGetRandom()
         {
             Console.WriteLine("(y/n)");
+<<<<<<< HEAD
             //можна оголосити і ініціалізувати одразу; для однієї змінної доцільніше використати тип char
             string result;
             //непотрібна змінна, оскільки при натисненні клавіші відмінної від y/n завжди повертає true
+=======
+            string result;
+
+>>>>>>> adcb4d49f57b1a9c51a12f9f9099df7db01d1a0d
             bool retry = false;
             do
             {
