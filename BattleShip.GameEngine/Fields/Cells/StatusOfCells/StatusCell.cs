@@ -34,6 +34,10 @@ namespace BattleShip.GameEngine.Fields.Cells.StatusOfCells
             get { return this._isLife; }
         }
 
+        /*
+         * Review GY: досить не стандартне використання подій батьківського класу.
+         * Рекомендую переглянути матеріал за посиланням https://msdn.microsoft.com/en-us/library/hy3sefw3.aspx
+         */
         public override event Action<GameObject, GameEvenArgs> DeadHandler = delegate { };
 
         public override event Action<GameObject, GameEvenArgs> HitMeHandler = delegate { };

@@ -7,6 +7,9 @@ using BattleShip.GameEngine.Location;
 
 namespace BattleShip.ConsoleUI.ConsoleCore
 {
+    /*
+     * Review GY: клас не може мати ім'я Get. Замініть назву на іншу з суфіксом Helper.
+     */
     public static class Get
     {
         public static Position GetPosition(byte fieldSize)

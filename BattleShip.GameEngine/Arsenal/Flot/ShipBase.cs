@@ -87,6 +87,10 @@ namespace BattleShip.GameEngine.Arsenal.Flot
 
         #region GameObject realization
 
+        /*
+         * Review GY: досить не стандартне використання подій батьківського класу.
+         * Рекомендую переглянути матеріал за посиланням https://msdn.microsoft.com/en-us/library/hy3sefw3.aspx
+         */
         // івент влучання в об'єкт
         public override event Action<GameObject, GameEvenArgs> HitMeHandler = delegate { };
 

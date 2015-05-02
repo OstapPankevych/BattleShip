@@ -7,6 +7,11 @@ using BattleShip.GameEngine.Fields.Cells.StatusOfCells;
 
 namespace BattleShip.ConsoleUI.Draw.DrawFields.DrawCell
 {
+    /*
+     * Review GY: рекомендую перетворити даний клас на простенький параметризований фабричний метод, в цьому випадку клас потрібно переіменувати. 
+     *  public IDrawableCell Draw(Type typeCell, bool drawAllElements = false);
+     *  Тобто, залежно від переданого typeCell, ми отримаємо конкретний IDrawableCell, а вже ззовні викличемо для нього drawableCell.Draw(wasAttacked);
+     */
     class DrawCellWithAllElements
     {
         private IDrawableCell _drawableCell;

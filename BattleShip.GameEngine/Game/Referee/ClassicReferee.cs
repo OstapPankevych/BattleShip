@@ -19,6 +19,9 @@ namespace BattleShip.GameEngine.Game.Referee
     {
         private class PlayerAndGameMode
         {
+            /*
+             * Review GY: змінна не повинна мати специфікатор доступу public (IsCurrent, GameMode, Player)
+             */
             // чи є об'єктом, який зараз робить дію
             public bool IsCurrent = false;
 
@@ -42,6 +45,9 @@ namespace BattleShip.GameEngine.Game.Referee
                 Func<Gun, IList<IDestroyable>, Position> GetPositionForAttack)
                 : this(gameModeType)
             {
+                /*
+                 * Review GY: саме тут повинна проходити підписка на події.
+                 */
                 this.Player = new Man(name, this.GameMode.CurrentFakeField.Size,
                     StartSetShips,
                     StartSetProtects,
@@ -52,6 +58,9 @@ namespace BattleShip.GameEngine.Game.Referee
             public PlayerAndGameMode(Type gameModeType, FakeField fakefieldAnotherPlayer)
                 : this(gameModeType)
             {
+                /*
+                 * Review GY: саме тут повинні призначатись хендлери делегатам.
+                 */
                 this.Player = new Computer(this.GameMode.BrainForComputer,
                     this.GameMode.AddShip,
                     this.GameMode.AddProtect,
@@ -219,6 +228,10 @@ namespace BattleShip.GameEngine.Game.Referee
 
         private void PuttingShipsProcess(PlayerAndGameMode playerAndGameMode)
         {
+            /*
+             * Review GY: не рекомендую розміщувати хендлери делегатів, котрі містять більше 1 - 2 рядків, в коді методу.
+             * В даному випадку, варто було би створити простеньку фабрику або фабричний метод для отримання корабля відповідного типу.
+             */
             Func<byte, Position, Position, ShipBase> GetShip = (countStorey, begin, end) =>
             {
                 Position[] shipRegion = Ractangle.GetRectangleRegion(countStorey, begin, end);

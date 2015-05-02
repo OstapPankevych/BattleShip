@@ -7,6 +7,10 @@ using System.Collections.Generic;
 
 public class Man : BasePlayer
 {
+    /*
+     * Review GY: не рекомендую використовувати такий підхід при роботі з подіями.
+     * Події створюють для того, щоб надати користувачу змогу підписатись на них ззовні.
+     */
     public Man(string name,
         byte fieldSize,
         Action<Man> StartSetShipsFromReferriOnHandler,
