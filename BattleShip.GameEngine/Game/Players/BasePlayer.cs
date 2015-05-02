@@ -16,6 +16,10 @@ namespace BattleShip.GameEngine.Game.Players
         protected readonly Func<ProtectBase, bool> SetProtectFunc;
         protected readonly byte fieldSize;
 
+        /*
+         * Review GY: не рекомендую використовувати такий підхід при роботі з делегатами, так як він ускладнює розуміння загальної логіки.
+         * Якщо уникнути даної ситуації неможливо, це означає, що система спроектована не зовсім правильно.
+         */
         public BasePlayer(string name, Func<ShipBase, bool> SetShipsFunc,
             Func<ProtectBase, bool> SetProtectFunc,
             byte fieldSize)
