@@ -37,13 +37,15 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.Play
 
             // знайти пусту
             int cellNumber = 0;
+            Position pos;
             do
             {
                 cellNumber = rnd.Next(myFakeField.Size * myFakeField.Size);
-            } while (myFakeField[cellNumber].WasAttacked == true);
+                pos = BaseField.GetPositionForNumber(cellNumber, myFakeField.Size);
+            } while (myFakeField[pos].WasAttacked == true);
 
             // повернути її позицію
-            return myFakeField[cellNumber].Location;
+            return myFakeField[pos].Location;
         }
     }
 }

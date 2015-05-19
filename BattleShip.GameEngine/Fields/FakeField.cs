@@ -1,26 +1,33 @@
 ﻿using BattleShip.GameEngine.GameEventArgs;
-using BattleShip.GameEngine.ObjectOfGame;
+
 
 namespace BattleShip.GameEngine.Fields
 {
     public class FakeField : BaseField
     {
-        public FakeField(Fields.Field field)
+        public FakeField(Field field)
             : base(field.Size)
         {
             // підписати на зміну клітинки при її знищенні на оригінальному полі
-            for (int i = 0; i < field.Size * field.Size; i++)
+            for (byte i = 0; i < Size; i++)
             {
-                field[i].DeadHandler += OnShowRealStatus;
+                for (byte j = 0; j < Size; j++)
+                {
+                    field[i, j].DeadHandler += OnDeadHandler;
+                }
             }
+
+            _field = field;
         }
 
-        private void OnShowRealStatus(GameObject g, GameEvenArgs e)
+
+        private Field _field;
+
+        private void OnDeadHandler(GameEvenArgs e)
         {
-            this[e.Location].AddGameObject(g, false);
-
-            // "вбити" - WasAttack зробити true
-            this[e.Location].OnDeadHandler();
+            _cells[e.Location.Line][e.Location.Column] = _field[e.Location.Line, e.Location.Column];
         }
+
+        
     }
 }

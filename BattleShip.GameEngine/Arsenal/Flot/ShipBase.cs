@@ -1,52 +1,34 @@
-﻿using BattleShip.GameEngine.Arsenal.Flot.Corectible;
+﻿using System;
+using BattleShip.GameEngine.Arsenal.Flot.Corectible;
 using BattleShip.GameEngine.Arsenal.Flot.Exceptions;
 using BattleShip.GameEngine.GameEventArgs;
 using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.ObjectOfGame;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
+
 namespace BattleShip.GameEngine.Arsenal.Flot
 {
-    public abstract class ShipBase : GameObject, IEnumerable<Position>
+    public abstract class ShipBase : IFullGameObject, IEnumerable<Position>
     {
-        #region Private
-
-        private readonly ObjectLocation _positions;
-
-        private readonly byte _storeyCount;
-
-        private bool _wasDead;
-
-        private readonly ICorrectible _correctible;
-
-        private void OnDeadHandler()
-        {
-            this._wasDead = true;
-        }
-
-        #endregion Private
-
-        #region Public
-
         #region Constructors
 
-        public ShipBase(ICorrectible correctible, byte id, params Position[] positions)
-            : base(id)
+        protected ShipBase(ICorrectible correctible, byte id, params Position[] positions)
         {
+            
             if (correctible == null)
             {
                 throw new ShipExceptions("the rule for ship type can't be NULL");
             }
 
-            this._correctible = correctible;
+            _correctible = correctible;
 
-            this._storeyCount = (byte)positions.Length;
+            _storeyCount = (byte)positions.Length;
 
-            if (this._correctible.IsTrueShipRegion(StoreyCount, positions))
+            if (_correctible.IsTrueShipRegion(StoreyCount, positions))
             {
-                this._positions = new ObjectLocation(positions);
+                _positions = new ObjectLocation(positions);
             }
             else
             {
@@ -56,26 +38,50 @@ namespace BattleShip.GameEngine.Arsenal.Flot
 
         #endregion Constructors
 
+
+        #region Private
+
+        private readonly ObjectLocation _positions;
+
+        private readonly byte _storeyCount;
+
+        private readonly ICorrectible _correctible;
+
+        private bool _wasDead = false;
+
+        #endregion Private
+
+
+        #region Events
+
+        public event Action<GameEvenArgs> DeadHandler;
+
+        public event Action<GameEvenArgs> HitHandler;
+
+        #endregion Events
+
+
         #region Properties
 
         public byte StoreyCount
         {
-            get { return this._storeyCount; }
+            get { return _storeyCount; }
         }
 
-        public override bool IsLife
+        public bool IsLife
         {
-            get { return this._positions.IsLife; }
+            get { return _positions.IsLife; }
         }
 
         #endregion Properties
+
 
         #region IEnumerable<Position>
 
         // повертає позиції кораблика
         public IEnumerator<Position> GetEnumerator()
         {
-            return this._positions.GetEnumerator();
+            return _positions.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -85,35 +91,34 @@ namespace BattleShip.GameEngine.Arsenal.Flot
 
         #endregion IEnumerable<Position>
 
-        #region GameObject realization
 
-        // івент влучання в об'єкт
-        public override event Action<GameObject, GameEvenArgs> HitMeHandler = delegate { };
-
-        // івент вмирання об'єкта
-        public override event Action<GameObject, GameEvenArgs> DeadHandler = delegate { };
-
-        public override void OnHitMeHandler(GameObject sender, GameEvenArgs e)
+        public void KillMe(GameEvenArgs e)
         {
-            // вбити клітинку, в яку потрапили
-            this._positions.ChangeLifeToDead(e.Location);
-
-            // сказати тому, хто підписаний на цей корабель, що в нього попали
-            HitMeHandler(this, e);
-
-            // якщо його вбили цілком - сказати підписникам, що він вбитий
-            if (!this._wasDead)
+            if (!_wasDead)
             {
                 if (!IsLife)
                 {
-                    OnDeadHandler();
-                    DeadHandler(this, e);
+                    if (DeadHandler != null)
+                    {
+                        DeadHandler(e);
+                    }
                 }
             }
         }
 
-        #endregion GameObject realization
+        public void DestroyMe(GameEvenArgs e)
+        {
+            _positions.ChangeLifeToDead(e.Location);
 
-        #endregion Public
+            if (HitHandler != null)
+            {
+                HitHandler(e);
+            }
+
+            KillMe(e);
+        }
+     
     }
+
+
 }

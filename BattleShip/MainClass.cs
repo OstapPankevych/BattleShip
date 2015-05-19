@@ -16,21 +16,21 @@ namespace BattleShip.ConsoleUI
 
             GameProcessHandler game = new GameProcessHandler(referre);
 
-            referre.WillPuttingShipsInfo += game.WillPuttingShipsInfo;
-            referre.WillPuttingProtectsInfo += game.WillPuttingProtectsInfo;
-            referre.WasShotActionInfo += game.WasShotActionInfo;
-            referre.SettedSomeShipSuccesfulyInfo += game.SettedSomeShipSuccesfulyInfo;
-            referre.SettedSomeProtectSuccesfulyInfo += game.SettedSomeProtectSuccesfulyInfo;
-            referre.SettedAllShipsSuccesfulyInfo += game.SettedAllShipsSuccesfulyInfo;
-            referre.SettedAllProtectsSuccesfulyInfo += game.SettedAllProtectsSuccesfulyInfo;
-            referre.SetRandomAllGameObjectsOnField += game.SetRandomAllGameObjectsOnField;
-            referre.MakeShotInfo += game.MakeShotInfo;
-            referre.IsChoisingGunTypeFunc += game.IsChoisingGunTypeFunc;
-            referre.GetPositionFunc += game.GetPositionFunc;
-            referre.GameWasEndedIndo += game.GameEndedInfo;
-            referre.GameWasStartedInfo += game.GameWasStartedInfo;
-            referre.IsSettingShipsNowPlayerFunc += game.IsSettingShipsNowPlayerFunc;
-            referre.IsSettingProtectsNowPlayerFunc += game.IsSettingProtectsNowPlayerFunc;
+            referre.PrePuttingShipHandler += game.WillPuttingShipsInfo;
+            referre.PrePuttingProtectHandler += game.WillPuttingProtectsInfo;
+            referre.WasShotActionHandler += game.WasShotActionInfo;
+            referre.SomeShipSuccesfulySettedHandler += game.SettedSomeShipSuccesfulyInfo;
+            referre.SomeProtectSuccesfulySettedHandler += game.SettedSomeProtectSuccesfulyInfo;
+            referre.AllShipsSuccesfulySettedHandler += game.SettedAllShipsSuccesfulyInfo;
+            referre.AllProtectsSuccesfulySettedHandler += game.SettedAllProtectsSuccesfulyInfo;
+            referre.SetRandomAllGameObjectsOnFieldQuertyHandler += game.SetRandomAllGameObjectsOnField;
+            referre.MakeShotHandler += game.MakeShotInfo;
+            referre.ChoisingGunTypeHandler += game.IsChoisingGunTypeFunc;
+            referre.GetPositionHandler += game.GetPositionFunc;
+            referre.GameWasEndedHandler += game.GameEndedInfo;
+            referre.GameWasStartedHandler += game.GameWasStartedInfo;
+            referre.PuttingShipHandler += game.IsSettingShipsNowPlayerFunc;
+            referre.PuttingProtectHandler += game.IsSettingProtectsNowPlayerFunc;
 
             referre.StartGame();
 

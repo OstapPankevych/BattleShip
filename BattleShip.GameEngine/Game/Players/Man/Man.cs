@@ -1,42 +1,44 @@
-﻿using BattleShip.GameEngine.Arsenal.Gun;
-using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
-using BattleShip.GameEngine.Game.Players;
-using BattleShip.GameEngine.Location;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BattleShip.GameEngine.Arsenal.Gun;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+using BattleShip.GameEngine.Location;
 
-public class Man : BasePlayer
+namespace BattleShip.GameEngine.Game.Players.Man
 {
-    public Man(string name,
-        byte fieldSize,
-        Action<Man> StartSetShipsFromReferriOnHandler,
-        Action<Man> StartSetProtectsFromReferriOnHandler,
-        Func<Gun, IList<IDestroyable>, Position> GetPositionForAttackFromReferriOnHandler)
-        : base(name, null, null, fieldSize)
+    public class ManPlayer : BasePlayer
     {
-        this.StartSetProtectsFromReferriHandler += StartSetProtectsFromReferriOnHandler;
-        this.StartSetShipsFromReferriHandler += StartSetShipsFromReferriOnHandler;
-        this.GetPositionForAttackFromReferriHandler += GetPositionForAttackFromReferriOnHandler;
-    }
+        public ManPlayer(string name,
+            byte fieldSize,
+            Action<ManPlayer> StartSetShipsFromReferriOnHandler,
+            Action<ManPlayer> StartSetProtectsFromReferriOnHandler,
+            Func<Gun, IList<IDestroyable>, Position> GetPositionForAttackFromReferriOnHandler)
+            : base(name, null, null, fieldSize)
+        {
+            this.StartSetProtectsFromReferriHandler += StartSetProtectsFromReferriOnHandler;
+            this.StartSetShipsFromReferriHandler += StartSetShipsFromReferriOnHandler;
+            this.GetPositionForAttackFromReferriHandler += GetPositionForAttackFromReferriOnHandler;
+        }
 
-    public event Action<Man> StartSetShipsFromReferriHandler;
+        public event Action<ManPlayer> StartSetShipsFromReferriHandler;
 
-    public event Action<Man> StartSetProtectsFromReferriHandler;
+        public event Action<ManPlayer> StartSetProtectsFromReferriHandler;
 
-    public event Func<Gun, IList<IDestroyable>, Position> GetPositionForAttackFromReferriHandler;
+        public event Func<Gun, IList<IDestroyable>, Position> GetPositionForAttackFromReferriHandler;
 
-    public override void BeginSetShips()
-    {
-        StartSetShipsFromReferriHandler(this);
-    }
+        public override void BeginSetShips()
+        {
+            StartSetShipsFromReferriHandler(this);
+        }
 
-    public override void BeginSetProtect()
-    {
-        StartSetProtectsFromReferriHandler(this);
-    }
+        public override void BeginSetProtect()
+        {
+            StartSetProtectsFromReferriHandler(this);
+        }
 
-    public override Position GetPositionForAttack(Gun gun, IList<IDestroyable> gunList)
-    {
-        return GetPositionForAttackFromReferriHandler(gun, gunList);
+        public override Position GetPositionForAttack(Gun gun, IList<IDestroyable> gunList)
+        {
+            return GetPositionForAttackFromReferriHandler(gun, gunList);
+        }
     }
 }

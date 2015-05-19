@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
 using BattleShip.ConsoleUI.Draw.DrawFields.DrawCell.DrawType;
 using BattleShip.GameEngine.Arsenal.Flot.RectangleShips;
 using BattleShip.GameEngine.Arsenal.Protection;
 using BattleShip.GameEngine.Fields.Cells;
-using BattleShip.GameEngine.Fields.Cells.StatusOfCells;
+using BattleShip.GameEngine.Fields.Cells.StatusCell;
 
 namespace BattleShip.ConsoleUI.Draw.DrawFields.DrawCell
 {
@@ -13,13 +14,13 @@ namespace BattleShip.ConsoleUI.Draw.DrawFields.DrawCell
 
         public void Draw(Cell cell, bool drawAllElements = false)
         {
-            Type typeCell = cell.GetStatusCell();
+            Type typeCell = cell.GetTypeOfCellObject();
 
             bool wasAttacked = cell.WasAttacked;
 
             if (typeCell == typeof (EmptyCell))
             {
-                _drawableCell = new DrawEmptyCell();
+                _drawableCell = new DrawEmptyCell(cell.IsProtected);
             }
             else if (typeCell == typeof(OneStoreyRectangleShip))
             {
@@ -37,7 +38,7 @@ namespace BattleShip.ConsoleUI.Draw.DrawFields.DrawCell
             {
                 _drawableCell = new DrawFourStoreyShip();
             }
-            else if (typeCell == typeof(PVOProtect))
+            else if (typeCell == typeof(Pvo))
             {
                 _drawableCell = new DrawPVOProtect();
             }
@@ -46,7 +47,7 @@ namespace BattleShip.ConsoleUI.Draw.DrawFields.DrawCell
                 if (drawAllElements)
                     _drawableCell = new DrawAroundShip();
                 else
-                    _drawableCell = new DrawEmptyCell();
+                    _drawableCell = new DrawEmptyCell(cell.IsProtected);
             }
 
             // намалювати

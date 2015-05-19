@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="ConsoleCore\BeginGame.cs" />
     <Compile Include="ConsoleCore\GameProcessHandler.cs" />
-    <Compile Include="ConsoleCore\Get.cs" />
+    <Compile Include="ConsoleCore\Give.cs" />
     <Compile Include="Draw\DrawFields\DrawCell\DrawType\DrawAroundShip.cs" />
     <Compile Include="Draw\DrawFields\DrawCell\DrawType\DrawEmptyCell.cs" />
     <Compile Include="Draw\DrawFields\DrawCell\DrawType\DrawFourStoreyShip.cs" />

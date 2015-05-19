@@ -1,87 +1,126 @@
 ﻿using BattleShip.GameEngine.Fields.Cells;
-using BattleShip.GameEngine.Fields.Cells.StatusOfCells;
 using BattleShip.GameEngine.Fields.Exceptions;
 using BattleShip.GameEngine.Location;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BattleShip.GameEngine.Fields.Cells.StatusCell;
+
 
 namespace BattleShip.GameEngine.Fields
 {
     public abstract class BaseField : IEnumerable<Cell>
     {
-        #region Private
+        #region Constructors
 
-        private Cell[] _cells;
+        protected BaseField(byte size)
+        {
+            Size = size;
+            InitCells();
+        }
+
+        #endregion
+
+
+        #region Private
 
         private byte _size;
 
-        private void InitCells()
-        {
-            this._cells = new Cell[Size * Size];
+        #endregion
 
-            for (int i = 0; i < _cells.Length; i++)
-            {
-                this._cells[i] = new Cell(new Position((byte)(i / Size), (byte)(i % Size)));
-            }
-        }
 
-        #endregion Private
+        #region Protected
+
+        protected Cell[][] _cells;
+
+        #endregion
+
 
         #region Public
 
+        public const byte MaxFieldSize = 20;
+
+        #endregion Public
+
+
+        #region Properties
+
+        public byte Size
+        {
+            get { return _size; }
+            private set
+            {
+                ChackFieldSize(value, value);
+                _size = value;
+            }
+        }
+
         #region this[]
 
-        public Cell this[int pos]
+        public Cell this[byte line, byte column]
         {
             get
             {
-                if ((pos < 0) || (pos > Size * Size))
-                {
-                    throw new OutOfFielRegionException("Get : BaseField.this[Position]");
-                }
-
-                return this[new Position((byte)(pos / Size), (byte)(pos % Size))];
+                ChackFieldSize(line, column);
+                return _cells[line][column];
             }
-
             private set
             {
-                if ((pos < 0) || (pos > Size * Size))
-                {
-                    throw new OutOfFielRegionException("Set : BaseField.this[Position]");
-                }
-
-                this._cells[pos] = value;
+                ChackFieldSize(line, column);
+                _cells[line][column] = value;
             }
         }
 
         public Cell this[Position pos]
         {
-            get
-            {
-                for (var i = 0; i < this._cells.Length; i++)
-                {
-                    if (this._cells[i].Location == pos)
-                    {
-                        return this._cells[i];
-                    }
-                }
-
-                throw new OutOfFielRegionException("BaseField.this[byte]");
-            }
+            get { return this[pos.Line, pos.Column]; }
+            private set { this[pos.Line, pos.Column] = value; }
         }
 
         #endregion this[]
 
+        #endregion Properties
 
 
-        #region Static
+        #region Private methods
+
+        private void ChackFieldSize(byte line, byte column)
+        {
+            if (!((line < 20) & (column < 20)))
+            {
+                throw new OutOfFielRegionException("BaseField.this[byte]");
+            }
+        }
+
+        private void InitCells()
+        {
+            _cells = new Cell[Size][];
+            for (byte i = 0; i < Size; i++)
+            {
+                _cells[i] = new Cell[Size];
+                for (byte j = 0; j < Size; j++)
+                {
+                    _cells[i][j] = new Cell(new Position(i, j));
+                    _cells[i][j].AddGameObject(new EmptyCell(new Position(i, j)), false);
+                }
+            }
+        }
+
+        #endregion Private methods
+
+
+        #region Public methods
+
+        public bool WasCellAttack(Position position)
+        {
+            return this[position].WasAttacked;
+        }
 
         public static Position GetPositionForNumber(int number, byte fieldSize)
         {
-            if (number < 0 || number > fieldSize * fieldSize)
+            if (number > fieldSize * fieldSize)
             {
-                throw new ApplicationException("Error region for this number");
+                throw new OutOfFielRegionException("Field:: GetPositionForNumber()");
             }
             else
             {
@@ -89,40 +128,14 @@ namespace BattleShip.GameEngine.Fields
             }
         }
 
-        #endregion Static
-
-        #region Properties
-
-        public byte Size
+        public bool IsFieldRegion(byte line, byte column)
         {
-            get { return this._size; }
-
-            private set
-            {
-                if (value < 10)
-                {
-                    this._size = 10;
-                }
-                else
-                {
-                    this._size = value;
-                }
-            }
+            return IsFieldRegion(line, column, Size);
         }
 
-        #endregion Properties
-
-        #region Methods
-
-        public BaseField(byte size)
+        public static bool IsFieldRegion(byte line, byte column, byte fieldSize)
         {
-            this.Size = size;
-            InitCells();
-        }
-
-        public static bool IsFielRegion(int line, int column, byte size)
-        {
-            if ((line < size & line >= 0) & (column < size & column >= 0))
+            if ((line < fieldSize) & (column < fieldSize))
             {
                 return true;
             }
@@ -130,32 +143,19 @@ namespace BattleShip.GameEngine.Fields
             return false;
         }
 
-        public bool IsCellEmpty(Position position)
-        {
-            if (this[position].Show() == typeof(EmptyCell))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool WasCellAttack(Position position)
-        {
-            return this[position].WasAttacked;
-        }
-
-        #endregion Methods
-
-        #endregion Public
+        #endregion Public methods
+        
 
         #region IEnumerable<CellOfField>
 
         public IEnumerator<Cell> GetEnumerator()
         {
-            foreach (Cell cell in this._cells)
+            for (byte i = 0; i < Size; i++)
             {
-                yield return cell;
+                for (byte j = 0; j < Size; j++)
+                {
+                    yield return _cells[i][j];
+                }
             }
         }
 

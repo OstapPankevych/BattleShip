@@ -12,56 +12,67 @@ using BattleShip.GameEngine.Game.Players.Computer;
 using BattleShip.GameEngine.Location;
 using System;
 using System.Collections.Generic;
+using BattleShip.GameEngine.Game.Players.Man;
+
 
 namespace BattleShip.GameEngine.Game.Referee
 {
+    public class PlayerAndGameMode
+    {
+        // чи є об'єктом, який зараз робить дію
+        public bool IsCurrent { get; set; }
+
+        public readonly IGameMode GameMode;
+        public readonly IPlayer Player;
+
+        private PlayerAndGameMode(Type gameModeType)
+        {
+            GameMode = (IGameMode)Activator.CreateInstance(gameModeType);
+        }
+
+        public bool IsLife
+        {
+            get { return GameMode.IsLife; }
+        }
+
+        // Ініціалізується ігрок як людина.
+        public PlayerAndGameMode(Type gameModeType, string name,
+            Action<ManPlayer> StartSetShips,
+            Action<ManPlayer> StartSetProtects,
+            Func<Gun, IList<IDestroyable>, Position> GetPositionForAttack)
+            : this(gameModeType)
+        {
+            this.Player = new ManPlayer(name, this.GameMode.CurrentFakeField.Size,
+                StartSetShips,
+                StartSetProtects,
+                GetPositionForAttack);
+        }
+
+        // Ініціалізується ігрок як компютер
+        public PlayerAndGameMode(Type gameModeType, FakeField fakefieldAnotherPlayer)
+            : this(gameModeType)
+        {
+            this.Player = new Computer(this.GameMode.BrainForComputer,
+                this.GameMode.AddShip,
+                this.GameMode.AddProtect,
+                fakefieldAnotherPlayer,
+                this.GameMode.CurrentField.Size);
+        }
+    }
+
     public class ClassicReferee
     {
-        private class PlayerAndGameMode
-        {
-            // чи є об'єктом, який зараз робить дію
-            public bool IsCurrent = false;
-
-            public readonly IGameMode GameMode;
-            public readonly IPlayer Player;
-
-            private PlayerAndGameMode(Type gameModeType)
-            {
-                GameMode = (IGameMode)Activator.CreateInstance(gameModeType);
-            }
-
-            public bool IsLife
-            {
-                get { return GameMode.IsLife; }
-            }
-
-            // Ініціалізується ігрок як людина.
-            public PlayerAndGameMode(Type gameModeType, string name,
-                Action<Man> StartSetShips,
-                Action<Man> StartSetProtects,
-                Func<Gun, IList<IDestroyable>, Position> GetPositionForAttack)
-                : this(gameModeType)
-            {
-                this.Player = new Man(name, this.GameMode.CurrentFakeField.Size,
-                    StartSetShips,
-                    StartSetProtects,
-                    GetPositionForAttack);
-            }
-
-            // Ініціалізується ігрок як компютер
-            public PlayerAndGameMode(Type gameModeType, FakeField fakefieldAnotherPlayer)
-                : this(gameModeType)
-            {
-                this.Player = new Computer(this.GameMode.BrainForComputer,
-                    this.GameMode.AddShip,
-                    this.GameMode.AddProtect,
-                    fakefieldAnotherPlayer,
-                    this.GameMode.CurrentField.Size);
-            }
-        }
+        #region Private 
 
         private readonly PlayerAndGameMode _playerAndGameMode1;
         private readonly PlayerAndGameMode _playerAndGameMode2;
+
+        private readonly Gun _gun = new Gun();
+
+        private bool _gameWasEnded = false;
+
+        #endregion Private
+
 
         #region Public methods
 
@@ -77,41 +88,14 @@ namespace BattleShip.GameEngine.Game.Referee
             }
         }
 
-        public BaseField GetPlayer1Field()
+        public void StartSetProtectsForMan(ManPlayer player)
         {
-            if (_playerAndGameMode2.Player is Man)
-            {
-                return _playerAndGameMode1.GameMode.CurrentField;
-            }
-            else
-            {
-                return _playerAndGameMode1.GameMode.CurrentFakeField;
-            }
-        }
+            // Ідентифікувати гравця:
+            PlayerAndGameMode playerAndGameMode = (ReferenceEquals(_playerAndGameMode1.Player, player))
+                ? _playerAndGameMode1
+                : _playerAndGameMode2;
 
-        public BaseField GetPlayer2Field()
-        {
-            return _playerAndGameMode2.GameMode.CurrentFakeField;
-        }
-
-        public IList<IDestroyable> GetPlayer1GunList()
-        {
-            return _playerAndGameMode1.GameMode.GunTypeList;
-        }
-
-        public IList<IDestroyable> GetPlayer2GunTypeList()
-        {
-            return _playerAndGameMode2.GameMode.GunTypeList;
-        }
-
-        public IList<IDestroyable> Player1GunList()
-        {
-            return _playerAndGameMode1.GameMode.GunTypeList;
-        }
-
-        public IList<IDestroyable> Player2GunList()
-        {
-            return _playerAndGameMode2.GameMode.GunTypeList;
+            PuttingProtectsProcess(playerAndGameMode);
         }
 
         public IList<IDestroyable> CurrentPlayerGunList()
@@ -126,10 +110,29 @@ namespace BattleShip.GameEngine.Game.Referee
             }
         }
 
+        public void StartGame()
+        {
+            InitGameObjectsPlayer1();
+
+            SwapCurrentPlayer();
+            InitGameObjectsPlayer2();
+
+            SwapCurrentPlayer();
+
+            if (_playerAndGameMode1.GameMode.WasInitAllComponent & _playerAndGameMode2.GameMode.WasInitAllComponent)
+            {
+                BeginStartGame();
+            }
+            else
+            {
+                throw new ApplicationException("Can't start game because not all game objects was putting on field");
+            }
+        }
+
         public BaseField GetFieldOfPlayer1()
         {
             // коли гра типу Player VS Player - показувати фейкове поле
-            if (this._playerAndGameMode2.Player is Man)
+            if (this._playerAndGameMode2.Player is ManPlayer & !_gameWasEnded)
             {
                 return this._playerAndGameMode1.GameMode.CurrentFakeField;
             }
@@ -141,63 +144,110 @@ namespace BattleShip.GameEngine.Game.Referee
 
         public BaseField GetFieldOfPlayer2()
         {
-            return this._playerAndGameMode2.GameMode.CurrentFakeField;
+            //return _playerAndGameMode2.GameMode.CurrentField;
+            if (!_gameWasEnded)
+            {
+                return this._playerAndGameMode2.GameMode.CurrentFakeField;
+            }
+            else
+            {
+                return _playerAndGameMode2.GameMode.CurrentField;
+            }
+        }
+
+        public BaseField GetFieldOfCurrentPlayer()
+        {
+            if (_playerAndGameMode1.IsCurrent)
+            {
+                return _playerAndGameMode1.GameMode.CurrentField;
+            }
+            else
+            {
+                return _playerAndGameMode2.GameMode.CurrentField;
+            }
+        }
+
+        public bool IsPlayer1Current()
+        {
+            if (_playerAndGameMode1.IsCurrent)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public string GetPlayer1Name()
+        {
+            return _playerAndGameMode1.Player.Name;
+        }
+
+        public string GetPlayer2Name()
+        {
+            return _playerAndGameMode2.Player.Name;
         }
 
         #endregion public methods
 
+
         #region Events
 
         // івент отримання позиції(точки) від зовнішнього світу
-        public event Func<byte, Position> GetPositionFunc;
+        public event Func<byte, Position> GetPositionHandler;
 
         // івент про те, що зараз буде процес розтавлення кораблика
-        public event Action WillPuttingShipsInfo;
-
-        // івент про те, що зараз встановлення корабликів
-        public event Func<Fields.Field, string, Position[]> IsSettingShipsNowPlayerFunc;
-
-        // івент про те, що зараз встановленн захистів
-        public event Func<Fields.Field, string, Position> IsSettingProtectsNowPlayerFunc;
+        public event Action PrePuttingShipHandler;
 
         // івент про те, що зараз буде процес розставлення захисту
-        public event Action WillPuttingProtectsInfo;
+        public event Action PrePuttingProtectHandler;
+
+        // івент про те, що зараз встановлення корабликів
+        public event Func<Fields.Field, string, Position[]> PuttingShipHandler;
+
+        // івент про те, що зараз встановленн захистів
+        public event Func<Fields.Field, string, Position> PuttingProtectHandler;
+
+        // івент про успішне встановлення всіх ігрових об'єктів людиною
+        public event Action PlayerSettedAllGameObjectsSuccessfuly = delegate { }; 
 
         // івент про те, що всі корабликі розставлені
-        public event Action SettedAllShipsSuccesfulyInfo;
+        public event Action AllShipsSuccesfulySettedHandler;
 
         // івент про те, зо всі захисти розтавленні
-        public event Action SettedAllProtectsSuccesfulyInfo;
+        public event Action AllProtectsSuccesfulySettedHandler;
 
         // івент про те, що успішно поставився кораблик
-        public event Action SettedSomeShipSuccesfulyInfo;
+        public event Action<byte> SomeShipSuccesfulySettedHandler;
 
         // івент про те, що успішно поставився захист
-        public event Action SettedSomeProtectSuccesfulyInfo;
+        public event Action SomeProtectSuccesfulySettedHandler;
 
         // івент про те, що потрібно вибрати тип зброї
-        public event Func<IDestroyable> IsChoisingGunTypeFunc;
+        public event Func<IDestroyable> ChoisingGunTypeHandler;
 
         // івент про те, що відбувся постріл
-        public event Action WasShotActionInfo;
+        public event Action WasShotActionHandler;
 
         // івент отримання запиту чи розставляти кораблики і захисти для користувача рендомом
-        public event Func<string, bool> SetRandomAllGameObjectsOnField;
+        public event Func<string, bool> SetRandomAllGameObjectsOnFieldQuertyHandler;
 
         // івент про початок гри
-        public event Action GameWasStartedInfo;
+        public event Action GameWasStartedHandler;
 
         // івент про закінчення гри
-        public event Action GameWasEndedIndo;
+        public event Action GameWasEndedHandler;
 
         // івент про те, що потрібно зробити постріл гравцю
-        public event Action MakeShotInfo;
+        public event Action MakeShotHandler;
+
+        public event Action ComputerSettedAllGameObjectsSuccesfuly = delegate { }; 
 
         #endregion Events
 
+
         #region Putting process object on field
 
-        private void StartSetShipsForMan(Man player)
+        private void StartSetShipsForMan(ManPlayer player)
         {
             // Ідентифікувати гравця:
             PlayerAndGameMode playerAndGameMode = (ReferenceEquals(_playerAndGameMode1.Player, player))
@@ -206,55 +256,51 @@ namespace BattleShip.GameEngine.Game.Referee
 
             PuttingShipsProcess(playerAndGameMode);
         }
-
-        public void StartSetProtectsForMan(Man player)
+   
+        private ShipBase FabricShips(PlayerAndGameMode playerAndGameMode, byte countStorey, Position begin, Position end)
         {
-            // Ідентифікувати гравця:
-            PlayerAndGameMode playerAndGameMode = (ReferenceEquals(_playerAndGameMode1.Player, player))
-                ? _playerAndGameMode1
-                : _playerAndGameMode2;
+            Position[] shipRegion = Ractangle.GetRectangleRegion(countStorey, begin, end);
 
-            PuttingProtectsProcess(playerAndGameMode);
-        }
-
-        private void PuttingShipsProcess(PlayerAndGameMode playerAndGameMode)
-        {
-            Func<byte, Position, Position, ShipBase> GetShip = (countStorey, begin, end) =>
+            switch (shipRegion.Length)
             {
-                Position[] shipRegion = Ractangle.GetRectangleRegion(countStorey, begin, end);
-
-                if (shipRegion.Length == 1)
+                case 1:
                 {
                     return new OneStoreyRectangleShip(playerAndGameMode.GameMode.CurrentCountShipsOnField,
                         shipRegion[0]);
                 }
-                if (shipRegion.Length == 2)
+                case 2:
                 {
                     return new TwoStoreyRectangleShip(playerAndGameMode.GameMode.CurrentCountShipsOnField,
                         shipRegion[0], shipRegion[1]);
                 }
-                if (shipRegion.Length == 3)
+                case 3:
                 {
                     return new ThreeStoreyRectangleShip(playerAndGameMode.GameMode.CurrentCountShipsOnField,
                         shipRegion[0], shipRegion[1], shipRegion[2]);
                 }
-                if (shipRegion.Length == 4)
+                case 4:
                 {
                     return new FourStoreyRectangleShip(playerAndGameMode.GameMode.CurrentCountShipsOnField,
                         shipRegion[0], shipRegion[1], shipRegion[2], shipRegion[3]);
                 }
+                default:
+                {
+                    return null;
+                }
 
-                return null;
-            };
+            }
+        }
 
+        private void PuttingShipsProcess(PlayerAndGameMode playerAndGameMode)
+        {
             // запустити івент про те, що зараз буде йти процес встановлення корабликів на поле.
-            WillPuttingShipsInfo();
+            PrePuttingShipHandler();
 
             while (playerAndGameMode.GameMode.CurrentCountShipsOnField <
                    playerAndGameMode.GameMode.CountMaxShipsOnField)
             {
                 Position[] positions =
-                    IsSettingShipsNowPlayerFunc(playerAndGameMode.GameMode.CurrentField, playerAndGameMode.Player.Name);
+                    PuttingShipHandler(playerAndGameMode.GameMode.CurrentField, playerAndGameMode.Player.Name);
 
                 // створення кораблика
                 Position begin = positions[0];
@@ -280,50 +326,51 @@ namespace BattleShip.GameEngine.Game.Referee
 
                 if (Ractangle.ChackShipRegion(countStorey, begin, end))
                 {
-                    if (playerAndGameMode.GameMode.AddShip(GetShip(countStorey, begin, end)))
+                    if (playerAndGameMode.GameMode.AddShip(FabricShips(playerAndGameMode, countStorey, begin, end)))
                     {
                         // запустити івент про успішне додавання кораблика на поле
-                        SettedSomeShipSuccesfulyInfo();
+                        SomeShipSuccesfulySettedHandler(countStorey);
                     }
                 }
             }
 
             // Запустити івент про завершення додавань всіх корабликів на поле
-            SettedAllShipsSuccesfulyInfo();
+            AllShipsSuccesfulySettedHandler();
         }
 
         private void PuttingProtectsProcess(PlayerAndGameMode playerAndGameMode)
         {
             // запустити івент про те, що зараз буде процес встановлення захистів на поле.
-            WillPuttingProtectsInfo();
+            PrePuttingProtectHandler();
 
             while (playerAndGameMode.GameMode.CurrentCountProtectsOnField <
                    playerAndGameMode.GameMode.CountMaxProtectsOnField)
             {
                 Position position =
-                    IsSettingProtectsNowPlayerFunc(playerAndGameMode.GameMode.CurrentField, playerAndGameMode.Player.Name);
+                    PuttingProtectHandler(playerAndGameMode.GameMode.CurrentField, playerAndGameMode.Player.Name);
 
                 if (playerAndGameMode.GameMode.AddProtect(
-                    new PVOProtect(playerAndGameMode.GameMode.CurrentCountProtectsOnField,
+                    new Pvo(playerAndGameMode.GameMode.CurrentCountProtectsOnField,
                             position, playerAndGameMode.GameMode.CurrentField.Size)))
                 {
                     // запустити івент про успішне додавання захисту на поле
-                    SettedSomeProtectSuccesfulyInfo();
+                    SomeProtectSuccesfulySettedHandler();
                 }
             }
 
             // Запустити івент про завершення додавань всіх захистів
-            SettedAllProtectsSuccesfulyInfo();
+            AllProtectsSuccesfulySettedHandler();
         }
 
         #endregion Putting process object on field
+
 
         #region BeginStartGame
 
         private void InitGameObjectsPlayer1()
         {
             // Дати запит про розставляння корабликів і захистів рендомом
-            if (SetRandomAllGameObjectsOnField(_playerAndGameMode1.Player.Name))
+            if (SetRandomAllGameObjectsOnFieldQuertyHandler(_playerAndGameMode1.Player.Name))
             {
                 // створити Computer, який розставить всі об'єкти
                 Computer cmp = new Computer(_playerAndGameMode1.GameMode.BrainForComputer,
@@ -335,25 +382,30 @@ namespace BattleShip.GameEngine.Game.Referee
                 // почати встановлення обєктів
                 cmp.BeginSetShips();
                 cmp.BeginSetProtect();
+
+                ComputerSettedAllGameObjectsSuccesfuly();
             }
             else
             {
-                this._playerAndGameMode1.Player.BeginSetShips();
-                // не встановлювати захисти коли класична гра
-                if (!(_playerAndGameMode1.GameMode is ClassicGameMode))
+                _playerAndGameMode1.Player.BeginSetShips();
+                
+                // встановити захисти для некласичної гри
+                if (_playerAndGameMode1.GameMode is ExtensionClassicGameMode)
                 {
-                    this._playerAndGameMode1.Player.BeginSetProtect();
+                    _playerAndGameMode1.Player.BeginSetProtect();
                 }
+
+                PlayerSettedAllGameObjectsSuccessfuly();
             }
         }
 
         private void InitGameObjectsPlayer2()
         {
             // Player2 - або комп, або людина. тому робимо перевірку хто він
-            if (_playerAndGameMode2.Player is Man)
+            if (_playerAndGameMode2.Player is ManPlayer)
             {
                 // Дати запит про розставляння корабликів і захистів рендомом
-                if (SetRandomAllGameObjectsOnField(_playerAndGameMode2.Player.Name))
+                if (SetRandomAllGameObjectsOnFieldQuertyHandler(_playerAndGameMode2.Player.Name))
                 {
                     // створити Computer, який розставить всі об'єкти
                     Computer cmp = new Computer(_playerAndGameMode2.GameMode.BrainForComputer,
@@ -365,42 +417,40 @@ namespace BattleShip.GameEngine.Game.Referee
                     // почати встановлення обєктів
                     cmp.BeginSetShips();
                     cmp.BeginSetProtect();
+
+                    ComputerSettedAllGameObjectsSuccesfuly();
+
                     return;
                 }
             }
 
-            this._playerAndGameMode2.Player.BeginSetShips();
-            // не встановлювати захисти, коли класична гра
-            //if (!(_playerAndGameMode2.GameMode is ClassicGameMode))
+            _playerAndGameMode2.Player.BeginSetShips();
+
+            // встановити захисти для некласичної гри
+            if (_playerAndGameMode2.GameMode is ExtensionClassicGameMode)
             {
-                this._playerAndGameMode2.Player.BeginSetProtect();
+                _playerAndGameMode2.Player.BeginSetProtect();
+            }
+
+            if (_playerAndGameMode2.Player is ManPlayer)
+            {
+                PlayerSettedAllGameObjectsSuccessfuly();
             }
         }
 
-        public void StartGame()
+        public void SetCurrentGun(IDestroyable gunType)
         {
-            InitGameObjectsPlayer1();
-            InitGameObjectsPlayer2();
-
-            if (_playerAndGameMode1.GameMode.WasInitAllComponent & _playerAndGameMode2.GameMode.WasInitAllComponent)
-            {
-                BeginStartGame();
-            }
-            else
-            {
-                throw new ApplicationException("Can't start game because not all game objects was putting on field");
-            }
+            _gun.ChangeCurrentGun(gunType);
         }
-
         private void BeginStartGame()
         {
-            Gun gun = new Gun();
+            
 
             Position pos;
             List<Type> resultShotList = new List<Type>();
 
             // повідомити зовнішній світ про початок гри
-            GameWasStartedInfo();
+            GameWasStartedHandler();
 
             while (_playerAndGameMode1.IsLife & _playerAndGameMode2.IsLife)
             {
@@ -408,60 +458,72 @@ namespace BattleShip.GameEngine.Game.Referee
                 if (_playerAndGameMode1.IsCurrent)
                 {
                     // взяти координату
-                    pos = _playerAndGameMode1.Player.GetPositionForAttack(gun, _playerAndGameMode1.GameMode.GunTypeList);
+                    pos = _playerAndGameMode1.Player.GetPositionForAttack(_gun, _playerAndGameMode1.GameMode.GunTypeList);
 
                     // коли не класична гра - взяти тип озброєння
                     if (!(_playerAndGameMode1.GameMode is ClassicGameMode))
                     {
-                        gun.ChangeCurrentGun(IsChoisingGunTypeFunc());
+                        _gun.ChangeCurrentGun(ChoisingGunTypeHandler());
                     }
 
                     //зробити постріл
-                    resultShotList = _playerAndGameMode2.GameMode.AttackField(gun, pos);
+                    resultShotList = _playerAndGameMode2.GameMode.AttackField(_gun, pos);
 
                     // видалити зброю для даного Player2 - того, хто стріляв
-                    _playerAndGameMode1.GameMode.RemoveGunFromList(gun);
+                    _playerAndGameMode1.GameMode.RemoveGunFromList(_gun);
                 }
                 else
                 {
-                    pos = _playerAndGameMode2.Player.GetPositionForAttack(gun, _playerAndGameMode2.GameMode.GunTypeList);
+                    pos = _playerAndGameMode2.Player.GetPositionForAttack(_gun, _playerAndGameMode2.GameMode.GunTypeList);
 
                     // якщо людина тоді дати запит про отримання типу зброї;
-                    if (_playerAndGameMode2.Player is Man)
+                    if (_playerAndGameMode2.Player is ManPlayer)
                     {
                         // коли не класична гра - взяти тип озброєння
                         if (!(_playerAndGameMode1.GameMode is ClassicGameMode))
                         {
-                            gun.ChangeCurrentGun(IsChoisingGunTypeFunc());
+                            _gun.ChangeCurrentGun(ChoisingGunTypeHandler());
                         }
                     }
 
                     //зробити постріл
-                    resultShotList = _playerAndGameMode1.GameMode.AttackField(gun, pos);
+                    resultShotList = _playerAndGameMode1.GameMode.AttackField(_gun, pos);
 
                     // видалити зброю для даного Player1 - того, хто стріляв
-                    _playerAndGameMode2.GameMode.RemoveGunFromList(gun);
+                    _playerAndGameMode2.GameMode.RemoveGunFromList(_gun);
                 }
                 // повідомити про здійснений постріл
-                MakeShotInfo();
+                MakeShotHandler();
 
                 // опрацювання рузультату пострілу
                 Machining(resultShotList);
             }
-            GameWasEndedIndo();
+
+            _gameWasEnded = true; 
+
+            GameWasEndedHandler();
         }
 
         private Position GetPositionAttackForMan(Gun gun, IList<IDestroyable> gunList)
         {
-            gun.ChangeCurrentGun(IsChoisingGunTypeFunc());
+            gun.ChangeCurrentGun(ChoisingGunTypeHandler());
 
-            return GetPositionFunc(_playerAndGameMode1.GameMode.CurrentField.Size);
+            return GetPositionHandler(_playerAndGameMode1.GameMode.CurrentField.Size);
         }
 
         private void Machining(List<Type> resultShotList)
         {
             foreach (var type in resultShotList)
             {
+                // стріляна клітинка - повертається NULL
+                if (type == null)
+                {
+                    if (resultShotList.Count == 1)
+                    {
+                        return;
+                    }
+                    continue;
+                }
                 if (type.IsSubclassOf(typeof(ShipBase)))
                 {
                     return;
@@ -486,6 +548,7 @@ namespace BattleShip.GameEngine.Game.Referee
 
         #endregion BeginStartGame
 
+
         #region constructor
 
         public ClassicReferee(IGameMode gameMode, bool playerVSplayer)
@@ -493,7 +556,7 @@ namespace BattleShip.GameEngine.Game.Referee
             // Створення певного режиму для кожного гравця
             Type gameModeType = gameMode.GetType();
 
-            this._playerAndGameMode1 = new PlayerAndGameMode(gameModeType, "Player1",
+            this._playerAndGameMode1 = new PlayerAndGameMode(gameModeType, "Player 1",
                 StartSetShipsForMan,
                 StartSetProtectsForMan,
                 GetPositionAttackForMan);
@@ -502,7 +565,7 @@ namespace BattleShip.GameEngine.Game.Referee
 
             if (playerVSplayer)
             {
-                this._playerAndGameMode2 = new PlayerAndGameMode(gameModeType, "Player2",
+                this._playerAndGameMode2 = new PlayerAndGameMode(gameModeType, "Player 2",
                     StartSetShipsForMan,
                     StartSetProtectsForMan,
                     GetPositionAttackForMan);

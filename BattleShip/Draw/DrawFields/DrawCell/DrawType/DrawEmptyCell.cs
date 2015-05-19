@@ -8,6 +8,13 @@ namespace BattleShip.ConsoleUI.Draw.DrawFields.DrawCell.DrawType
 {
     class DrawEmptyCell : IDrawableCell
     {
+        public DrawEmptyCell(bool sequre)
+        {
+            Sequre = sequre;
+        }
+
+        public bool Sequre { get; private set; }
+
         public void Draw(bool wasAttacked)
         {
             if (wasAttacked)
@@ -16,7 +23,14 @@ namespace BattleShip.ConsoleUI.Draw.DrawFields.DrawCell.DrawType
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                if (Sequre)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
             } 
             Console.Write("*");
             Console.ResetColor(); 

@@ -1,11 +1,15 @@
 ﻿using BattleShip.GameEngine.Arsenal.Flot;
 using BattleShip.GameEngine.Arsenal.Gun;
 using BattleShip.GameEngine.Arsenal.Protection;
-using BattleShip.GameEngine.Field.Cells.AttackResult;
-using BattleShip.GameEngine.Fields.Cells.StatusOfCells;
 using BattleShip.GameEngine.Location;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+using BattleShip.GameEngine.Fields.Cells;
+using BattleShip.GameEngine.Fields.Cells.StatusCell;
+using BattleShip.GameEngine.ObjectOfGame;
+
 
 namespace BattleShip.GameEngine.Fields
 {
@@ -19,77 +23,46 @@ namespace BattleShip.GameEngine.Fields
 
         #endregion Constructor
 
+
         #region Public Methods
 
         public bool AddRectangleShip(ShipBase ship)
         {
-            foreach (Position x in ship)
+            if (ChackRegion(ship))
             {
-                if (this[x].GetStatusCell() != typeof(EmptyCell))
+                // поставити кораблик і підписатись на дії з клітинкою
+                foreach (var x in ship)
                 {
-                    return false;
+                    this[x].AddGameObject(ship, true);
                 }
+
+                SetRegionAround(ship);
+
+                return true;
             }
 
-            // поставити кораблик і підписатись на дії з клітинкою
-            foreach (var x in ship)
-            {
-                this[x].AddGameObject(ship, true);
-            }
-
-            // Зробити поля кругом кораблика і підписати їх знищення на знищення кораблика
-            foreach (var x in ship)
-            {
-                for (var i = -1; i < 2; i++)
-                {
-                    for (var j = -1; j < 2; j++)
-                    {
-                        var pos = new Position((byte)(x.Line + i), (byte)(x.Column + j));
-                        if (IsFielRegion(pos.Line, pos.Column, Size))
-                        {
-                            if (this[pos].GetStatusCell() == typeof(EmptyCell))
-                            {
-                                this[pos].AddStatus(new AroundShip(pos));
-                            }
-
-                            // Підписати знищення кілтинки при знищенні кораблика
-                            ship.DeadHandler += this[pos].OnHitMeHandler;
-                        }
-                    }
-                }
-            }
-
-            return true;
+            return false;
         }
 
         public bool AddProtected(ProtectBase protect)
         {
-            foreach (var x in protect)
+            if (ChackRegion(protect))
             {
-                if (!this.IsCellEmpty(x))
+                // поставити обєкт захисту
+                foreach (var x in protect)
                 {
-                    return false;
+                    // додати об'єкт захисту на клітинки
+                    this[x].AddGameObject(protect, true);
                 }
+
+                SetRegionAround(protect);
+
+                SetProtectOnAllProtectionCells(protect);
+
+                return true;
             }
 
-            // поставити обєкт захисту
-            foreach (var x in protect)
-            {
-                // додати об'єкт захисту на клітинки
-                this[x].AddGameObject(protect, true);
-            }
-
-            // поставити захисти на всі клітинки, які захищає цей об'єкт
-            foreach (var x in protect.GetProtectedPositions())
-            {
-                // встановити захист на клітинку
-                this[x].SetProtect(protect);
-
-                // підписати protect на видалення захисту для кожної клітинки, при його знищенні
-                protect.ProtectedHandler += this[x].OnRemoveProtection;
-            }
-
-            return true;
+            return false;
         }
 
         public List<Type> Shot(Gun gun, Position pos)
@@ -98,10 +71,13 @@ namespace BattleShip.GameEngine.Fields
 
             foreach (var x in gun.Shot(pos, Size))
             {
-                var result = this[x].Shot(gun);
+                var result = this[x].Shot(gun, ref pos);
 
                 if (result == typeof(ProtectedCell))
                 {
+                    // видалити захист(зробити використаним)
+                    this[pos].OnDestroyMe(null);
+
                     return attackResults;
                 }
 
@@ -112,5 +88,109 @@ namespace BattleShip.GameEngine.Fields
         }
 
         #endregion Public Methods
+
+
+        #region Private methods
+
+        //private bool ChackRegionForShip(ShipBase ship)
+        //{
+        //    foreach (Position x in ship)
+        //    {
+        //        if (this[x].GetTypeOfCellObject() != typeof(EmptyCell))
+        //        {
+        //            return false;
+        //        }
+        //    }
+
+        //    return true;
+        //}
+
+        private bool ChackRegion(IGameObject gameObject)
+        {
+            foreach (Position x in (IEnumerable<Position>)gameObject)
+            {
+                if (this[x].GetTypeOfCellObject() != typeof(EmptyCell))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        //private void SetRegionAroundShip(ShipBase ship)
+        //{
+        //    // Зробити поля кругом кораблика і підписати їх знищення при знищенні кораблика
+        //    foreach (var x in ship)
+        //    {
+        //        for (var i = -1; i < 2; i++)
+        //        {
+        //            for (var j = -1; j < 2; j++)
+        //            {
+        //                var pos = new Position((byte)(x.Line + i), (byte)(x.Column + j));
+        //                if (IsFieldRegion(pos.Line, pos.Column))
+        //                {
+        //                    this[pos].AddGameObject(new AroundShip(pos), true);
+        //                    ship.OnDeadHandler += this[pos].OnDestroyMe;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        private void SetRegionAround(IGameObject gameObject)
+        {
+            // Зробити поля кругом кораблика і підписати їх знищення при знищенні кораблика
+            foreach (var x in (IEnumerable<Position>)gameObject)
+            {
+                for (var i = -1; i < 2; i++)
+                {
+                    for (var j = -1; j < 2; j++)
+                    {
+                        var pos = new Position((byte)(x.Line + i), (byte)(x.Column + j));
+                        if (IsFieldRegion(pos.Line, pos.Column))
+                        {
+                            this[pos].AddGameObject(new AroundShip(pos), true);
+                            if (gameObject is ShipBase)
+                            {
+                                ((ShipBase)gameObject).DeadHandler += this[pos].OnDestroyMe;
+                            }
+                            else if (gameObject is ProtectBase)
+                            {
+                                ((ProtectBase) gameObject).DeadHandler += this[pos].OnDestroyMe;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //private bool ChackRegionForProtect(ProtectBase protect)
+        //{
+        //    foreach (var x in protect)
+        //    {
+        //        Type cellType = this[x].GetTypeOfCellObject();
+        //        if (!(cellType == typeof(EmptyCell) || cellType == typeof(AroundShip)))
+        //        {
+        //            return false;
+        //        }
+        //    }
+
+        //    return true;
+        //}
+
+        private void SetProtectOnAllProtectionCells(ProtectBase protect)
+        {
+            // поставити захисти на всі клітинки, які захищає цей об'єкт
+            foreach (var x in protect.GetProtectedPositions())
+            {
+                // встановити захист на клітинку
+                this[x].SecureCell(protect);
+
+                protect.ProtectedHandler += this[x].OnCancelSecureHandler;
+            }
+        }
+
+        #endregion Private methods
     }
 }

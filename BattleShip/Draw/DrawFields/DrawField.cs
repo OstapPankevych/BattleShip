@@ -70,8 +70,13 @@ namespace BattleShip.ConsoleUI.Draw.DrawFields
                 Console.Write("->PVO protect :");
                 drInfo.Draw(false);
                 Console.Write('\n');
+
+                drInfo = new DrawEmptyCell(true);
+                Console.Write("->sequre cell on field :");
+                drInfo.Draw(false);
+                Console.Write('\n');
             }
-            drInfo = new DrawEmptyCell();
+            drInfo = new DrawEmptyCell(false);
             Console.Write("->empty cell on field :");
             drInfo.Draw(false);
             Console.Write('\n');

@@ -127,7 +127,7 @@ namespace BattleShip.GameEngine.ObjectOfGame
                 }
             }
 
-            throw new ArgumentOutOfRangeException();
+            throw new ArgumentOutOfRangeException("Error position");
         }
     }
 }

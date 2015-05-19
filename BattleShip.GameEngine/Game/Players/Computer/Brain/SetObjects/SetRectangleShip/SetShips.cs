@@ -5,6 +5,7 @@ using BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectangleB
 using BattleShip.GameEngine.Location;
 using System;
 using System.Collections.Generic;
+using BattleShip.GameEngine.Fields;
 
 namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectangleShip
 {
@@ -57,9 +58,9 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectan
 
             do
             {
-                begin = Fields.Field.GetPositionForNumber(rnd.Next(fieldSize * fieldSize), fieldSize);
+                begin = BaseField.GetPositionForNumber(rnd.Next(fieldSize * fieldSize), fieldSize);
 
-                List<Position> positionsList = GetArountPositions(begin, countStoreyShip, fieldSize);
+                List<Position> positionsList = PositionAroundInputPosition.GetArountPositions(begin, countStoreyShip, fieldSize);
 
                 // взяти всі можливі точки кругом для цього виду кораблика
                 while (positionsList.Count != 0)
@@ -117,60 +118,57 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetRectan
             } while (true);
         }
 
-        private List<Position> GetArountPositions(Position begin, byte countStorey, byte fieldSize)
-        {
-            List<Position> positions = new List<Position>();
+        //public static  List<Position> GetArountPositions(Position begin, byte countStorey, byte fieldSize)
+        //{
+        //    List<Position> positions = new List<Position>();
 
-            int Column;
-            int Line;
+        //    //////////////////////
+        //    byte line = (byte)(begin.Line + (countStorey - 1));
+        //    byte column = begin.Column;
 
-            //////////////////////
-            Line = begin.Line + (countStorey - 1);
-            Column = begin.Column;
+        //    if (line > 0 || column > 0)
+        //    {
+        //        if (BaseField.IsFieldRegion(line, column, fieldSize))
+        //        {
+        //            positions.Add(new Position(line, column));
+        //        }
+        //    }
 
-            if (Line > 0 || Column > 0)
-            {
-                if (Fields.Field.IsFielRegion(Line, Column, fieldSize))
-                {
-                    positions.Add(new Position((byte) Line, (byte) Column));
-                }
-            }
+        //    ///////////////////////
+        //    line = (byte)(begin.Line - (countStorey - 1));
 
-            ///////////////////////
-            Line = begin.Line - (countStorey - 1);
+        //    if (line > 0 || column > 0)
+        //    {
+        //        if (BaseField.IsFieldRegion((byte)line, (byte)column, fieldSize))
+        //        {
+        //            positions.Add(new Position((byte) line, (byte) column));
+        //        }
+        //    }
 
-            if (Line > 0 || Column > 0)
-            {
-                if (Fields.Field.IsFielRegion(Line, Column, fieldSize))
-                {
-                    positions.Add(new Position((byte) Line, (byte) Column));
-                }
-            }
+        //    //////////////////////
+        //    line = begin.Line;
+        //    column = (byte)(begin.Column + (countStorey - 1));
 
-            //////////////////////
-            Line = begin.Line;
-            Column = begin.Column + (countStorey - 1);
+        //    if (line > 0 || column > 0)
+        //    {
+        //        if (BaseField.IsFieldRegion((byte)line, (byte)column, fieldSize))
+        //        {
+        //            positions.Add(new Position((byte) line, (byte) column));
+        //        }
+        //    }
 
-            if (Line > 0 || Column > 0)
-            {
-                if (Fields.Field.IsFielRegion(Line, Column, fieldSize))
-                {
-                    positions.Add(new Position((byte) Line, (byte) Column));
-                }
-            }
+        //    //////////////////////
+        //    column = (byte)(begin.Column - (countStorey - 1));
 
-            //////////////////////
-            Column = begin.Column - (countStorey - 1);
+        //    if (line > 0 || column > 0)
+        //    {
+        //        if (BaseField.IsFieldRegion((byte)line, (byte)column, fieldSize))
+        //        {
+        //            positions.Add(new Position((byte) line, (byte) column));
+        //        }
+        //    }
 
-            if (Line > 0 || Column > 0)
-            {
-                if (Fields.Field.IsFielRegion(Line, Column, fieldSize))
-                {
-                    positions.Add(new Position((byte) Line, (byte) Column));
-                }
-            }
-
-            return positions;
-        }
+        //    return positions;
+        //}
     }
 }

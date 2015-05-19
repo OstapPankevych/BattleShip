@@ -1,15 +1,25 @@
-﻿using BattleShip.GameEngine.Location;
-using System;
+﻿using System;
+
+
+using BattleShip.GameEngine.Location;
 
 namespace BattleShip.GameEngine.GameEventArgs
 {
     public class GameEvenArgs : EventArgs
     {
-        public GameEvenArgs(Position position)
+        private Position _position;
+
+        public Position Location
         {
-            Location = position;
+            get
+            {
+                return _position;
+            }
         }
 
-        public Position Location { get; private set; }
+        public GameEvenArgs(Position position)
+        {
+            _position = position;
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace BattleShip.GameEngine.Game.GameModes.ClassicGameModes
             base.gunList.Add(new DoubleDestroy());
         }
 
-        protected PVOProtect pvo;
+        protected Pvo pvo;
 
         protected ExtensionClassicGameMode(byte fieldSize)
             : base(fieldSize)
@@ -32,11 +32,11 @@ namespace BattleShip.GameEngine.Game.GameModes.ClassicGameModes
 
         public override bool AddProtect(ProtectBase protect)
         {
-            if (protect is PVOProtect)
+            if (protect is Pvo)
             {
                 if (currentField.AddProtected(protect))
                 {
-                    pvo = (PVOProtect)protect;
+                    pvo = (Pvo)protect;
 
                     CurrentCountProtectsOnField++;
 

@@ -5,48 +5,36 @@ namespace BattleShip.GameEngine.Arsenal.Flot.Corectible
 {
     public class Ractangle : ICorrectible
     {
+        #region Static methods
+
         // Перевіряє чи регіон з positions[] є сприйнятний для кораблика з countStorey
         public static bool ChackShipRegion(byte countStorey, params Position[] positions)
         {
+
             Position begin = positions[0];
             Position end = positions[positions.Length - 1];
 
-            // тривіально для одноповерхового
-            if (begin == end & countStorey == 1)
+            // Для тривіального випадку - поверути true
+            if ((begin == end) & (countStorey == 1))
             {
                 return true;
             }
-            else
-            {
-                // для решти робити перевірки коректності
-                if (IsCorrectLine(begin, end) ^ IsCorrectColumn(begin, end))
-                {
-                    if (IsCorrectLine(begin, end))
-                    {
-                        if (IsCorrectCountStorey(begin.Column, end.Column, countStorey))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
 
-                    if (IsCorrectColumn(begin, end))
-                    {
-                        if (IsCorrectCountStorey(begin.Line, end.Line, countStorey))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
+            // Дял решти випадків - зробити перевірку коректності
+            if (IsCorrectLine(begin, end) ^ IsCorrectColumn(begin, end))
+            {
+                if (IsCorrectLine(begin, end) & IsCorrectCountStorey(begin.Column, end.Column, countStorey))
+                {
+                    return true;   
                 }
-                return false;
+                
+                if (IsCorrectColumn(begin, end) & IsCorrectCountStorey(begin.Line, end.Line, countStorey))
+                {
+                    return true;
+                }
             }
+
+            return false;
         }
 
         // Дати всі координати кораблика з countStorey для початкової і кінцевої позиції
@@ -62,52 +50,43 @@ namespace BattleShip.GameEngine.Arsenal.Flot.Corectible
                 {
                     return new Position[] { begin };
                 }
+
                 if (countStorey == 2)
                 {
                     return new Position[] { begin, end };
                 }
-
-                // ініціалізація неможливим значенням, щоб коли наступний пошук буде неправильним - вилетів ShipException()
-                Position midlePosition1 = new Position((byte)(begin.Line + 1), (byte)(begin.Column + 1));
-                Position midlePosition2 = new Position((byte)(begin.Line + 2), (byte)(begin.Column + 2));
+                
+                Position[] midlePos = new Position[countStorey - 2];
 
                 if (Ractangle.IsCorrectColumn(begin, end))
                 {
-                    if (begin.Line < end.Line)
+                    byte minLine = (begin.Line < end.Line) ? begin.Line : end.Line;
+                    for (byte i = 0; i < countStorey - 2; i++)
                     {
-                        midlePosition1 = new Position((byte)(begin.Line + 1), begin.Column);
-                        midlePosition2 = new Position((byte)(begin.Line + 2), begin.Column);
-                    }
-                    else if (end.Line < begin.Line)
-                    {
-                        midlePosition1 = new Position((byte)(end.Line + 1), begin.Column);
-                        midlePosition2 = new Position((byte)(end.Line + 2), begin.Column);
+                        midlePos[i] = new Position((byte)(minLine + (i + 1)), begin.Column);
                     }
                 }
+
                 else if (Ractangle.IsCorrectLine(begin, end))
                 {
-                    if (begin.Column < end.Column)
+                    byte minColumn = (begin.Column < end.Column) ? begin.Column : end.Column;
+                    for (byte i = 0; i < countStorey - 2; i++)
                     {
-                        midlePosition1 = new Position(begin.Line, (byte)(begin.Column + 1));
-                        midlePosition2 = new Position(begin.Line, (byte)(begin.Column + 2));
-                    }
-                    else if (end.Column < begin.Column)
-                    {
-                        midlePosition1 = new Position(begin.Line, (byte)(end.Column + 1));
-                        midlePosition2 = new Position(begin.Line, (byte)(end.Column + 2));
-                    }
+                        midlePos[i] = new Position(begin.Line, (byte)(minColumn + (i + 1)));
+                    }                  
                 }
 
-                if (countStorey == 3)
-                {
-                    return new Position[] { begin, midlePosition1, end };
-                }
-                if (countStorey == 4)
-                {
-                    return new Position[] { begin, midlePosition1, midlePosition2, end };
-                }
+                Position[] res = new Position[midlePos.Length + 2];
+                res[0] = begin;
+                res[res.Length - 1] = end;
 
-                return null;
+                for (int i = 1; i < res.Length - 1; i++)
+                {
+                    res[i] = midlePos[i - 1];
+                }
+                return res;
+
+                
             }
         }
 
@@ -138,11 +117,15 @@ namespace BattleShip.GameEngine.Arsenal.Flot.Corectible
         {
             if (Math.Abs(begin - end) + 1 == countStorey)
             {
+                
                 return true;
             }
 
             return false;
         }
+
+        #endregion Static methods
+
 
         // аналог ChackShipRegion() тільки не статична
         public bool IsTrueShipRegion(byte countStorey, params Position[] positions)

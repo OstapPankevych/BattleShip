@@ -34,7 +34,7 @@ namespace BattleShip.ConsoleUI.ConsoleCore
             Console.SetCursorPosition(0, fieldSize + 20);
 
             Console.Write("EnterPosition\n");
-            return Get.GetPosition(fieldSize);
+            return Give.GetPosition(fieldSize);
         }
 
         public Position[] GetPositionsShip(byte fieldSize)
@@ -43,9 +43,9 @@ namespace BattleShip.ConsoleUI.ConsoleCore
 
             Position[] posArr = new Position[2];
             Console.Write("Enter begin position of ship\n");
-            posArr[0] = Get.GetPosition(fieldSize);
+            posArr[0] = Give.GetPosition(fieldSize);
             Console.Write("Enter end position of ship\n");
-            posArr[1] = Get.GetPosition(fieldSize);
+            posArr[1] = Give.GetPosition(fieldSize);
 
             return posArr;
         }
@@ -95,7 +95,7 @@ namespace BattleShip.ConsoleUI.ConsoleCore
             Console.ReadLine();
 
             Console.Write("EnterPosition\n");
-            return Get.GetPosition(field.Size);
+            return Give.GetPosition(field.Size);
         }
 
         public void SettedAllShipsSuccesfulyInfo()
@@ -118,7 +118,7 @@ namespace BattleShip.ConsoleUI.ConsoleCore
             Console.WriteLine('\a');
         }
 
-        public void SettedSomeShipSuccesfulyInfo()
+        public void SettedSomeShipSuccesfulyInfo(byte countStorey)
         {
             ShowFields();
             Console.WriteLine('\a');
