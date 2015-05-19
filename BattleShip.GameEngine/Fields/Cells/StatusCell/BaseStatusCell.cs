@@ -1,4 +1,5 @@
-﻿using BattleShip.GameEngine.GameEventArgs;
+﻿using BattleShip.GameEngine.GameEvent;
+using BattleShip.GameEngine.GameEventArgs;
 using BattleShip.GameEngine.ObjectOfGame;
 using BattleShip.GameEngine.Location;
 

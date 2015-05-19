@@ -4,6 +4,7 @@ using BattleShip.GameEngine.ObjectOfGame;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BattleShip.GameEngine.GameEvent;
 
 
 namespace BattleShip.GameEngine.Arsenal.Protection

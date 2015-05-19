@@ -46,7 +46,7 @@
     <Compile Include="Fields\Cells\StatusCell\BaseStatusCell.cs" />
     <Compile Include="Fields\Cells\StatusCell\EmptyCell.cs" />
     <Compile Include="Fields\Cells\StatusCell\ProtectedCell.cs" />
-    <Compile Include="Fields\Exceptions\OutOfFielRegionException.cs" />
+    <Compile Include="Fields\Cells\Exceptions\OutOfFielRegionException.cs" />
     <Compile Include="Fields\BaseField.cs" />
     <Compile Include="Fields\Cells\Cell.cs" />
     <Compile Include="Arsenal\Flot\RectangleShips\FourStoreyRectangleShip.cs" />
@@ -88,7 +88,7 @@
     <Compile Include="Game\Players\Computer\Brain\SetObjects\SetRectangleShip\ISetibleShip.cs" />
     <Compile Include="Game\Players\Computer\Brain\SetObjects\SetRectangleShip\SetShips.cs" />
     <Compile Include="Game\Players\IPlayer.cs" />
-    <Compile Include="Game\Players\Man\Man.cs" />
+    <Compile Include="Game\Players\Man\ManPlayer.cs" />
     <Compile Include="Location\Position.cs" />
     <Compile Include="Game\Players\Computer\Computer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

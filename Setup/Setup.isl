@@ -340,9 +340,9 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>BattleShip.DesktopUI.exe</td><td>{67F2E033-C3AF-450A-BD22-491D9592C6F5}</td><td>INSTALLDIR</td><td>2</td><td/><td>battleship.desktopui.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>BattleShip.DesktopUI.vshost.exe</td><td>{77E71862-4122-4C18-9993-B0EE14035F52}</td><td>INSTALLDIR</td><td>2</td><td/><td>battleship.desktopui.vshost.</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>BattleShip.GameEngine.dll</td><td>{AE1B8E6C-B6A2-465F-87B2-0A99DF2A024C}</td><td>INSTALLDIR</td><td>2</td><td/><td>battleship.gameengine.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BattleShip.DesktopUI.exe</td><td>{29ECA1EE-A3D8-4970-BB32-349F27D7A8EB}</td><td>INSTALLDIR</td><td>2</td><td/><td>battleship.desktopui.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BattleShip.DesktopUI.vshost.exe</td><td>{F5754CE5-F1AD-4D56-931D-20F9F9942344}</td><td>INSTALLDIR</td><td>2</td><td/><td>battleship.desktopui.vshost.</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BattleShip.GameEngine.dll</td><td>{1366C1EF-A23B-42A8-A578-533914065753}</td><td>INSTALLDIR</td><td>2</td><td/><td>battleship.gameengine.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{636243CB-3918-4F8A-90AF-DF7EC358B659}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -2035,9 +2035,9 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>BattleShip.DesktopUI.exe</td><td/><td/><td>_D30C4C0D_D56E_4272_97A1_6AEA36AF8A1F_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>BattleShip.DesktopUI.vshost.exe</td><td/><td/><td>_A1138086_FE50_4CC4_9A9B_815EAA87C212_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>BattleShip.GameEngine.dll</td><td/><td/><td>_3541CC60_1B6B_4A28_9D10_358DDDA75F41_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BattleShip.DesktopUI.exe</td><td/><td/><td>_756130D6_1FBC_424B_B00E_E9E316F38F7D_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BattleShip.DesktopUI.vshost.exe</td><td/><td/><td>_5CB5DE18_57D8_4126_A650_707C2BE04EE0_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BattleShip.GameEngine.dll</td><td/><td/><td>_A87FAF70_E6F6_4D9D_BD13_85457FCB5F99_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_C37B423E_5FEA_4684_85F5_E405456950EC_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2655,7 +2655,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>OstapPankevych</td><td>0</td><td/><td>-1700558368</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>OstapPankevych</td><td>0</td><td/><td>-1700543532</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-1834771145</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-1834771145</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40CLIENT</td><td>1033</td><td>Microsoft .NET Framework 4.0 Client Package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1700571040</td></row>
@@ -3470,6 +3470,7 @@
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>-1834771145</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>-1834771145</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700574368</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME10</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.vshost.exe</td><td>0</td><td/><td>-1700555788</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700553856</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700547775</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.vshost.exe</td><td>0</td><td/><td>-1700547775</td></row>
@@ -3477,6 +3478,7 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700565983</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME7</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.vshost.exe</td><td>0</td><td/><td>-1700565983</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME8</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700541407</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME9</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700557836</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>-1834771145</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>-1834771145</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-1834771145</td></row>
@@ -3768,11 +3770,12 @@
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-1834767049</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td/><td>0</td><td/><td>-1834750633</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td/><td>0</td><td/><td>-1834768745</td></row>
-		<row><td>ID_STRING4</td><td>1033</td><td>http://www.OstapPankevych.com</td><td>0</td><td/><td>-1700558368</td></row>
-		<row><td>ID_STRING5</td><td>1033</td><td>OstapPankevych</td><td>0</td><td/><td>-1700558368</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>http://www.OstapPankevych.com</td><td>0</td><td/><td>-1700543532</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>OstapPankevych</td><td>0</td><td/><td>-1700543532</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700551808</td></row>
 		<row><td>ID_STRING7</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700568191</td></row>
 		<row><td>ID_STRING8</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700539359</td></row>
+		<row><td>ID_STRING9</td><td>1033</td><td>LAUNCH~1.EXE|Launch BattleShip.DesktopUI.exe</td><td>0</td><td/><td>-1700545548</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1834771145</td></row>
 	</table>
 
@@ -3885,8 +3888,11 @@
 		<row><td>BattleShip.Desktop_19CE033FB6504487B6F9F0BF8F44069E.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
 		<row><td>BattleShip.Desktop_268D98D93EB54B8CA70091155FE97CBA.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
 		<row><td>BattleShip.Desktop_3CA6834F7ADE47FCBF25C1ED7B322B66.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
+		<row><td>BattleShip.Desktop_6748D54EA2AE4436BD554BE7DC85CA69.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
+		<row><td>BattleShip.Desktop_B191BC49215A4060B69DD98C5CF7A257.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
 		<row><td>BattleShip.Desktop_C0634035A568430997D95832F34CBB05.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
 		<row><td>BattleShip.Desktop_C5C5800883944163908179605E700106.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
+		<row><td>BattleShip.Desktop_D28D58778C844A2AB6E8A7E8C1C9EA55.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>BattleShip.Desktop_EDDD4D3861044570B9F1BC41E589F49C.exe</td><td/><td>&lt;VSSolutionFolder&gt;\BattleShip.DesktopUI\Resources\icon.ico</td><td>0</td></row>
 	</table>
 
@@ -4472,6 +4478,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
 		<row><td>BattleShip.DesktopUI.exe</td><td>BattleShip.DesktopUI.exe</td><td/><td>battle_1_battleship</td><td>2</td></row>
+		<row><td>BattleShip.DesktopUI.vshost.exe</td><td>BattleShip.DesktopUI.vshost.exe</td><td/><td>battle_1_battleship</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4557,8 +4564,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>BattleShip.DesktopUI.exe</td><td>battle_1_battleship</td><td>##IDS_SHORTCUT_DISPLAY_NAME8##</td><td>BattleShip.DesktopUI.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>BattleShip.Desktop_268D98D93EB54B8CA70091155FE97CBA.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>BattleShip.DesktopUI.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME8##</td><td>BattleShip.DesktopUI.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>BattleShip.Desktop_3CA6834F7ADE47FCBF25C1ED7B322B66.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>BattleShip.DesktopUI.exe</td><td>battle_1_battleship</td><td>##IDS_SHORTCUT_DISPLAY_NAME9##</td><td>BattleShip.DesktopUI.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>BattleShip.Desktop_6748D54EA2AE4436BD554BE7DC85CA69.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>BattleShip.DesktopUI.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME9##</td><td>BattleShip.DesktopUI.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>BattleShip.Desktop_B191BC49215A4060B69DD98C5CF7A257.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>BattleShip.DesktopUI.vshost.exe</td><td>battle_1_battleship</td><td>##IDS_SHORTCUT_DISPLAY_NAME10##</td><td>BattleShip.DesktopUI.vshost.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>BattleShip.Desktop_D28D58778C844A2AB6E8A7E8C1C9EA55.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

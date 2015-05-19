@@ -1,4 +1,5 @@
-﻿using BattleShip.GameEngine.GameEventArgs;
+﻿using BattleShip.GameEngine.GameEvent;
+using BattleShip.GameEngine.GameEventArgs;
 
 
 namespace BattleShip.GameEngine.Fields
@@ -20,8 +21,7 @@ namespace BattleShip.GameEngine.Fields
             _field = field;
         }
 
-
-        private Field _field;
+        private readonly Field _field;
 
         private void OnDeadHandler(GameEvenArgs e)
         {

@@ -1,7 +1,7 @@
-﻿using BattleShip.GameEngine.Location;
-using System;
+﻿using System;
+using BattleShip.GameEngine.Location;
 
-namespace BattleShip.GameEngine.GameEventArgs
+namespace BattleShip.GameEngine.GameEvent
 {
     public class GameEvenArgs : EventArgs
     {

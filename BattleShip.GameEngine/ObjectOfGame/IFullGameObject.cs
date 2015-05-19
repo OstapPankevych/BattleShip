@@ -1,5 +1,5 @@
 ﻿using System;
-using BattleShip.GameEngine.GameEventArgs;
+using BattleShip.GameEngine.GameEvent;
 
 
 namespace BattleShip.GameEngine.ObjectOfGame

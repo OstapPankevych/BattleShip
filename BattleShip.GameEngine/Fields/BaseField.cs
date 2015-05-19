@@ -1,7 +1,6 @@
 ﻿using BattleShip.GameEngine.Fields.Cells;
 using BattleShip.GameEngine.Fields.Exceptions;
 using BattleShip.GameEngine.Location;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using BattleShip.GameEngine.Fields.Cells.StatusCell;
@@ -50,7 +49,6 @@ namespace BattleShip.GameEngine.Fields
             get { return _size; }
             private set
             {
-                ChackFieldSize(value, value);
                 _size = value;
             }
         }
@@ -61,20 +59,13 @@ namespace BattleShip.GameEngine.Fields
         {
             get
             {
-                ChackFieldSize(line, column);
                 return _cells[line][column];
-            }
-            private set
-            {
-                ChackFieldSize(line, column);
-                _cells[line][column] = value;
             }
         }
 
         public Cell this[Position pos]
         {
             get { return this[pos.Line, pos.Column]; }
-            private set { this[pos.Line, pos.Column] = value; }
         }
 
         #endregion this[]
@@ -83,14 +74,6 @@ namespace BattleShip.GameEngine.Fields
 
 
         #region Private methods
-
-        private void ChackFieldSize(byte line, byte column)
-        {
-            if (!((line < 20) & (column < 20)))
-            {
-                throw new OutOfFielRegionException("BaseField.this[byte]");
-            }
-        }
 
         private void InitCells()
         {

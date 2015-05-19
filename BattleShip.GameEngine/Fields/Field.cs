@@ -92,19 +92,6 @@ namespace BattleShip.GameEngine.Fields
 
         #region Private methods
 
-        //private bool ChackRegionForShip(ShipBase ship)
-        //{
-        //    foreach (Position x in ship)
-        //    {
-        //        if (this[x].GetTypeOfCellObject() != typeof(EmptyCell))
-        //        {
-        //            return false;
-        //        }
-        //    }
-
-        //    return true;
-        //}
-
         private bool ChackRegion(IGameObject gameObject)
         {
             foreach (Position x in (IEnumerable<Position>)gameObject)
@@ -117,26 +104,6 @@ namespace BattleShip.GameEngine.Fields
 
             return true;
         }
-
-        //private void SetRegionAroundShip(ShipBase ship)
-        //{
-        //    // Зробити поля кругом кораблика і підписати їх знищення при знищенні кораблика
-        //    foreach (var x in ship)
-        //    {
-        //        for (var i = -1; i < 2; i++)
-        //        {
-        //            for (var j = -1; j < 2; j++)
-        //            {
-        //                var pos = new Position((byte)(x.Line + i), (byte)(x.Column + j));
-        //                if (IsFieldRegion(pos.Line, pos.Column))
-        //                {
-        //                    this[pos].AddGameObject(new AroundShip(pos), true);
-        //                    ship.OnDeadHandler += this[pos].OnDestroyMe;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
 
         private void SetRegionAround(IGameObject gameObject)
         {
@@ -164,20 +131,6 @@ namespace BattleShip.GameEngine.Fields
                 }
             }
         }
-
-        //private bool ChackRegionForProtect(ProtectBase protect)
-        //{
-        //    foreach (var x in protect)
-        //    {
-        //        Type cellType = this[x].GetTypeOfCellObject();
-        //        if (!(cellType == typeof(EmptyCell) || cellType == typeof(AroundShip)))
-        //        {
-        //            return false;
-        //        }
-        //    }
-
-        //    return true;
-        //}
 
         private void SetProtectOnAllProtectionCells(ProtectBase protect)
         {

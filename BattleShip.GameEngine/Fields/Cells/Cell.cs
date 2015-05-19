@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BattleShip.GameEngine.Arsenal.Flot;
 using BattleShip.GameEngine.Fields.Cells.StatusCell;
+using BattleShip.GameEngine.GameEvent;
 
 
 namespace BattleShip.GameEngine.Fields.Cells

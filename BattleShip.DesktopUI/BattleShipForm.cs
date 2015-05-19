@@ -426,34 +426,6 @@ namespace BattleShip.DesktopUI
         {
             Invoke(new Action(() =>
             {
-                ActiveMenuText newGame;
-                if (_settingsGame.GameMode.GetType().IsAssignableFrom(typeof (ClassicGameMode)))
-                {
-                    newGame = new ActiveMenuText("NewGame", Color.Green, new Font(_fm, 20),
-                        GetFormPositionFromCellPosition((byte) ((Height - 4*_sizeOneCellPxls)/_sizeOneCellPxls), 20),
-                        new Pen(Color.Beige));
-                }
-                else
-                {
-                    newGame = new ActiveMenuText("NewGame", Color.Green, new Font(_fm, 14),
-                        new Point(Width - 180, (Height - 155)), 
-                        new Pen(Color.Beige));
-                }
-                newGame.ChangeCurrentActiveStatus += () =>
-                {
-                    DialogResult result = MessageBox.Show("Cancel current game?", "Question",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
-                    {
-                        StartGame();
-                    }
-
-                    newGame.OnChangeCurrentActiveStatus();
-                };
-
-                ucPanel.WriteActiveText(newGame);
-
                 ucField1.RefreshField();
                 ucField2.RefreshField();
 

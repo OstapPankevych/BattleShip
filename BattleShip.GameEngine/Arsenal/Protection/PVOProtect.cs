@@ -1,5 +1,6 @@
 ﻿using System;
 using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
+using BattleShip.GameEngine.GameEvent;
 using BattleShip.GameEngine.GameEventArgs;
 using BattleShip.GameEngine.Location;
 
