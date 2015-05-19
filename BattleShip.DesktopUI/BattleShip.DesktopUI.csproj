@@ -81,7 +81,6 @@
     <Compile Include="Field\uc_Field.Designer.cs">
       <DependentUpon>uc_Field.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameProcess\Give.cs" />
     <Compile Include="InfoPanel\MenuText.cs" />
     <Compile Include="InfoPanel\uc_InfoPanel.cs">
       <SubType>UserControl</SubType>
