@@ -58,6 +58,7 @@ namespace BattleShip.GameEngine.Arsenal.Flot.Corectible
                 
                 Position[] midlePos = new Position[countStorey - 2];
 
+                //не обов'язково вказувати ім'я класу для ф-й з цього ж класу
                 if (Ractangle.IsCorrectColumn(begin, end))
                 {
                     byte minLine = (begin.Line < end.Line) ? begin.Line : end.Line;
@@ -67,6 +68,7 @@ namespace BattleShip.GameEngine.Arsenal.Flot.Corectible
                     }
                 }
 
+                //не обов'язково вказувати ім'я класу для ф-й з цього ж класу
                 else if (Ractangle.IsCorrectLine(begin, end))
                 {
                     byte minColumn = (begin.Column < end.Column) ? begin.Column : end.Column;

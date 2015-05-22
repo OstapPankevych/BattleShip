@@ -61,18 +61,22 @@ namespace BattleShip.GameEngine.Game.GameModes.ClassicGameModes
         {
             if (!WasInitAllComponent)
             {
+                //потрібна перевірка на null
                 if (ship is OneStoreyRectangleShip)
                 {
                     return AddShip<OneStoreyRectangleShip>(oneStoreyShipList, (OneStoreyRectangleShip)ship);
                 }
+                //потрібна перевірка на null
                 else if (ship is TwoStoreyRectangleShip)
                 {
                     return AddShip<TwoStoreyRectangleShip>(twoStoreyShipList, (TwoStoreyRectangleShip)ship);
                 }
+                //потрібна перевірка на null
                 else if (ship is ThreeStoreyRectangleShip)
                 {
                     return AddShip<ThreeStoreyRectangleShip>(threeStoreyShipList, (ThreeStoreyRectangleShip)ship);
                 }
+                //потрібна перевірка на null
                 else if (ship is FourStoreyRectangleShip)
                 {
                     return AddShip<FourStoreyRectangleShip>(fourStoreyShipList, (FourStoreyRectangleShip)ship);

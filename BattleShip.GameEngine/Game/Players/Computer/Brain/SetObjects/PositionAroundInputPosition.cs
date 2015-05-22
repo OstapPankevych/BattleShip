@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System; //не використовується
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq; //не використовується
+using System.Text; //не використовується
+using System.Threading.Tasks; //не використовується
 
 using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.Fields;
@@ -32,6 +32,7 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects
 
             if (line > 0 || column > 0)
             {
+                //приведення типу є зайвим line i column є byte
                 if (BaseField.IsFieldRegion((byte)line, (byte)column, fieldSize))
                 {
                     positions.Add(new Position((byte)line, (byte)column));
@@ -44,6 +45,7 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects
 
             if (line > 0 || column > 0)
             {
+                //приведення типу є зайвим line i column є byte
                 if (BaseField.IsFieldRegion((byte)line, (byte)column, fieldSize))
                 {
                     positions.Add(new Position((byte)line, (byte)column));
@@ -55,6 +57,7 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects
 
             if (line > 0 || column > 0)
             {
+                //приведення типу є зайвим line i column є byte
                 if (BaseField.IsFieldRegion((byte)line, (byte)column, fieldSize))
                 {
                     positions.Add(new Position((byte)line, (byte)column));

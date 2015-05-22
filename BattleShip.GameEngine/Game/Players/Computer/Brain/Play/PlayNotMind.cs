@@ -42,7 +42,7 @@ namespace BattleShip.GameEngine.Game.Players.Computer.Brain.Play
             {
                 cellNumber = rnd.Next(myFakeField.Size * myFakeField.Size);
                 pos = BaseField.GetPositionForNumber(cellNumber, myFakeField.Size);
-            } while (myFakeField[pos].WasAttacked == true);
+            } while (myFakeField[pos].WasAttacked == true); //"== true" не потрібно писати WasAttacked є bool
 
             // повернути її позицію
             return myFakeField[pos].Location;

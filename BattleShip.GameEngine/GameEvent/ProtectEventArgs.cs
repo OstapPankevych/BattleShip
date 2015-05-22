@@ -1,5 +1,6 @@
 ﻿using System;
 
+//простір імен не відповідає розміщенню файлу
 namespace BattleShip.GameEngine.GameEventArgs
 {
     public class ProtectEventArgs : EventArgs

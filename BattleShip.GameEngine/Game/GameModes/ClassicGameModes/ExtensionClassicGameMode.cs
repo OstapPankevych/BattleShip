@@ -32,6 +32,7 @@ namespace BattleShip.GameEngine.Game.GameModes.ClassicGameModes
 
         public override bool AddProtect(ProtectBase protect)
         {
+            //потрібна перевірка на null
             if (protect is Pvo)
             {
                 if (currentField.AddProtected(protect))

@@ -79,13 +79,13 @@ namespace BattleShip.GameEngine.Game.GameModes
                 return false;
             }
         }
-
+        //модифікатор new не є потрібним
         public new virtual byte CurrentCountShipsOnField
         {
             get { return _currentCountShipsOnField; }
             protected set { _currentCountShipsOnField = value; }
         }
-
+        //модифікатор new не є потрібним
         public new virtual byte CurrentCountProtectsOnField
         {
             get { return _currentCountProtectsOnField; }

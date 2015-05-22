@@ -132,16 +132,17 @@ namespace BattleShip.GameEngine.Fields.Cells
 
         public bool AddGameObject(IGameObject gameObject, bool sign)
         {
+            //потрібна перевірка на null
             if (gameObject is ShipBase)
             {
                 return SetShip((ShipBase) gameObject, sign);
             }
-
+            //потрібна перевірка на null
             if (gameObject is ProtectBase)
             {
                 return SetProtect((ProtectBase) gameObject, sign);
             }
-
+            //потрібна перевірка на null
             if (gameObject is AroundShip)
             {
                 SetAroundShip((AroundShip) gameObject);
@@ -245,6 +246,7 @@ namespace BattleShip.GameEngine.Fields.Cells
 
         private bool SetProtect(ProtectBase protect, bool sign)
         {
+            //потрібна перевірка на null
             if (!(_gameObject.GetType() is ShipBase))
             {
                 _gameObject = protect;
