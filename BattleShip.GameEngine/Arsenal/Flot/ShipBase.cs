@@ -1,7 +1,7 @@
 ﻿using System;
 using BattleShip.GameEngine.Arsenal.Flot.Corectible;
 using BattleShip.GameEngine.Arsenal.Flot.Exceptions;
-using BattleShip.GameEngine.GameEventArgs;
+using BattleShip.GameEngine.GameEventArgs; //не використовується
 using BattleShip.GameEngine.Location;
 using BattleShip.GameEngine.ObjectOfGame;
 using System.Collections;
@@ -14,7 +14,8 @@ namespace BattleShip.GameEngine.Arsenal.Flot
     public abstract class ShipBase : IFullGameObject, IEnumerable<Position>
     {
         #region Constructors
-
+        
+        //змінна id не використовується в конструкторі (немає присвоєння)
         protected ShipBase(ICorrectible correctible, byte id, params Position[] positions)
         {
             

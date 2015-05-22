@@ -7,6 +7,7 @@ namespace BattleShip.GameEngine.Arsenal.Gun.Destroyable
     {
         public PlaneDestroy()
         {
+            //зайвий кваліфікатор
             base.FearList.Add(typeof(Pvo));
         }
 

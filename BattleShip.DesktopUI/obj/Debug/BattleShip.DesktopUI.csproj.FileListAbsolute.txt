@@ -1,0 +1,13 @@
+F:\BattleShip-master\BattleShip.DesktopUI\bin\Release\BattleShip.DesktopUI.exe.config
+F:\BattleShip-master\BattleShip.DesktopUI\bin\Release\BattleShip.DesktopUI.exe
+F:\BattleShip-master\BattleShip.DesktopUI\bin\Release\BattleShip.DesktopUI.pdb
+F:\BattleShip-master\BattleShip.DesktopUI\bin\Release\BattleShip.GameEngine.dll
+F:\BattleShip-master\BattleShip.DesktopUI\bin\Release\BattleShip.GameEngine.pdb
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.csprojResolveAssemblyReference.cache
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.BattleShipForm.resources
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.Field.UcField.resources
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.InfoPanel.uc_InfoPanel.resources
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.Properties.Resources.resources
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.csproj.GenerateResource.Cache
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.exe
+F:\BattleShip-master\BattleShip.DesktopUI\obj\Debug\BattleShip.DesktopUI.pdb

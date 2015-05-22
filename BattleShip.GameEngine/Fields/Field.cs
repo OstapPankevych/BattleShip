@@ -3,10 +3,10 @@ using BattleShip.GameEngine.Arsenal.Gun;
 using BattleShip.GameEngine.Arsenal.Protection;
 using BattleShip.GameEngine.Location;
 using System;
-using System.Collections;
+using System.Collections; //не використовується
 using System.Collections.Generic;
-using BattleShip.GameEngine.Arsenal.Gun.Destroyable;
-using BattleShip.GameEngine.Fields.Cells;
+using BattleShip.GameEngine.Arsenal.Gun.Destroyable; //не використовується
+using BattleShip.GameEngine.Fields.Cells; //не використовується
 using BattleShip.GameEngine.Fields.Cells.StatusCell;
 using BattleShip.GameEngine.ObjectOfGame;
 

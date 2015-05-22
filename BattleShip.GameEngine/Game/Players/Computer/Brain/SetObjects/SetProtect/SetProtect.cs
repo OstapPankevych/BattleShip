@@ -1,7 +1,7 @@
 ﻿using BattleShip.GameEngine.Arsenal.Protection;
 using BattleShip.GameEngine.Location;
 using System;
-using System.Collections.Generic;
+using System.Collections.Generic; //не використовується
 
 namespace BattleShip.GameEngine.Game.Players.Computer.Brain.SetObjects.SetProtect
 {
